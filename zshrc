@@ -145,6 +145,9 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 alias vim="$EDITOR"
 alias vi="$EDITOR"
+# open file for edit in NeoVim in top window
+alias e='f() { nvr --remote-send "<esc><C-w>e:e $1<cr>" };f'
+alias icat="kitty +kitten icat"
 
 # some localizations
 # Russian linux man pages

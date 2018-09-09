@@ -63,21 +63,21 @@ Plug 'airblade/vim-gitgutter'
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutJump = '<M-m>'
 
 " Color parentheses
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
 " TODO: check vim-airline tab management
-Plug 'bagrat/vim-workspace'
+Plug 'widgetii/vim-workspace'
 " vim-workspace settings{{{
 " use vim-devicons symbols
 let g:workspace_powerline_separators = 1
 let g:workspace_tab_icon = "\uf00a"
 let g:workspace_left_trunc_icon = "\uf0a8"
 let g:workspace_right_trunc_icon = "\uf0a9"
-
-let g:workspace_hide_buffers = ['term://']
+let g:workspace_hide_terms = 1
 
 " Here are some recommended mappings to boost your navigation experience
 noremap <Tab> :WSNext<CR>
@@ -104,9 +104,7 @@ Plug 'farmergreg/vim-lastplace'
 set termguicolors
 
 " Colorschemes, pick one, but others stay disabled
-"Plug 'altercation/vim-colors-solarized'
-"Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
-
+Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 
 Plug 'KabbAmine/zeavim.vim'
@@ -136,9 +134,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['/usr/bin/pyls'],
-    \ 'cpp': ['/usr/bin/cquery', '--log-file=/tmp/cq.log'],
-    \ 'c': ['/usr/bin/cquery', '--log-file=/tmp/cq.log'],
+    \ 'python': ['pyls'],
+    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
     \ }
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
@@ -190,7 +188,6 @@ endif
 "In one of its cleverest innovations, Vim doesn't model undo as a simple stack. In Vim it's a tree. This makes sure you never lose an action in Vim, but also makes it much more difficult to traverse around that tree. gundo.vim fixes this by displaying that undo tree in graphical form
 "https://github.com/sjl/gundo.vim
 " others - https://dougblack.io/words/a-good-vimrc.html
-"https://github.com/jiangmiao/auto-pairs
 
 " Try tmux+vimux
 "https://www.braintreepayments.com/blog/vimux-simple-vim-and-tmux-integration/

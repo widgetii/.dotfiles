@@ -143,6 +143,10 @@ augroup startup
     autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
 augroup END
 
+" Test scrolling problems 
+let g:neoterm_autoscroll = 1
+" Test if will any problems
+"let g:neoterm_autoinsert=1
 
 " }}} TERMINALS
 
@@ -249,14 +253,15 @@ colorscheme gruvbox
 set background=dark
 let g:gruvbox_italic=1
 let g:gruvbox_terminal_colors = 1
+" Don't show tildes on blank lines
+highlight NonText ctermfg=bg guifg=bg
 " }}}
 
 " SEOUL256 {{{
-"Plug 'junegunn/seoul256.vim'
-"let g:seoul256_background = 233
+"let g:seoul256_background = 236
 "colorscheme seoul256
-
-" This can help for broken background in seoul256 theme on some terminals
+"
+"" This can help for broken background in seoul256 theme on some terminals
 "highlight Normal ctermbg=NONE
 "highlight nonText ctermbg=NONE
 " }}}
