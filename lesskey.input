@@ -1,0 +1,16 @@
+# $HOME/.lesskey.input - input file for lesskey(1)
+
+# tarmak#1
+
+#command
+n	forw-line
+e	back-line
+
+N	forw-line-force
+E	back-line-force
+
+k         repeat-search
+\ek       repeat-search-all
+K         reverse-search
+\eK       reverse-search-all
+
