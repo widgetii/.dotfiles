@@ -1,0 +1,43 @@
+{
+    "title": "Readline-like shortcuts in GUI apps",
+    "rules": [
+
+        {
+            "description": "Ctrl-W - Delete word to the left of cursor",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_unless",
+                            "bundle_identifiers": [
+                                "^net\\.kovidgoyal\\.kitty$",
+                                "^com\\.apple\\.Terminal$"
+                            ]
+                        }
+                    ],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "w",
+                        "modifiers": {
+                            "mandatory": [
+                                "control"
+                            ],
+                            "optional": [
+                                "caps_lock",
+                                "option"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "delete_or_backspace",
+                            "modifiers": [
+                                "left_option"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

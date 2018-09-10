@@ -277,19 +277,17 @@ noremap <silent> <F12> :set number!<CR> :set relativenumber!<CR>
 
 " COLEMAK {{{
 " TARMAK1
-noremap n j|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j
-noremap e k|noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k
+noremap n j|noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
+noremap e k|noremap ge gk|noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
 noremap k n
 noremap K N
 noremap j e
 noremap J E
-noremap о j
-noremap л k
 
 " TARMAK5
-noremap s i
+noremap s i|noremap в i
 "noremap S I
-noremap i l
+noremap i l|noremap д l
 
 " BOL/EOL/Join Lines.
 noremap l ^|noremap L $|noremap <C-l> J
