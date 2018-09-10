@@ -9,6 +9,8 @@ Plug 'lyokha/vim-xkbswitch'
 let g:XkbSwitchEnabled = 1
 if os == "Darwin"
     let g:XkbSwitchLib = '/usr/local/bin/libxkbswitch.dylib'
+elseif os == "Linux"
+    let g:XkbSwitchLib = '/usr/lib/libxkbswitch.so'
 endif
 
 Plug 'scrooloose/nerdtree'
