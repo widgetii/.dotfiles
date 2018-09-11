@@ -221,3 +221,6 @@ assign [class="Telegram"] $ws6
 bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 bindsym $mod+shift+a exec "scrot -s ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 
+# Use https://github.com/syl20bnr/i3ci/blob/master/i3_config
+# for new ideas, for eg. functions
+
