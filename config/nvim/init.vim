@@ -321,3 +321,13 @@ augroup easy_close
 augroup END
 " }}}
 
+
+" use cursor color in terminal (from Neovim FAQ)
+" Cursor is same as on kitty
+hi Cursor guifg=#8fee96 guibg=#8fee96
+hi Cursor2 guifg=red guibg=red
+set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
+
+" Copy on selection (from FAQ)
+vnoremap <LeftRelease> "*ygv
+
