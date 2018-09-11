@@ -173,15 +173,45 @@ bindsym $mod+mod2+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status
-    colors{
-        background #232323
-        statusline #DCDCDC
+    output HDMI2
+    status_command    i3status+
+    position          bottom
+    mode              dock
+    workspace_buttons yes
+    colors {
+        background #000000
+        statusline #999999
+        focused_workspace  #ffffff #285577
+        active_workspace   #ffffff #333333
+        inactive_workspace #888888 #222222
+        urgent_workspace   #ffffff #900000
     }
     tray_output HDMI2
 }
 
-bindsym $mod+mod2+x exec i3lock -t -i /d0/dmitry.ilyin/Documents/My\ Pictures/vax11.png
+bar {
+    output HDMI1
+    status_command    i3status
+    position          bottom
+    mode              dock
+    workspace_buttons yes
+    colors {
+        background #000000
+        statusline #999999
+        focused_workspace  #ffffff #285577
+        active_workspace   #ffffff #333333
+        inactive_workspace #888888 #222222
+        urgent_workspace   #ffffff #900000
+    }
+}
+
+bindsym $mod+mod2+x exec i3lock -t -i ~/Documents/My\ Pictures/vax11.png
+bindsym XF86AudioMicMute exec i3lock -t -i ~/Documents/My\ Pictures/vax11.png
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 136 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 136 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 136 toggle # mute sound
 
 # Telegram
 bindsym $mod+shift+t exec /usr/bin/telegram-desktop
@@ -189,3 +219,5 @@ assign [class="Telegram"] $ws6
 
 # Screenshots
 bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+bindsym $mod+shift+a exec "scrot -s ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+
