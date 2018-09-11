@@ -128,6 +128,7 @@ fi
 # more colors!
 export GTEST_COLOR=yes
 alias ip="ip -c"
+alias tree="tree -C"
 #alias colors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: test"; done'
 
 # more settings for theme
@@ -147,7 +148,7 @@ alias vim="$EDITOR"
 alias vi="$EDITOR"
 alias v="$EDITOR ."
 # open file for edit in NeoVim in top window
-alias e='f() { nvr --remote-send "<esc><C-w>e:e $1<cr>" };f'
+alias e='f() { nvr --remote-send "<esc><C-w>e:e $(pwd)/$1<cr>" };f'
 alias icat="kitty +kitten icat"
 
 # some localizations
