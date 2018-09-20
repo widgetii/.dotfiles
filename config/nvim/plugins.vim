@@ -158,6 +158,7 @@ Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
+Plug 'drmikehenry/vim-headerguard'
 
 Plug 'martong/vim-compiledb-path'
 
