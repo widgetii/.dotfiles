@@ -181,7 +181,7 @@ alias xc="xclip -sel clip < "
 # WHAT'S NEXT?
 # https://github.com/clvv/fasd
 # Try to use in real life
-#
+#`````````````` plugins/vi-mode/vi-mode.plugin.zsh
 
 # From https://github.com/zsh-users/zsh-autosuggestions
 # My trial of make autosuggestion like autocomplete in Vim

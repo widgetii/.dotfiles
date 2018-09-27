@@ -24,12 +24,14 @@ xmodmap -e "remove Lock = Caps_Lock"
 # добавляем ему функцию Control
 xmodmap -e "add Control = Control_L"
 
+# for HHKB set Escape key as ~, like in normal layout
+xmodmap -e "keycode 253 = Escape NoSymbol Escape NoSymbol Escape"
+xmodmap -e "keycode 9 = grave asciitilde"
+
 # однократное нажатие у нас будет для Enter->Return, для Caps->Escape
 xcape -t 500 -e "Control_R=Return;Control_L=Escape"
 
 # ВРЕМЕННО маппим на ненужные кнопки F9->English, F10->Russian
-#xmodmap -e "keycode 75 = ISO_First_Group"
-#xmodmap -e "keycode 76 = ISO_Last_Group"
 xmodmap -e "keycode 250 = ISO_First_Group"
 xmodmap -e "keycode 251 = ISO_Last_Group"
 # как я понял вообще без разницы какие использовать кнопки

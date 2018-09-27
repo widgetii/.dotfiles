@@ -209,17 +209,19 @@ bindsym $mod+mod2+x exec i3lock -t -i ~/Documents/My\ Pictures/vax11.png
 bindsym XF86AudioMicMute exec i3lock -t -i ~/Documents/My\ Pictures/vax11.png
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 136 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 136 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 136 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.hdmi-stereo +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.hdmi-stereo -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.hdmi-stereo toggle # mute sound
 
 # Telegram
 bindsym $mod+shift+t exec /usr/bin/telegram-desktop
 assign [class="Telegram"] $ws6
 
 # Screenshots
-bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+#bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 bindsym $mod+shift+a exec "scrot -s ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+# For usage check this https://github.com/lupoDharkael/flameshot#keyboard-shortcuts
+bindsym $mod+shift+s exec "flameshot gui -p ~/Downloads"
 
 # Use https://github.com/syl20bnr/i3ci/blob/master/i3_config
 # for new ideas, for eg. functions
