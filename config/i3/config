@@ -218,8 +218,10 @@ bindsym $mod+shift+t exec /usr/bin/telegram-desktop
 assign [class="Telegram"] $ws6
 
 # Screenshots
-bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+#bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 bindsym $mod+shift+a exec "scrot -s ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+# For usage check this https://github.com/lupoDharkael/flameshot#keyboard-shortcuts
+bindsym $mod+shift+s exec "flameshot gui -p ~/Downloads"
 
 # Use https://github.com/syl20bnr/i3ci/blob/master/i3_config
 # for new ideas, for eg. functions

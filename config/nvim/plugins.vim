@@ -161,6 +161,11 @@ Plug 'https://github.com/Kris2k/A.vim.git'
 
 Plug 'martong/vim-compiledb-path'
 
+Plug 'embear/vim-localvimrc'
+" Disable sandbox mode
+let g:localvimrc_sandbox = 0
+let g:localvimrc_ask = 0
+
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 " Fuzzy finder shortcut

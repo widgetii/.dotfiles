@@ -98,9 +98,9 @@ set splitright
 nmap <silent> <leader>d :b#\|bd #<CR>
 
 " Scrolling
-set scrolloff=20    " Start scrolling when we're 20 lines away from margins
-set sidescrolloff=15
-set sidescroll=1
+"set scrolloff=20    " Start scrolling when we're 20 lines away from margins
+"set sidescrolloff=15
+"set sidescroll=1
 
 " }}} CONTROLS
 
@@ -146,7 +146,7 @@ augroup END
 " Test scrolling problems 
 let g:neoterm_autoscroll = 1
 " Test if will any problems
-"let g:neoterm_autoinsert=1
+let g:neoterm_autoinsert=1
 
 " }}} TERMINALS
 
