@@ -147,8 +147,8 @@ let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
 nnoremap <silent> <leader>k :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
-nn <silent> <F9> :call LanguageClient_textDocument_codeAction()<cr>
+nn <silent> <F3> :call LanguageClient#textDocument_references()<cr>
+nn <silent> <F9> :call LanguageClient#textDocument_codeAction()<cr>
 nn <silent> <F1> :call LanguageClient#explainErrorAtPoint()<cr>
 "set completefunc=LanguageClient#complete
 "set formatexpr=LanguageClient_textDocument_rangeFormatting()

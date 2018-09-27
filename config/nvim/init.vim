@@ -331,3 +331,6 @@ set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor
 " Copy on selection (from FAQ)
 vnoremap <LeftRelease> "*ygv
 
+" Repeat last command from cmdline N times
+nnoremap g. @:
+
