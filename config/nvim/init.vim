@@ -278,11 +278,12 @@ noremap <silent> <F12> :set number!<CR> :set relativenumber!<CR>
 " COLEMAK {{{
 " TARMAK1
 noremap n j|noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
-noremap e k|noremap ge gk|noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
+noremap e k|noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
 noremap k n
 noremap K N
 noremap j e
 noremap J E
+" noremap ge gk|
 
 " TARMAK5
 noremap s i|noremap в i
@@ -332,5 +333,10 @@ set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor
 vnoremap <LeftRelease> "*ygv
 
 " Repeat last command from cmdline N times
+" e.g. repeat last :make command very useable with set autowriteall
 nnoremap g. @:
+set autowriteall
 
+" IDEAS
+" When in NerdTree Window and pressing Space, move to the left
+"

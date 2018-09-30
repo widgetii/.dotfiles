@@ -1,4 +1,5 @@
 set history save on
+set startup-with-shell off
 
 # got from http://silmor.de/qtstuff.printqstring.php
 define printqs5static
