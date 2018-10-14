@@ -11,6 +11,7 @@ let s:modules = [
     \"settings",
     \"mappings",
     \"plugins",
+	\"langs",
     \]
 
 for s:module in s:modules
@@ -35,10 +36,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-
-" Save current file in mac-like style
-noremap <silent> <A-s> :w<CR>
-inoremap <silent> <A-s> <Esc>:w<CR>
 
 " Windows navigation
 " Use Alt-key rather than C-W-key
@@ -108,6 +105,32 @@ nmap <silent> <leader>d :b#\|bd #<CR>
 " NVIM Terminal emulator
 " Use just Esc to exit from terminal input mode
 tnoremap <Esc> <C-\><C-n>
+" Close current terminal just by Esc
+function! TerminalClose()
+    if bufname("%") =~ "term://"
+        let g:terminalHeight = winheight(0)
+        silent! exec 'q'
+    endif
+endfunc
+nnoremap <silent> <Esc> :call TerminalClose()<CR>
+
+function! TerminalOpen()
+    if bufname("%") =~ "NERD_tree_*"
+        exe "normal \<c-w>\<c-l>"
+    endif
+    let bnr = bufname("term://*")
+    if empty(bnr)
+        silent! exec 'sp|terminal'
+    else
+        " Check if terminal already on the screen
+        silent! exec 'sp|b '.bnr
+    endif
+    if exists("g:terminalHeight")
+        echom "Last height=".g:terminalHeight
+"        resize g:terminalHeight
+    endif
+endfunc
+nnoremap <silent> <leader>t :call TerminalOpen()<CR>
 
 " Ctrl-V in terminal mode
 tmap <C-V>    <C-\><C-n>"+gPi

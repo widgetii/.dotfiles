@@ -13,6 +13,12 @@ elseif os == "Linux"
     let g:XkbSwitchLib = '/usr/lib/libxkbswitch.so'
 endif
 
+if os == "Darwin"
+    Plug 'rizzatti/dash.vim'
+elseif os == "Linux"
+    Plug 'KabbAmine/zeavim.vim'
+endif
+
 Plug 'scrooloose/nerdtree'
 " NERDTree settings {{{
 let g:NERDTreeMinimalUI = 1
@@ -47,8 +53,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 Plug 'vim-airline/vim-airline'
 " vim-airline settings {{{
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_extensions = []
+let g:airline_extensions = ['tabline', 'languageclient']
 
 " After installing statusline plugin by the way, -- INSERT -- is unnecessary
 " anymore because the mode information is displayed in the statusline.
@@ -72,7 +77,7 @@ Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
 " TODO: check vim-airline tab management
-Plug 'widgetii/vim-workspace'
+"Plug 'widgetii/vim-workspace'
 " vim-workspace settings{{{
 " use vim-devicons symbols
 let g:workspace_powerline_separators = 1
@@ -82,13 +87,13 @@ let g:workspace_right_trunc_icon = "\uf0a9"
 let g:workspace_hide_terms = 1
 
 " Here are some recommended mappings to boost your navigation experience
-noremap <Tab> :WSNext<CR>
-noremap <S-Tab> :WSPrev<CR>
-noremap <Leader><Tab> :WSClose<CR>
-noremap <Leader><S-Tab> :WSClose!<CR>
-noremap <C-t> :WSTabNew<CR>
-
-cabbrev bonly WSBufOnly
+"noremap <Tab> :WSNext<CR>
+"noremap <S-Tab> :WSPrev<CR>
+"noremap <Leader><Tab> :WSClose<CR>
+"noremap <Leader><S-Tab> :WSClose!<CR>
+"noremap <C-t> :WSTabNew<CR>
+"
+"cabbrev bonly WSBufOnly
 
 " vim-workspace settings}}}
 
@@ -109,8 +114,6 @@ set termguicolors
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 
-Plug 'KabbAmine/zeavim.vim'
-
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
     if has('nvim')
@@ -129,29 +132,16 @@ let g:airline_powerline_fonts = 1
 " Always load the vim-devicons as the very last one.
 Plug 'ryanoasis/vim-devicons'
 
+" Good thing for code refactoring, conversions to camelCase, snake_case,
+" UPPER_CASE and so on
+Plug 'tpope/vim-abolish'
+
 " Language Client Support
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
 
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-    \ }
-let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
-
-
-nnoremap <silent> <leader>k :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nn <silent> <F3> :call LanguageClient#textDocument_references()<cr>
-nn <silent> <F9> :call LanguageClient#textDocument_codeAction()<cr>
-nn <silent> <F1> :call LanguageClient#explainErrorAtPoint()<cr>
-"set completefunc=LanguageClient#complete
-"set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
 Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_cc = "hh,h,hpp"
