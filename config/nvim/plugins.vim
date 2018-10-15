@@ -65,6 +65,7 @@ set noshowmode
 Plug 'sheerun/vim-polyglot'
 
 " Git support
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Auto pairs
@@ -150,6 +151,7 @@ Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_cxx = "hxx,h"
 Plug 'drmikehenry/vim-headerguard'
 
+" Use gf for jump to #include files based on compiledb info
 Plug 'martong/vim-compiledb-path'
 
 Plug 'embear/vim-localvimrc'
