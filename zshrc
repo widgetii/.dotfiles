@@ -150,6 +150,8 @@ alias v="$EDITOR ."
 # open file for edit in NeoVim in top window
 alias e='f() { nvr --remote-send "<esc><C-w>e:e $(pwd)/$1<cr>" };f'
 alias icat="kitty +kitten icat"
+# open file(s) with fzf+vim
+alias vf='vim $(fzf)'
 
 # some localizations
 # Russian linux man pages

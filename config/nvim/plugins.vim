@@ -67,11 +67,15 @@ Plug 'sheerun/vim-polyglot'
 " Git support
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+" * stage the hunk with
+nmap <Leader>ha <Plug>GitGutterStageHunk
+" * revert it with
+nmap <Leader>hu <Plug>GitGutterRevertHunk
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutJump = '<M-m>'
+"let g:AutoPairsFlyMode = 1
+"let g:AutoPairsShortcutJump = '<M-m>'
 
 " Color parentheses
 Plug 'luochen1990/rainbow'
