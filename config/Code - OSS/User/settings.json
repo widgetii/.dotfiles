@@ -1,0 +1,29 @@
+{
+  "terminal.integrated.fontFamily": "Ubuntu Mono",
+  "terminal.integrated.fontSize": 16,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "Fira Code",
+  "keyboard.dispatch": "keyCode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "prettier.disableLanguages": ["js"],
+  "files.autoSave": "onFocusChange",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["n"],
+      "after": ["j"]
+    },
+    {
+      "before": ["e"],
+      "after": ["k"]
+    },
+    {
+      "before": ["i"],
+      "after": ["l"]
+    }
+  ]
+}
