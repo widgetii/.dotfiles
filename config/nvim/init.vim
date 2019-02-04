@@ -360,6 +360,9 @@ vnoremap <LeftRelease> "*ygv
 nnoremap g. @:
 set autowriteall
 
+" Enter automatically into the files directory
+autocmd BufEnter * silent! lcd %:p:h
+
 " IDEAS
 " When in NerdTree Window and pressing Space, move to the left
 "
