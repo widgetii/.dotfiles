@@ -61,6 +61,12 @@ nnoremap <A-c> <C-W>c
 " Use Alt-O to show 'only' active window
 nnoremap <A-o> <C-W>o
 
+" delete window with d<C-?>
+nnoremap d<C-n> <C-w>j<C-w>c
+nnoremap d<C-e> <C-w>k<C-w>c
+nnoremap d<C-h> <C-w>h<C-w>c
+nnoremap d<C-i> <C-w>l<C-w>c
+
 " Move current tab to the left and the right
 nnoremap <A-,> :tabmove -<CR>
 
