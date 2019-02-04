@@ -1,6 +1,8 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+#setxkbmap -option shift:both_capslock "us,ru,us" "colemak,winkeys,"
+# conflicts with right-ctrl-c
 setxkbmap "us,ru,us" "colemak,winkeys,"
 
 # Return&CapsLock -> Ctrl
@@ -53,7 +55,10 @@ xmodmap -e "keycode any = space"
 $HOME/xcape3 -e "$spare_modifier=space"
 
 # Shift and parenthesis
-xcape -e 'Shift_L=parenleft;Shift_R=parenright'
+xcape -t 250 -e 'Shift_L=parenleft;Shift_R=parenright'
+
+# {} on Alts
+xcape -e 'Alt_L=Shift_L|braceleft;ISO_Level3_Shift=Shift_L|braceright'
 
 # space+- -> "space"+"-"
 #xbindkeys
@@ -74,6 +79,10 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 # Launch Fcitx Config GUI from contrl center, add Google Pinyin.
 
+xset m 4/1 4
+
 export TERMINAL=/usr/bin/kitty
+#sxhkd &
+#exec bspwm
 exec i3
 
