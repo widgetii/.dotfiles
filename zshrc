@@ -69,6 +69,7 @@ plugins=(
   docker-machine
   jira
   jsontools
+  kubectl
   npm
   python
   sudo
@@ -118,6 +119,8 @@ if [[ `uname` == 'Darwin' ]]
 then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
 
 # local envs
@@ -160,8 +163,11 @@ alias rman="LANG=ru_RU.UTF-8 man"
 # https://kgrz.io/faster-vim-better-manpager.html
 export MANPAGER="$EDITOR -c 'set ft=man ts=8 nomod nolist nonu noma cursorline' -"
 
+# Golang
+export GOPATH="$HOME/go"
+
 # exports
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$GOPATH:$PATH"
 
 # transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
@@ -179,6 +185,8 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # Clipboard
 # Copy entire file to system clipboard
 alias xc="xclip -sel clip < "
+
+alias d8="~/git/v8/v8/out.gn/x64.release/d8"
 
 # WHAT'S NEXT?
 # https://github.com/clvv/fasd
