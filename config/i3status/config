@@ -7,11 +7,11 @@ general {
 order += "ipv6"
 order += "disk /"
 order += "volume master"
-order += "run_watch DHCP"
+#order += "run_watch DHCP"
 #order += "run_watch VPNC"
 #order += "path_exists VPN"
-#order += "wireless wlan0"
-order += "ethernet enp0s31f6"
+order += "wireless wlp8s0"
+#order += "ethernet enp12s0"
 #order += "battery 0"
 order += "cpu_temperature 0"
 order += "load"
@@ -21,12 +21,12 @@ order += "tztime local"
 volume master {
 	format = "♪: %volume"
 	format_muted = "♪: (%volume)"
-	device = "pulse:alsa_output.pci-0000_00_1f.3.hdmi-stereo"
+	device = "pulse:alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2"
 	mixer = "Master"
 	mixer_idx = 0
 }
 
-wireless wlan0 {
+wireless wlp8s0 {
 	format_up = " (%essid - %quality) %ip"
 	format_down = "down"
 }
@@ -76,10 +76,10 @@ load {
 	format = " %1min"
 }
 
-#cpu_temperature 0 {
-	#format = "T: %degrees °C"
-	#path = "/sys/devices/platform/coretemp.0/temp1_input"
-#}
+cpu_temperature 0 {
+	format = "T: %degrees °C"
+	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
+}
 
 disk "/" {
 	format = " %avail"
