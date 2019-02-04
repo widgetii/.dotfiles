@@ -5,6 +5,8 @@ let s:plugin_settings_dir = g:vim_config . "startup/plugins"
 call plug#begin(s:plug_dir)
 " List the plugins with Plug commands
 
+" Convenient mode for writing in native language and
+" quickly send commands in English without kb switch
 Plug 'lyokha/vim-xkbswitch'
 let g:XkbSwitchEnabled = 1
 if os == "Darwin"
@@ -75,32 +77,11 @@ nmap <Leader>hu <Plug>GitGutterRevertHunk
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 "let g:AutoPairsFlyMode = 1
-"let g:AutoPairsShortcutJump = '<M-m>'
+let g:AutoPairsShortcutJump = '<M-k>'
 
 " Color parentheses
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
-
-" TODO: check vim-airline tab management
-"Plug 'widgetii/vim-workspace'
-" vim-workspace settings{{{
-" use vim-devicons symbols
-let g:workspace_powerline_separators = 1
-let g:workspace_tab_icon = "\uf00a"
-let g:workspace_left_trunc_icon = "\uf0a8"
-let g:workspace_right_trunc_icon = "\uf0a9"
-let g:workspace_hide_terms = 1
-
-" Here are some recommended mappings to boost your navigation experience
-"noremap <Tab> :WSNext<CR>
-"noremap <S-Tab> :WSPrev<CR>
-"noremap <Leader><Tab> :WSClose<CR>
-"noremap <Leader><S-Tab> :WSClose!<CR>
-"noremap <C-t> :WSTabNew<CR>
-"
-"cabbrev bonly WSBufOnly
-
-" vim-workspace settings}}}
 
 "Plug 'junegunn/vim-easy-align'
 
@@ -146,8 +127,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+" See other options in langs.vim
 
-
+" Cpp support {{{
 Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_cc = "hh,h,hpp"
   let g:alternateExtensions_hh = "cc"
@@ -157,6 +139,15 @@ Plug 'drmikehenry/vim-headerguard'
 
 " Use gf for jump to #include files based on compiledb info
 Plug 'martong/vim-compiledb-path'
+" Cpp support}}}
+
+" Go support {{{
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+" }}}
+
+" JS support {{{
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" }}}
 
 Plug 'embear/vim-localvimrc'
 " Disable sandbox mode
@@ -171,6 +162,12 @@ nnoremap <C-p> :FZF<CR>
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
+Plug 'Shougo/echodoc.vim'
+
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
 
 call plug#end() " to update &runtimepath and initialize plugin system 
 " Automatically executes filetype plugin indent on and syntax enable. You can
