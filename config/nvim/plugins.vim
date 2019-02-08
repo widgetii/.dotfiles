@@ -17,6 +17,8 @@ endif
 
 if os == "Darwin"
     Plug 'rizzatti/dash.vim'
+    " Same mapping as in Zeal
+    nmap <silent> <leader>z <Plug>DashSearch
 elseif os == "Linux"
     Plug 'KabbAmine/zeavim.vim'
 endif
