@@ -203,5 +203,5 @@ bindkey -M vicmd 'i' vi-forward-char
 # My trial of make autosuggestion like autocomplete in Vim
 
 bindkey '^y' autosuggest-execute
-bindkey '^q' autosuggest-clear
+bindkey '^e' autosuggest-clear
 
