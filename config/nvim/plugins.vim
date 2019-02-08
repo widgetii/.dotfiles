@@ -143,6 +143,8 @@ Plug 'martong/vim-compiledb-path'
 
 " Go support {{{
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+let g:go_term_mode = "split"
+let g:go_term_height = 10
 " }}}
 
 " JS support {{{
