@@ -61,12 +61,11 @@ HIST_STAMPS="dd.mm.yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   autojump
-  git
-  zsh-autosuggetions
-  colored-man-pages
   aws
+  colored-man-pages
   docker
   docker-machine
+  git
   jira
   jsontools
   kubectl
@@ -75,7 +74,9 @@ plugins=(
   sudo
   systemd
   vagrant
+  vi-mode
   web-search
+  zsh-autosuggetions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -188,10 +189,15 @@ alias xc="xclip -sel clip < "
 
 alias d8="~/git/v8/v8/out.gn/x64.release/d8"
 
+# Colemak vi-mode
+bindkey -M vicmd 's' vi-insert
+bindkey -M vicmd 'n' down-line-or-history
+bindkey -M vicmd 'e' up-line-or-history
+bindkey -M vicmd 'i' vi-forward-char
+
 # WHAT'S NEXT?
 # https://github.com/clvv/fasd
 # Try to use in real life
-#`````````````` plugins/vi-mode/vi-mode.plugin.zsh
 
 # From https://github.com/zsh-users/zsh-autosuggestions
 # My trial of make autosuggestion like autocomplete in Vim
