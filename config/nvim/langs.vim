@@ -1,3 +1,6 @@
+" FOR FAR FUTURE: try to use internal nvim LS client
+"call lsp#server#add('cpp', 'cquery')
+"call lsp#server#add('python', 'pyls')
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
