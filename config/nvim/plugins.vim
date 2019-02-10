@@ -71,10 +71,10 @@ Plug 'sheerun/vim-polyglot'
 " Git support
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-" * stage the hunk with
+" * stage the hunk with (hunk add)
 nmap <Leader>ha <Plug>GitGutterStageHunk
-" * revert it with
-nmap <Leader>hu <Plug>GitGutterRevertHunk
+" * revert it with (hunk revert)
+nmap <Leader>hr <Plug>GitGutterRevertHunk
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -149,8 +149,17 @@ let g:go_term_mode = "split"
 let g:go_term_height = 10
 " }}}
 
-" JS support {{{
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" HTML support {{{
+Plug 'mattn/emmet-vim'
+let g:user_emmet_leader_key = '<c-e>'
+" }}}
+
+" Many langs formatter support (see plugin page) {{{
+Plug 'sbdchd/neoformat'
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 " }}}
 
 Plug 'embear/vim-localvimrc'
