@@ -187,7 +187,7 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # Copy entire file to system clipboard
 alias xc="xclip -sel clip < "
 
-alias d8="~/git/v8/v8/out.gn/x64.release/d8"
+alias d8="~/git/v8/v8/out/x64.release/d8 --experimental-wasm-threads"
 
 # Colemak vi-mode
 bindkey -M vicmd 's' vi-insert
