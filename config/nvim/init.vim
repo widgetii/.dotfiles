@@ -3,6 +3,7 @@
 " BASICS {{{
 " We've just elected new leader, welcome "," key!
 let mapleader = ","
+set timeoutlen=5000
 let os = substitute(system('uname'), "\n", "", "")
 
 let g:vim_config = $HOME . "/.config/nvim/"
@@ -83,6 +84,18 @@ nnoremap <A-+> <C-w>+
 nnoremap <A--> <C-w>-
 nnoremap <A-<> <C-w><
 nnoremap <A->> <C-w>>
+tnoremap <A-=> <C-w>=
+tnoremap <A-+> <C-w>+
+tnoremap <A--> <C-w>-
+tnoremap <A-<> <C-w><
+tnoremap <A->> <C-w>>
+
+" Neat navigation in view mode (as man-pages)
+" https://stackoverflow.com/questions/36322321/how-do-i-check-if-ive-been-run-in-read-only-mode-r-in-vimrc
+autocmd BufReadPost *
+    \  if &readonly
+    \|  echom "Man"
+    \| endif
 
 " One thing to keep in mind is that by default, vim won't let you switch between
 " buffers without saving current buffer you are in first. This gets old pretty
@@ -100,7 +113,11 @@ set splitright
 " will switch to the last used buffer, then bd# ("buffer detete" "alternate file")
 nmap <silent> <leader>d :b#\|bd #<CR>
 
-" Scrolling
+" Open file even if it is not exists
+" https://stackoverflow.com/questions/6158294/create-and-open-for-editing-nonexistent-file-under-the-cursor
+nmap <leader>gf :e <cfile><CR>
+
+"" Scrolling
 "set scrolloff=20    " Start scrolling when we're 20 lines away from margins
 "set sidescrolloff=15
 "set sidescroll=1
