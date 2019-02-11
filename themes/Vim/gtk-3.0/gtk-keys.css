@@ -1,0 +1,53 @@
+@binding-set gtk-vi-text-entry
+{
+
+  bind "<ctrl>u" { "delete-from-cursor" (paragraph-ends, -1) };
+  bind "<ctrl>h" { "delete-from-cursor" (chars, -1) };
+  bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) };
+
+
+  bind "<alt>j" { "move-cursor" (display-lines, 1, 0) };
+  bind "<alt>k" { "move-cursor" (display-lines, -1, 0) };
+  bind "<alt>l" { "move-cursor" (logical-positions, 1, 0) };
+  bind "<alt>h" { "move-cursor" (logical-positions, -1, 0) };
+
+  bind "<shift><alt>j" { "move-cursor" (display-lines, 1, 1) };
+  bind "<shift><alt>k" { "move-cursor" (display-lines, -1, 1) };
+  bind "<shift><alt>l" { "move-cursor" (logical-positions, 1, 1) };
+  bind "<shift><alt>h" { "move-cursor" (logical-positions, -1, 1) };
+  bind "<alt>q" { "move-cursor" (paragraph-ends, -1, 0) };
+  bind "<shift><alt>q" { "move-cursor" (paragraph-ends, -1, 1) };
+  bind "<alt>w" { "move-cursor" (paragraph-ends, 1, 0) };
+  bind "<shift><alt>w" { "move-cursor" (paragraph-ends, 1, 1) };
+}
+
+
+@binding-set gtk-vi-text-view
+{
+    bind "j" { "move-cursor" (display-lines, 1, 0) };
+    bind "k" { "move-cursor" (display-lines, -1, 0) };
+    bind "l" { "move-cursor" (logical-positions, 1, 0) };
+    bind "h" { "move-cursor" (logical-positions, -1, 0) };
+}
+
+@binding-set gtk-vi-tree-view
+{
+    bind "j" { "move-cursor" (display-lines, 1) };
+    bind "k" { "move-cursor" (display-lines, -1) };
+    bind "l" { "move-cursor" (logical-positions, 1) };
+    bind "h" { "move-cursor" (logical-positions, -1) };
+
+}
+
+GtkEntry {
+  gtk-key-bindings: gtk-vi-text-entry;
+}
+
+GtkTextView {
+  gtk-key-bindings: gtk-vi-text-entry, gtk-vi-text-view;
+}
+
+GtkTreeView {
+  gtk-key-bindings: gtk-vi-tree-view;
+}
+

@@ -1,2 +1,25 @@
-gtk-key-theme-name = "Emacs" 
+binding "vim-like"
+{
+  bind "<ctrl>u" { "delete-from-cursor" (paragraph-ends, -1) }
+  bind "<ctrl>h" { "delete-from-cursor" (chars, -1) }
+  bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) }
+
+  bind "<alt>j" { "move-cursor" (display-lines, 1, 0) }
+  bind "<alt>k" { "move-cursor" (display-lines, -1, 0) }
+  bind "<alt>l" { "move-cursor" (logical-positions, 1, 0) }
+  bind "<alt>h" { "move-cursor" (logical-positions, -1, 0) }
+
+  bind "<shift><alt>j" { "move-cursor" (display-lines, 1, 1) }
+  bind "<shift><alt>k" { "move-cursor" (display-lines, -1, 1) }
+  bind "<shift><alt>l" { "move-cursor" (logical-positions, 1, 1) }
+  bind "<shift><alt>h" { "move-cursor" (logical-positions, -1, 1) }
+
+  bind "<alt>q" { "move-cursor" (paragraph-ends, -1, 0) }
+  bind "<shift><alt>q" { "move-cursor" (paragraph-ends, -1, 1) }
+  bind "<alt>w" { "move-cursor" (paragraph-ends, 1, 0) }
+  bind "<shift><alt>w" { "move-cursor" (paragraph-ends, 1, 1) }
+}
+
+class "GtkEntry" binding "vim-like"
+class "GtkTextView" binding "vim-like"
 
