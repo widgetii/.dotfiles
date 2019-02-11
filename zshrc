@@ -167,8 +167,11 @@ export MANPAGER="$EDITOR -c 'set ft=man ts=8 nomod nolist nonu noma cursorline' 
 # Golang
 export GOPATH="$HOME/go"
 
+# NPM global install for current user
+export npm_config_prefix="$HOME/.node_modules"
+
 # exports
-export PATH="$HOME/.local/bin:$GOPATH:$PATH"
+export PATH="$HOME/.local/bin:$GOPATH:$HOME/.node_modules/bin:$PATH"
 
 # transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 

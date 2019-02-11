@@ -6,6 +6,7 @@
 " javascript: npm -g install javascript-typescript-langserver
 "   Looks like javascript-typescript-langserver requires `jsconfig.json` to work
 "   with javascript files.
+" sh: npm -g install bash-language-server
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
@@ -13,7 +14,8 @@ let g:LanguageClient_serverCommands = {
     \ 'c': ['ccls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio']
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'sh': ['bash-language-server', 'start']
     \ }
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
