@@ -60,8 +60,8 @@ xcape -t 250 -e 'Shift_L=parenleft;Shift_R=parenright'
 # {} on Alts
 xcape -e 'Alt_L=Shift_L|braceleft;ISO_Level3_Shift=Shift_L|braceright'
 
-# space+- -> "space"+"-"
-#xbindkeys
+# Ctrl-M -> Return
+xbindkeys
 
 # beeping off
 xset b off
