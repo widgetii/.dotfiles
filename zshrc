@@ -194,6 +194,7 @@ bindkey -M vicmd 's' vi-insert
 bindkey -M vicmd 'n' down-line-or-history
 bindkey -M vicmd 'e' up-line-or-history
 bindkey -M vicmd 'i' vi-forward-char
+bindkey -M vicmd '^L' vi-join
 
 # WHAT'S NEXT?
 # https://github.com/clvv/fasd
@@ -203,5 +204,6 @@ bindkey -M vicmd 'i' vi-forward-char
 # My trial of make autosuggestion like autocomplete in Vim
 
 bindkey '^y' autosuggest-execute
-bindkey '^e' autosuggest-clear
+# ^e as in Vim conflicts with Emacs to end of line shortcut
+bindkey '^q' autosuggest-clear
 
