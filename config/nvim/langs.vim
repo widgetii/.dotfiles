@@ -9,8 +9,10 @@
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
-    \ 'cpp': ['ccls'],
-    \ 'c': ['ccls'],
+    \ 'cpp': ['clangd'],
+    \ 'c': ['clangd'],
+    \ 'cuda': ['clangd'],
+    \ 'objc': ['clangd'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'typescript': ['javascript-typescript-stdio']
@@ -26,13 +28,8 @@ let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
 let g:LanguageClient_rootMarkers = {
     \ 'go': ['.git', 'go.mod'],
     \ }
-    "\ 'cpp': ['cquery'],
     "\ 'go': ['~/go/bin/go-langserver', '-gocodecompletion'],
     "\ 'go': ['bingo', '--logfile', '~/go.log', '--trace'],
-    "\ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    "\ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
-    "\ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
-    "\ 'c': ['cquery'],
 
 function! LC_maps()
     if has_key(g:LanguageClient_serverCommands, &filetype)
