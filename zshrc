@@ -114,6 +114,8 @@ if [[ `uname` == 'Linux' ]]
 then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /opt/google-cloud-sdk/path.zsh.inc
+    source /opt/google-cloud-sdk/completion.zsh.inc
 fi
 
 if [[ `uname` == 'Darwin' ]]
