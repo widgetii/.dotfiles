@@ -209,4 +209,6 @@ bindkey -M vicmd '^L' vi-join
 bindkey '^y' autosuggest-execute
 # ^e as in Vim conflicts with Emacs to end of line shortcut
 bindkey '^q' autosuggest-clear
+# fill the line (make autocompletion but don't execute it)
+bindkey '^f' autosuggest-accept
 
