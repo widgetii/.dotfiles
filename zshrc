@@ -198,6 +198,8 @@ bindkey -M vicmd 'n' down-line-or-history
 bindkey -M vicmd 'e' up-line-or-history
 bindkey -M vicmd 'i' vi-forward-char
 bindkey -M vicmd '^L' vi-join
+bindkey -M vicmd '^[f' forward-word
+bindkey -M vicmd '^[b' backward-word
 
 function zle-line-init zle-keymap-select {                                                                                                                  
 VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
