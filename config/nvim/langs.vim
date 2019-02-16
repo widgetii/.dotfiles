@@ -1,6 +1,15 @@
 " FOR FAR FUTURE: try to use internal nvim LS client
 "call lsp#server#add('cpp', 'cquery')
 "call lsp#server#add('python', 'pyls')
+"
+"function! LSPRename()
+"    let s:newName = input('Enter new name: ', expand('<cword>'))
+"    call lsp#request_async('textDocument/rename',
+"        \ {'newName': s:newName})
+"endfunction
+"
+"au FileType lua,sh,c,python
+"    \ noremap <silent> <buffer> <F2> :call LSPRename()<CR>
 
 " Install LSes
 " javascript: npm -g install javascript-typescript-langserver
