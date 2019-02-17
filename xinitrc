@@ -56,7 +56,9 @@ $HOME/xcape3 -e "$spare_modifier=space"
 xcape -t 250 -e 'Shift_L=parenleft;Shift_R=parenright'
 
 # {} on Alts
-xcape -e 'Alt_L=Shift_L|braceleft;ISO_Level3_Shift=Shift_L|braceright'
+xmodmap -e "keycode 247 = braceleft"
+xmodmap -e "keycode 248 = braceright"
+xcape -e 'Alt_L=Shift_L|braceleft;Alt_R=Shift_L|braceright'
 
 # Ctrl-M -> Return
 xbindkeys
