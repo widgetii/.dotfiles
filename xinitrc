@@ -1,9 +1,7 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-#setxkbmap -option shift:both_capslock "us,ru,us" "colemak,winkeys,"
-# conflicts with right-ctrl-c
-setxkbmap "us,ru,us" "colemak,winkeys,"
+xkbcomp -I$HOME/.config/xkb ~/.config/xkb/keymap/my_layout $DISPLAY
 
 # Return&CapsLock -> Ctrl
 # Caps -> Escape
