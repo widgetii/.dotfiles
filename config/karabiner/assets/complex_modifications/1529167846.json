@@ -1,13 +1,13 @@
 {
     "title": "Caps and return to ctrl. Ctrl to caps.",
     "rules": [{
-            "description": "Post left_ctrl when return_or_enter is hold.",
+            "description": "Post right_control when return_or_enter is hold.",
             "manipulators": [{
                 "from": {
                     "key_code": "return_or_enter",
                     "modifiers": {
-                        "optional": [
-                            "any"
+                        "mandatory": [
+                            "^left_shift"
                         ]
                     }
                 },
