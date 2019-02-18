@@ -18,15 +18,16 @@
 " sh: npm -g install bash-language-server
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'cpp': ['clangd'],
     \ 'c': ['clangd'],
+    \ 'cpp': ['clangd'],
     \ 'cuda': ['clangd'],
-    \ 'objc': ['clangd'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'objc': ['clangd'],
+    \ 'python': ['pyls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'sh': ['bash-language-server', 'start'],
     \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'sh': ['bash-language-server', 'start']
     \ }
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
