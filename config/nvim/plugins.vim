@@ -182,6 +182,21 @@ set cmdheight=2
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'signature'
 
+" Master t/f movements
+Plug 'deris/vim-shot-f'
+" Master j/k movements
+Plug 'deris/vim-gothrough-jk'
+let g:gothrough_jk_no_default_key_mappings = 1
+let g:gothrough_jk_move_interval = 150000
+nmap n <Plug>(gothrough-jk-j)
+nmap e <Plug>(gothrough-jk-k)
+vmap n <Plug>(gothrough-jk-j)
+vmap e <Plug>(gothrough-jk-k)
+nmap gn <Plug>(gothrough-jk-gj)
+nmap ge <Plug>(gothrough-jk-gk)
+vmap gn <Plug>(gothrough-jk-gj)
+vmap ge <Plug>(gothrough-jk-gk)
+
 call plug#end() " to update &runtimepath and initialize plugin system 
 " Automatically executes filetype plugin indent on and syntax enable. You can
 " revert the settings after the call. e.g. filetype indent off, syntax off, etc.
@@ -209,7 +224,8 @@ endif
 " https://www.reddit.com/r/neovim/comments/7i2k6u/neovim_terminal_one_week_without_tmux/
 
 " https://github.com/tpope/vim-eunuch
-
+" https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
+" /tpope/vim-commentary - make comments
 
 " if the plug dir is empty, install
 if empty(s:plug_dir)

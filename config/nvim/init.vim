@@ -323,8 +323,12 @@ noremap <silent> <F12> :set number!<CR> :set relativenumber!<CR>
 
 " COLEMAK {{{
 " TARMAK1
-noremap n j|noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
-noremap e k|noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
+"
+" Disabled for vim-gothrough-jk plugin
+"noremap n j
+"noremap e k
+noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
+noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
 noremap k n
 noremap K N
 noremap j e
