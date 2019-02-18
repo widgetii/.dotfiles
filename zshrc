@@ -114,6 +114,8 @@ if [[ `uname` == 'Linux' ]]
 then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /opt/google-cloud-sdk/path.zsh.inc
+    source /opt/google-cloud-sdk/completion.zsh.inc
 fi
 
 if [[ `uname` == 'Darwin' ]]
@@ -198,8 +200,9 @@ bindkey -M vicmd 'n' down-line-or-history
 bindkey -M vicmd 'e' up-line-or-history
 bindkey -M vicmd 'i' vi-forward-char
 bindkey -M vicmd '^L' vi-join
-bindkey -M vicmd '^[f' forward-word
-bindkey -M vicmd '^[b' backward-word
+bindkey '^[f' forward-word
+bindkey '^[b' backward-word
+bindkey "^[." insert-last-word
 
 function zle-line-init zle-keymap-select {                                                                                                                  
 VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"

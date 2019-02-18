@@ -160,6 +160,9 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
+" install formatters:
+" pip install --user cmake_format
+
 " }}}
 
 Plug 'embear/vim-localvimrc'
