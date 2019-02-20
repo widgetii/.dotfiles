@@ -104,12 +104,23 @@
   bind "<ctrl>b" { "move-current" (parent) };
 }
 
+/* borrowed from https://github.com/GNOME/gtk/blob/master/gtk/gtk-keys.css.mac */
+@binding-set gtk-mac-cmd-c
+{
+  bind "<super>x" { "cut-clipboard" () };
+  bind "<super>c" { "copy-clipboard" () };
+  bind "<super>v" { "paste-clipboard" () };
+  unbind "<ctrl>x";
+  unbind "<ctrl>c";
+  unbind "<ctrl>v";
+}
+
 entry {
-  -gtk-key-bindings: gtk-emacs-text-entry;
+  -gtk-key-bindings: gtk-emacs-text-entry, gtk-mac-cmd-c;
 }
 
 textview {
-  -gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view;
+  -gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view, gtk-mac-cmd-c;
 }
 
 treeview {
