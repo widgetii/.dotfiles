@@ -34,7 +34,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Mod5+Q kill
 
 # start rofi (a program launcher with desktop programs conf)
 bindsym $mod+mod2+d exec rofi -show drun
