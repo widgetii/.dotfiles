@@ -162,7 +162,7 @@ augroup fmt
 augroup END
 " install formatters:
 " pip install --user cmake_format
-
+" rustup component add rustfmt-preview
 " }}}
 
 Plug 'embear/vim-localvimrc'
@@ -200,6 +200,9 @@ nmap ge <Plug>(gothrough-jk-gk)
 vmap gn <Plug>(gothrough-jk-gj)
 vmap ge <Plug>(gothrough-jk-gk)
 
+Plug 'tpope/vim-surround'
+" https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
+
 call plug#end() " to update &runtimepath and initialize plugin system 
 " Automatically executes filetype plugin indent on and syntax enable. You can
 " revert the settings after the call. e.g. filetype indent off, syntax off, etc.
@@ -227,7 +230,6 @@ endif
 " https://www.reddit.com/r/neovim/comments/7i2k6u/neovim_terminal_one_week_without_tmux/
 
 " https://github.com/tpope/vim-eunuch
-" https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
 " /tpope/vim-commentary - make comments
 
 " if the plug dir is empty, install
