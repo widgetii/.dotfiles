@@ -53,7 +53,7 @@ xmodmap -e "keycode any = space"
 $HOME/xcape3 -e "$spare_modifier=space"
 
 # Shift and parenthesis
-xcape -t 250 -e 'Shift_L=parenleft;Shift_R=parenright'
+xcape -t 250 -e 'Shift_L=parenleft;ISO_Level3_Shift=parenright'
 
 # {} on Alts
 xmodmap -e "keycode 247 = braceleft"
@@ -69,8 +69,8 @@ xset b off
 # welcome to Colemak era
 #xmodmap ~/.Xmodmap
 
-# swap ` and Delete
-xmodmap -e "keycode 22 = grave asciitilde"
+# swap ` , \ and Delete on HHKB
+xmodmap -e "keycode 22 = backslash bar backslash slash VoidSymbol NoSymbol backslash bar"
 xmodmap -e "keycode 49 = BackSpace BackSpace BackSpace BackSpace"
 
 # some Chineese
