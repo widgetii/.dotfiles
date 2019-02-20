@@ -25,8 +25,8 @@ xmodmap -e "remove Lock = Caps_Lock"
 xmodmap -e "add Control = Control_L"
 
 # for HHKB set Escape key as ~, like in normal layout
+# we need to rebind Escape to any unused keycode
 xmodmap -e "keycode 253 = Escape NoSymbol Escape NoSymbol Escape"
-xmodmap -e "keycode 9 = grave asciitilde"
 
 # однократное нажатие у нас будет для Enter->Return, для Caps->Escape
 xcape -t 500 -e "Control_R=Return;Control_L=Escape"

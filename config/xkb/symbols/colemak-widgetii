@@ -10,6 +10,9 @@ xkb_symbols "colemak" {
         symbols[Group1] = [ ISO_Level3_Shift ]
     };
 
+    // for HHKB set Escape key as ~, like in normal layout
+    key <ESC> { [        grave,  VoidSymbol, asciitilde] };
+
     key <TLDE> { [        grave, VoidSymbol, asciitilde] };
     key <AE01> { [            1, VoidSymbol, exclam] };
     key <AE02> { [            2, VoidSymbol, at] };
