@@ -85,7 +85,9 @@ let g:AutoPairsShortcutJump = '<M-k>'
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-"Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " Neat startup screen
 Plug 'mhinz/vim-startify'
