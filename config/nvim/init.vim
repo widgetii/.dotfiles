@@ -272,6 +272,10 @@ nnoremap <silent> <leader><space> :nohlsearch<CR>
 " but we need to provide key for unfold
 " TODO: if we just hit Space key and opened fold and stayed here, Space will close it again
 function! KeySpace()
+  if bufname("%") =~ "NERD_tree_*"
+    exe "normal \<c-w>\<c-l>"
+    return
+  endif
   if foldclosed(line('.')) == -1
     call feedkeys(":")
   else
@@ -393,6 +397,3 @@ set autowriteall
 " Enter automatically into the files directory
 autocmd BufEnter * silent! lcd %:p:h
 
-" IDEAS
-" When in NerdTree Window and pressing Space, move to the left
-"
