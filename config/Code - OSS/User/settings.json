@@ -11,7 +11,7 @@
   "eslint.autoFixOnSave": true,
   "eslint.alwaysShowStatus": true,
   "prettier.disableLanguages": ["js"],
-  "files.autoSave": "onFocusChange",
+  "files.autoSave": "afterDelay",
   "vim.normalModeKeyBindings": [
     {
       "before": ["n"],
@@ -24,6 +24,27 @@
     {
       "before": ["i"],
       "after": ["l"]
+    },
+    {
+      "before": ["s"],
+      "after": ["i"]
     }
-  ]
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["n"],
+      "after": ["j"]
+    },
+    {
+      "before": ["e"],
+      "after": ["k"]
+    },
+    {
+      "before": ["i"],
+      "after": ["l"]
+    }
+  ],
+  "editor.lineNumbers": "relative",
+  "explorer.confirmDelete": false,
+  "emmet.triggerExpansionOnTab": true
 }
