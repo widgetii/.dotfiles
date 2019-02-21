@@ -143,15 +143,18 @@ function! TerminalOpen()
     endif
     let bnr = bufname("term://*")
     if empty(bnr)
-        silent! exec 'sp|terminal'
+        silent! exec 'sp|terminal' 
+" uncomment if you want disposable terminal
+"       silent! exec 'set bufhidden=delete'
     else
         " Check if terminal already on the screen
         silent! exec 'sp|b '.bnr
     endif
+    let height = 10
     if exists("g:terminalHeight")
-        echom "Last height=".g:terminalHeight
-"        resize g:terminalHeight
+        let height = g:terminalHeight
     endif
+    silent! exec 'resize '.height
 endfunc
 nnoremap <silent> <leader>t :call TerminalOpen()<CR>
 
@@ -186,7 +189,7 @@ augroup startup
     " autocmd BufLeave,FocusLost * call lib#NumberToggle(0)
 
     " enter insert mode whenever we're in a terminal
-    autocmd TermOpen,BufWinEnter,BufEnter term://* startinsert
+    autocmd TermOpen,BufWinEnter,BufEnter term://*zsh startinsert
 augroup END
 
 " Test scrolling problems 
