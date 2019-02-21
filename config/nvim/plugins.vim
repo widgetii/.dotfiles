@@ -160,6 +160,10 @@ function! Go_init()
     nnoremap <leader>a :cclose<CR>
 endf
 autocmd FileType go call Go_init()
+
+" Autocompletion stuff
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+let g:deoplete#sources#go#unimported_packages = 1
 " }}}
 
 " HTML support {{{
