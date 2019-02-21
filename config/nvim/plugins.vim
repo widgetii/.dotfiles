@@ -28,7 +28,7 @@ Plug 'scrooloose/nerdtree'
 let g:NERDTreeMinimalUI = 1
 
 " use Ctrl-n for invoke NERDTree
-map <silent> <C-n> :NERDTreeToggle<CR>
+map <silent> <C-q> :NERDTreeToggle<CR>
 
 " How can I open a NERDTree automatically when vim starts up?
 " https://stackoverflow.com/questions/24808932/vim-open-nerdtree-and-move-the-cursor-to-the-file-editing-area
@@ -149,11 +149,20 @@ Plug 'martong/vim-compiledb-path'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 let g:go_term_mode = "split"
 let g:go_term_height = 10
+
+function! Go_init()
+    nmap <leader>b <Plug>(go-build)
+    nmap <leader>r <Plug>(go-run)
+    nmap <C-n> :cnext<CR>
+    nmap <C-e> :cprevious<CR>
+    nnoremap <leader>a :cclose<CR>
+endf
+autocmd FileType go call Go_init()
 " }}}
 
 " HTML support {{{
 Plug 'mattn/emmet-vim'
-let g:user_emmet_leader_key = '<c-e>'
+let g:user_emmet_leader_key = '<C-y>'
 " }}}
 
 " Many langs formatter support (see plugin page) {{{
