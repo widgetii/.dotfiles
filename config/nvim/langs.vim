@@ -45,39 +45,39 @@ let g:LanguageClient_rootMarkers = {
 
 function! LC_maps()
     if has_key(g:LanguageClient_serverCommands, &filetype)
-        nnoremap <silent> <leader>k :call LanguageClient#textDocument_hover()<CR>
+        nnoremap <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
         " Open in same window
         nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
         " Open in new split
         nnoremap <silent> gD :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-        nnoremap <silent> <F9> :call LanguageClient#textDocument_codeAction()<cr>
-        nnoremap <silent> <F1> :call LanguageClient#explainErrorAtPoint()<cr>
+        nnoremap <silent> <leader>ll :call LanguageClient#textDocument_codeAction()<cr>
+        nnoremap <silent> <leader>le :call LanguageClient#explainErrorAtPoint()<cr>
 
         " Example bindings combining with tpope/vim-abolish
         " Rename - rn => rename
-        noremap <leader>rn :call LanguageClient#textDocument_rename()<CR>
+        noremap <leader>lrn :call LanguageClient#textDocument_rename()<CR>
         " Rename - rc => rename camelCase
-        noremap <leader>rc :call LanguageClient#textDocument_rename(
+        noremap <leader>lrc :call LanguageClient#textDocument_rename(
             \ {'newName': Abolish.camelcase(expand('<cword>'))})<CR>
         " Rename - rs => rename snake_case
-        noremap <leader>rs :call LanguageClient#textDocument_rename(
+        noremap <leader>lrs :call LanguageClient#textDocument_rename(
             \ {'newName': Abolish.snakecase(expand('<cword>'))})<CR>
         " Rename - ru => rename UPPERCASE
         " TODO: convert big-const to BIG_CONST
-        noremap <leader>ru :call LanguageClient#textDocument_rename(
+        noremap <leader>lru :call LanguageClient#textDocument_rename(
             \ {'newName': Abolish.uppercase(expand('<cword>'))})<CR>
 
         " Show references from all project to current symbol
-        nnoremap <leader>rf :call LanguageClient#textDocument_references(
+        nnoremap <leader>lx :call LanguageClient#textDocument_references(
             \ {'includeDeclaration': v:false})<CR>
         " Find symbol in current file
-        nnoremap <leader>ro :call LanguageClient#textDocument_documentSymbol()<CR>
+        nnoremap <leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
         " Find symbol in all project
-        nnoremap <leader>rw :call LanguageClient#workspace_symbol()<CR>
-        " LanguageClient#workspace_applyEdit()
-        " LanguageClient#workspace_executeCommand()
-        " TODO: try this -
-        " https://github.com/MaskRay/ccls/wiki/LanguageClient-neovim#custom-cross-references
+        nnoremap <leader>lw :call LanguageClient#workspace_symbol()<CR>
+        nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+        nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+
+        nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
 
         augroup LanguageClient_config
             au!
@@ -92,7 +92,8 @@ function! LC_maps()
     endif
 endfunction
 
-autocmd FileType * call LC_maps()
+" Don't assign shortcuts on all filetypes
+autocmd FileType c,cpp,cuda,objc,javascript,javascript.jsx,python,rust,sh,typescript call LC_maps()
 
 fu! C_init()
     setl formatexpr=LanguageClient#textDocument_rangeFormatting()
