@@ -125,6 +125,8 @@ Plug 'ryanoasis/vim-devicons'
 " Good thing for code refactoring, conversions to camelCase, snake_case,
 " UPPER_CASE and so on
 Plug 'tpope/vim-abolish'
+" Need for working Colemak layout while use inneR object
+let g:abolish_no_mappings = 1
 
 " Language Client Support
 Plug 'autozimu/LanguageClient-neovim', {
