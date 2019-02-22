@@ -151,10 +151,22 @@ Plug 'martong/vim-compiledb-path'
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 let g:go_term_mode = "split"
 let g:go_term_height = 10
+let g:go_list_type = "quickfix"
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 function! Go_init()
-    nmap <leader>b <Plug>(go-build)
+    nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
     nmap <leader>r <Plug>(go-run)
+    nmap <leader>n <Plug>(go-test)
     nmap <C-n> :cnext<CR>
     nmap <C-e> :cprevious<CR>
     nnoremap <leader>a :cclose<CR>
