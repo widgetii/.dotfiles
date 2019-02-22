@@ -50,7 +50,7 @@ xmodmap -e "keycode 65 = $spare_modifier"
 xmodmap -e "add Hyper_L = $spare_modifier"
 xmodmap -e "keycode any = space"  
 #xcape -t 1000 -e "$spare_modifier=space"
-$HOME/xcape3 -e "$spare_modifier=space"
+$HOME/xcape3 -t 1000 -e "$spare_modifier=space"
 
 # Shift and parenthesis
 xcape -t 250 -e 'Shift_L=parenleft;ISO_Level3_Shift=parenright'
