@@ -179,7 +179,7 @@ augroup fmt
 augroup END
 " install formatters:
 " pip install --user cmake_format
-" rustup component add rustfmt-preview
+" rustup component add rustfmt && rustup component add clippy
 " }}}
 
 Plug 'embear/vim-localvimrc'
