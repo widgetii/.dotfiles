@@ -176,6 +176,7 @@ autocmd FileType go call Go_init()
 " Autocompletion stuff
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 let g:deoplete#sources#go#unimported_packages = 1
+" ATTENZIONE PREGO: install only https://github.com/mdempsky/gocode
 " }}}
 
 " HTML support {{{
