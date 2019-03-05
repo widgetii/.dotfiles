@@ -50,7 +50,8 @@
 #"xterm"
 #  control + b:2
 
-"xdotool key Return"
+# xdotool key Right Return or just Return depending on app
+"~/.config/bin/ctrlm.sh"
   control + m + Release
 
 #"xterm -geom 50x20+20+20"
