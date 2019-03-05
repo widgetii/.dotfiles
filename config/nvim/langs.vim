@@ -92,11 +92,59 @@ function! LC_maps()
     endif
 endfunction
 
+" Vim-Go alike terminal (code borrowed and simplified)
+fu! Term_New(bang, cmd) abort
+  let mode = "split"
+
+  let state = {
+        \ 'cmd': a:cmd,
+        \ 'bang' : a:bang,
+        \ 'winid': win_getid(winnr()),
+        \ 'stdout': []
+      \ }
+
+  " execute go build in the files directory
+  let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd ' : 'cd '
+  let dir = getcwd()
+
+  execute cd . fnameescape(expand("%:p:h"))
+
+  execute mode.' __my_term__'
+
+  setlocal filetype=goterm
+  setlocal bufhidden=delete
+  setlocal winfixheight
+  setlocal noswapfile
+  setlocal nobuflisted
+
+  let job = {}
+"  let job = {
+"        \ 'on_stdout': function('s:on_stdout', [], state),
+"        \ 'on_exit' : function('s:on_exit', [], state),
+"      \ }
+
+  let state.id = termopen(a:cmd, job)
+  let state.termwinid = win_getid(winnr())
+
+  execute cd . fnameescape(dir)
+
+  resize 10
+endf
+
 " Don't assign shortcuts on all filetypes
 autocmd FileType c,cpp,cuda,objc,javascript,javascript.jsx,python,rust,sh,typescript call LC_maps()
 
 fu! C_init()
     setl formatexpr=LanguageClient#textDocument_rangeFormatting()
+    nmap <leader>r :make run<CR>
+    nmap <leader>b :make<CR>
 endf
 au FileType c,cpp,cuda,objc :call C_init()
+
+fu! Rust_init()
+    nmap <silent> <leader>n :call Term_New("", "cargo test")<CR>
+    nmap <silent> <leader>r :call Term_New("", "cargo run")<CR>
+    nmap <silent> <leader>b :call Term_New("", "cargo build")<CR>
+endf
+au FileType rust :call Rust_init()
 
