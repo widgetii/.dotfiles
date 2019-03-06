@@ -1,6 +1,12 @@
 let s:plug_dir = g:vim_config . "plugged"
 let s:plugin_settings_dir = g:vim_config . "startup/plugins"
 
+" if the plug dir doesn't exists, install all them
+" system deps: make, cargo
+if !isdirectory(s:plug_dir)
+    autocmd! VimEnter * PlugInstall
+endif
+
 " A minimalist Vim plugin manager https://github.com/junegunn/vim-plug
 call plug#begin(s:plug_dir)
 " List the plugins with Plug commands
@@ -263,9 +269,4 @@ endif
 
 " https://github.com/tpope/vim-eunuch
 " /tpope/vim-commentary - make comments
-
-" if the plug dir is empty, install
-if empty(s:plug_dir)
-    autocmd! VimEnter * PlugInstall
-endif
 
