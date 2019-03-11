@@ -124,6 +124,10 @@ then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
     source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+
+    alias xtime="gtime -f='%Uu %Ss %er %MkB %C'"
+
+    PATH="$PATH:/usr/local/miniconda3/bin"
 fi
 
 # local envs
@@ -135,6 +139,7 @@ fi
 export GTEST_COLOR=yes
 alias ip="ip -c"
 alias tree="tree -C"
+alias cat="ccat"
 #alias colors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: test"; done'
 
 # more settings for theme

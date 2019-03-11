@@ -1,6 +1,12 @@
 let s:plug_dir = g:vim_config . "plugged"
 let s:plugin_settings_dir = g:vim_config . "startup/plugins"
 
+" if the plug dir doesn't exists, install all them
+" system deps: make, cargo
+if !isdirectory(s:plug_dir)
+    autocmd! VimEnter * PlugInstall
+endif
+
 " A minimalist Vim plugin manager https://github.com/junegunn/vim-plug
 call plug#begin(s:plug_dir)
 " List the plugins with Plug commands
@@ -116,6 +122,8 @@ endfunction
 
 " You should run cargo build --release in the plugin directory after installation on new machine
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+" don't open browser each time on md files
+let g:markdown_composer_open_browser = 0
 
 " If you use vim-airline you need this
 let g:airline_powerline_fonts = 1
@@ -192,7 +200,7 @@ augroup fmt
 augroup END
 " install formatters:
 " pip install --user cmake_format
-" rustup component add rustfmt-preview
+" rustup component add rustfmt && rustup component add clippy
 " }}}
 
 Plug 'embear/vim-localvimrc'
@@ -261,9 +269,4 @@ endif
 
 " https://github.com/tpope/vim-eunuch
 " /tpope/vim-commentary - make comments
-
-" if the plug dir is empty, install
-if empty(s:plug_dir)
-    autocmd! VimEnter * PlugInstall
-endif
 
