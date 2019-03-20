@@ -210,8 +210,22 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_out
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 toggle # mute sound
 
 # Telegram
-bindsym $mod+shift+t exec /usr/bin/telegram-desktop
+bindsym $mod+Mod5+T exec /usr/bin/telegram-desktop
 assign [class="Telegram"] $ws6
+
+# browser pop-ups
+for_window [window_role="pop-up"] floating enable
+
+#for_window [class="Nautilus" instance="file_progress"] floating enable
+# OR
+for_window [class="Nautilus"] floating enable
+
+# new for bindsym exec
+# xdg-open ~
+# ~/Downloads
+
+# kill Zeal
+#bindsym n [class="Zeal"] kill
 
 # Screenshots
 #bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"

@@ -1,0 +1,69 @@
+// Windows layout
+default  partial alphanumeric_keys
+xkb_symbols "winkeys" {
+
+    include "ru(common)"
+    name[Group1]= "Russian";
+
+    key <RTSH> {
+        type[Group1]="ONE_LEVEL",
+        symbols[Group1] = [ ISO_Level3_Shift ]
+    };
+
+    // for HHKB set Escape key as ~, like in normal layout
+    key <ESC> { [  bracketright, VoidSymbol, bracketleft] };
+
+    key <TLDE> { [        grave, VoidSymbol, asciitilde] };
+    key <AE01> { [            1, VoidSymbol, exclam] };
+    key <AE02> { [            2, VoidSymbol, at] };
+    key <AE03> { [            3, VoidSymbol, numerosign] };
+    key <AE04> { [            4, VoidSymbol, semicolon] };
+    key <AE05> { [            5, VoidSymbol, percent] };
+    key <AE06> { [            6, VoidSymbol, colon] };
+    key <AE07> { [            7,  question,  VoidSymbol ] };
+    key <AE08> { [            8,   asterisk, VoidSymbol ] };
+    key <AE09> { [            9,  parenleft, VoidSymbol ] };
+    key <AE10> { [            0, parenright, VoidSymbol ] };
+    key <AE11> { [        minus, underscore, VoidSymbol ] };
+    key <AE12> { [        equal,       plus, VoidSymbol ] };
+
+    key <AB10> { [      period,       comma  ] };
+    key <BKSL> { [   backslash,       slash  ] };
+
+    key <AD01> { [   Cyrillic_shorti,        VoidSymbol,   Cyrillic_SHORTI, NoSymbol ]};
+    key <AD02> { [      Cyrillic_tse,        VoidSymbol,      Cyrillic_TSE, NoSymbol ] };
+    key <AD03> { [        Cyrillic_u,        VoidSymbol,       Cyrillic_U,  NoSymbol ] };
+    key <AD04> { [       Cyrillic_ka,        VoidSymbol,      Cyrillic_KA,  NoSymbol ] };
+    key <AD05> { [       Cyrillic_ie,        VoidSymbol,      Cyrillic_IE,  NoSymbol ] };
+    key <AD06> { [       Cyrillic_en,       Cyrillic_EN,       VoidSymbol,  NoSymbol ] };
+    key <AD07> { [      Cyrillic_ghe,      Cyrillic_GHE,       VoidSymbol,  NoSymbol ] };
+    key <AD08> { [      Cyrillic_sha,      Cyrillic_SHA,       VoidSymbol,  NoSymbol ] };
+    key <AD09> { [    Cyrillic_shcha,    Cyrillic_SHCHA,       VoidSymbol,  NoSymbol ] };
+    key <AD10> { [       Cyrillic_ze,       Cyrillic_ZE,       VoidSymbol,  NoSymbol ] };
+    key <AD11> { [       Cyrillic_ha,       Cyrillic_HA,       VoidSymbol,  NoSymbol ] };
+    key <AD12> { [ Cyrillic_hardsign, Cyrillic_HARDSIGN,       VoidSymbol,  NoSymbol ] };
+
+    key <AC01> { [       Cyrillic_ef,        VoidSymbol,      Cyrillic_EF,  NoSymbol ] };
+    key <AC02> { [     Cyrillic_yeru,        VoidSymbol,    Cyrillic_YERU,  NoSymbol ] };
+    key <AC03> { [       Cyrillic_ve,        VoidSymbol,      Cyrillic_VE,  NoSymbol ] };
+    key <AC04> { [        Cyrillic_a,        VoidSymbol,       Cyrillic_A,  NoSymbol ] };
+    key <AC05> { [       Cyrillic_pe,        VoidSymbol,      Cyrillic_PE,  NoSymbol ] };
+    key <AC06> { [       Cyrillic_er,       Cyrillic_ER,       VoidSymbol,  NoSymbol ] };
+    key <AC07> { [        Cyrillic_o,        Cyrillic_O,       VoidSymbol,  NoSymbol ] };
+    key <AC08> { [       Cyrillic_el,       Cyrillic_EL,       VoidSymbol,  NoSymbol ] };
+    key <AC09> { [       Cyrillic_de,       Cyrillic_DE,       VoidSymbol,  NoSymbol ] };
+    key <AC10> { [      Cyrillic_zhe,      Cyrillic_ZHE,       VoidSymbol,  NoSymbol ] };
+    key <AC11> { [        Cyrillic_e,        Cyrillic_E,       VoidSymbol,  NoSymbol ] };
+
+    key <AB01> { [       Cyrillic_ya,        VoidSymbol,      Cyrillic_YA,  NoSymbol ] };
+    key <AB02> { [      Cyrillic_che,        VoidSymbol,     Cyrillic_CHE,  NoSymbol ] };
+    key <AB03> { [       Cyrillic_es,        VoidSymbol,      Cyrillic_ES,  NoSymbol ] };
+    key <AB04> { [       Cyrillic_em,        VoidSymbol,      Cyrillic_EM,  NoSymbol ] };
+    key <AB05> { [        Cyrillic_i,        VoidSymbol,       Cyrillic_I,  NoSymbol ] };
+    key <AB06> { [       Cyrillic_te,       Cyrillic_TE,       VoidSymbol,  NoSymbol ] };
+    key <AB07> { [ Cyrillic_softsign, Cyrillic_SOFTSIGN,       VoidSymbol,  NoSymbol ] };
+    key <AB08> { [       Cyrillic_be,       Cyrillic_BE,       VoidSymbol,  NoSymbol ] };
+    key <AB09> { [       Cyrillic_yu,       Cyrillic_YU,       VoidSymbol,  NoSymbol ] };
+
+};
+

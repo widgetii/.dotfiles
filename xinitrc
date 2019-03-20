@@ -84,5 +84,6 @@ xset m 4/1 4
 export TERMINAL=/usr/bin/kitty
 #sxhkd &
 #exec bspwm
+compton -b -i 0.8
 exec i3
 
