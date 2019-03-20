@@ -18,7 +18,7 @@ xmodmap -e "add Control = Control_R"
 #xmodmap -e "remove Control = Control_L"
 xmodmap -e "remove Lock = Caps_Lock"
 # теперь у нас CapsLock - это левый Ctrl
-#xmodmap -e "keycode 0x42 = Control_L"
+xmodmap -e "keycode 0x42 = Control_L"
 # а левый Ctrl у нас будет пробелом
 #xmodmap -e "keycode 37 = space"
 # добавляем ему функцию Control
