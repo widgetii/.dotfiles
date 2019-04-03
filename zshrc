@@ -115,6 +115,17 @@ then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source /opt/google-cloud-sdk/path.zsh.inc
     source /opt/google-cloud-sdk/completion.zsh.inc
+
+    export LIBVIRT_DEFAULT_URI=qemu:///system
+    export VAGRANT_DEFAULT_PROVIDER=libvirt
+     
+    # one ssh-agent at a time
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        ssh-agent > ~/.ssh-agent-thing
+    fi
+    if [[ ! "$SSH_AUTH_SOCK" ]]; then
+        eval "$(<~/.ssh-agent-thing)"
+    fi
 fi
 
 if [[ `uname` == 'Darwin' ]]
@@ -227,4 +238,5 @@ bindkey '^y' autosuggest-execute
 bindkey '^q' autosuggest-clear
 # fill the line (make autocompletion but don't execute it)
 bindkey '^f' autosuggest-accept
+
 

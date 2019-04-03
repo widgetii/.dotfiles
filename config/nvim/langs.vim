@@ -16,6 +16,7 @@
 "   Looks like javascript-typescript-langserver requires `jsconfig.json` to work
 "   with javascript files.
 " sh: npm -g install bash-language-server
+" python: python-language-server python-pylint
 
 let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],

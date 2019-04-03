@@ -3,6 +3,12 @@ export LC_ALL=en_US.UTF-8
 
 xkbcomp -I$HOME/.config/xkb ~/.config/xkb/keymap/my_layout $DISPLAY
 
+HHKB_ID=$(
+    xinput list |
+    sed -n 's/.*HHKB Professional.*id=\([0-9]*\).*keyboard.*/\1/p'
+)
+[ $HHKB_ID ] && xkbcomp -I$HOME/.config/xkb -i $HHKB_ID ~/.config/xkb/keymap/my_hhkb $DISPLAY
+
 # Return&CapsLock -> Ctrl
 # Caps -> Escape
 
@@ -18,15 +24,11 @@ xmodmap -e "add Control = Control_R"
 #xmodmap -e "remove Control = Control_L"
 xmodmap -e "remove Lock = Caps_Lock"
 # теперь у нас CapsLock - это левый Ctrl
-#xmodmap -e "keycode 0x42 = Control_L"
+xmodmap -e "keycode 0x42 = Control_L"
 # а левый Ctrl у нас будет пробелом
 #xmodmap -e "keycode 37 = space"
 # добавляем ему функцию Control
 xmodmap -e "add Control = Control_L"
-
-# for HHKB set Escape key as ~, like in normal layout
-# we need to rebind Escape to any unused keycode
-xmodmap -e "keycode 253 = Escape NoSymbol Escape NoSymbol Escape"
 
 # однократное нажатие у нас будет для Enter->Return, для Caps->Escape
 xcape -t 500 -e "Control_R=Return;Control_L=Escape"
@@ -69,10 +71,6 @@ xset b off
 # welcome to Colemak era
 #xmodmap ~/.Xmodmap
 
-# swap ` , \ and Delete on HHKB
-xmodmap -e "keycode 22 = backslash bar backslash slash VoidSymbol NoSymbol backslash bar"
-xmodmap -e "keycode 49 = BackSpace BackSpace BackSpace BackSpace"
-
 # some Chineese
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -84,5 +82,6 @@ xset m 4/1 4
 export TERMINAL=/usr/bin/kitty
 #sxhkd &
 #exec bspwm
+compton -b -i 0.8
 exec i3
 
