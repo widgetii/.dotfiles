@@ -4,6 +4,12 @@
 
 # Install rcm (https://github.com/thoughtbot/rcm)
 
+# Zsh
+Check zsh and install it
+sudo chsh -s $(which zsh) $USER
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/bhilburn/powerlevel9k $HOME/.oh-my-zsh/themes/powerlevel9k
+
 # Debian
 
 wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
