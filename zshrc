@@ -76,7 +76,6 @@ plugins=(
   vagrant
   vi-mode
   web-search
-  zsh-autosuggetions
 )
 
 source $ZSH/oh-my-zsh.sh
