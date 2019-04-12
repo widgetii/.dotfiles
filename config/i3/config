@@ -211,7 +211,16 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0
 
 # Telegram
 bindsym $mod+Mod5+T exec /usr/bin/telegram-desktop
-assign [class="Telegram"] $ws6
+assign [class="Telegram"] $ws5
+
+# Skype
+exec /usr/bin/skypeforlinux
+assign [class="skype"] $ws5
+for_window [class="skype"] floating disable
+
+# MS Teams
+exec "cd $HOME/git/teams-for-linux && yarn start"
+assign [title="Microsoft Teams"] $ws5
 
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable
