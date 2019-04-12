@@ -109,16 +109,16 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+mod2+1 workspace $ws1
+bindsym $mod+mod2+2 workspace $ws2
+bindsym $mod+mod2+3 workspace $ws3
+bindsym $mod+mod2+4 workspace $ws4
+bindsym $mod+mod2+5 workspace $ws5
+bindsym $mod+mod2+6 workspace $ws6
+bindsym $mod+mod2+7 workspace $ws7
+bindsym $mod+mod2+8 workspace $ws8
+bindsym $mod+mod2+9 workspace $ws9
+bindsym $mod+mod2+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
