@@ -83,5 +83,6 @@ export TERMINAL=/usr/bin/kitty
 #sxhkd &
 #exec bspwm
 compton -b -i 0.8
+flameshot &
 exec i3
 
