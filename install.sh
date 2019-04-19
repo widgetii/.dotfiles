@@ -68,8 +68,6 @@ function install_rcup {
 		sudo apt-get -y update
 		sudo apt-get -y install rcm
 		;;
-	CentOS*)
-		;;
 	Arch*)
 		pikaur -S --noconfirm rcm
 		;;
@@ -78,6 +76,15 @@ function install_rcup {
         brew install rcm
         ;;
 	*)
+        TMPDIR=`mktemp -d -p "${XDG_RUNTIME_DIR}"`
+        cd "$TMPDIR"
+        curl -LO https://thoughtbot.github.io/rcm/dist/rcm-1.3.3.tar.gz &&
+            tar -xvf rcm-1.3.3.tar.gz &&
+            cd rcm-1.3.3 &&
+            ./configure &&
+            make &&
+            sudo make install
+        rm -rf "$TMPDIR"
 		;;
 	esac
 }
@@ -86,7 +93,7 @@ detect_OS
 [[ ! -z "$SUDO_USER" ]] && USER=$SUDO_USER
 echo "Detected OS: $OS, version: $VER, user: $USER"
 
-[[ "$OS" -ne "Darwin" ]] && check_home_space
+[[ "$OS" == "Darwin" ]] && check_home_space
 
 # Install rcm (https://github.com/thoughtbot/rcm)
 command -v rcup >/dev/null || install_rcup
