@@ -44,7 +44,7 @@ function detect_OS {
 function check_home_space {
     FREESZ=$((`stat -f --format="%a*%S" $HOME`))
     # lower than 1Gb
-    [[ $z -lt 1000000000 ]] && {
+    [[ $FREESZ -lt 1000000000 ]] && {
         [[ ! -d "$ALTHOMESPACE" ]] && {
             echo "Low free space detected in $HOME and no alternatives"
             exit 1
