@@ -7,6 +7,8 @@
 
 set -e
 
+ALTHOMESPACE="/opt/local"
+
 function detect_OS {
     if [ -f /etc/os-release ]; then
         # freedesktop.org and systemd
@@ -39,6 +41,25 @@ function detect_OS {
     fi
 }
 
+function check_home_space {
+    FREESZ=$((`stat -f --format="%a*%S" $HOME`))
+    # lower than 1Gb
+    [[ $z -lt 1000000000 ]] && {
+        [[ ! -d "$ALTHOMESPACE" ]] && {
+            echo "Low free space detected in $HOME and no alternatives"
+            exit 1
+        }
+    }
+    # create alternative home directory
+    ALT="$ALTHOMESPACE/$USER"
+    [[ ! -d "$ALT" ]] && {
+        echo "Creating $ALT..."
+        sudo mkdir "$ALT"
+        sudo chown $USER:root "$ALT"
+        sudo chmod 700 "$ALT"
+    }
+}
+
 function install_rcup {
 	echo "Installing RCM"
 	case $OS in
@@ -58,7 +79,9 @@ function install_rcup {
 }
 
 detect_OS
-echo "Detected OS: $OS, version: $VER"
+[[ ! -z "$SUDO_USER" ]] && USER=$SUDO_USER
+echo "Detected OS: $OS, version: $VER, user: $USER"
+check_home_space
 
 # Install rcm (https://github.com/thoughtbot/rcm)
 command -v rcup >/dev/null || install_rcup
