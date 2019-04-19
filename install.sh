@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Run on new machine as:
-#   bash <(curl -s https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh)
+#   curl -L https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh | bash
 # OR
 #   wget -q https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh -O - | bash
 
@@ -43,21 +43,22 @@ function detect_OS {
 
 function check_home_space {
     FREESZ=$((`stat -f --format="%a*%S" $HOME`))
-    # lower than 1Gb
-    [[ $FREESZ -lt 1000000000 ]] || {
-        [[ -d "$ALTHOMESPACE" ]] || {
+    # check if home partition is lower than 1Gb
+    if [[ "$FREESZ" -lt "1000000000" ]]; then
+        if [[ ! -d "$ALTHOMESPACE" ]]; then
             echo "Low free space detected in $HOME and no alternatives"
             exit 1
-        }
-    }
-    # create alternative home directory
-    ALT="$ALTHOMESPACE/$USER"
-    [[ -d "$ALT" ]] || {
-        echo "Creating $ALT..."
-        sudo mkdir "$ALT"
-        sudo chown $USER:root "$ALT"
-        sudo chmod 700 "$ALT"
-    }
+        fi
+        # create alternative home directory
+        ALT="$ALTHOMESPACE/$USER"
+        if [[ ! -d "$ALT" ]]; then
+            echo "Creating $ALT..."
+            sudo mkdir "$ALT"
+            sudo chown $USER:root "$ALT"
+            sudo chmod 700 "$ALT"
+        fi
+        export HOME="$ALT"
+    fi
 }
 
 function install_rcup {
@@ -89,44 +90,126 @@ function install_rcup {
 	esac
 }
 
+function install_git {
+    echo "Installing Git"
+    case $OS in
+    Ubuntu)
+        ;;
+    Arch*)
+        ;;
+    Darwin*)
+        ;;
+    CentOS*)
+        sudo yum -y install git
+        ;;
+    *)
+        ;;
+    esac
+}
+
+function install_zsh {
+    echo "Installing Zsh"
+    case $OS in
+    Ubuntu)
+        apt install -y zsh
+        ;;
+    Arch*)
+        sudo pacman -S zsh
+        ;;
+    Darwin*)
+        brew install zsh zsh-completions
+        ;;
+    CentOS*)
+        sudo yum -y install zsh
+        ;;
+    *)
+        ;;
+    esac
+}
+
+function install_neovim {
+    echo "Installing Neovim"
+    case $OS in
+    Ubuntu)
+        sudo apt-get install -y software-properties-common
+        sudo add-apt-repository -y ppa:neovim-ppa/stable
+        sudo apt-get -y update
+        sudo apt-get -y install neovim
+        sudo apt-get -y install python-dev python-pip python3-dev python3-pip
+
+        # Use as default
+        sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+        sudo update-alternatives --set vi /usr/bin/nvim
+        sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+        sudo update-alternatives --set vim /usr/bin/nvim
+        sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+        sudo update-alternatives --set editor /usr/bin/nvim
+        ;;
+    Arch*)
+        sudo pacman -S neovim python-neovim
+        ;;
+    Darwin*)
+        brew install neovim
+        ;;
+    CentOS*)
+        ;;
+    *)
+        ;;
+    esac
+}
+
+if [[ "$USER" == "root" ]]; then
+    echo "Don't run the script from root!"
+    exit 2
+fi
+
 detect_OS
 [[ ! -z "$SUDO_USER" ]] && USER=$SUDO_USER
 echo "Detected OS: $OS, version: $VER, user: $USER"
 
-[[ "$OS" == "Darwin" ]] && check_home_space
+[[ "$OS" == "Darwin" ]] || check_home_space
 
 # Install rcm (https://github.com/thoughtbot/rcm)
 command -v rcup >/dev/null || install_rcup
-exit
 
-# Zsh
-Check zsh and install it
-sudo chsh -s $(which zsh) $USER
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-git clone https://github.com/bhilburn/powerlevel9k $HOME/.oh-my-zsh/themes/powerlevel9k
+# Install git
+command -v git >/dev/null || install_git
 
-# Debian
+# Clone dotfiles
+if [[ ! -d "$HOME/.dotfiles" ]]; then
+    cd $HOME
+    git clone https://github.com/widgetii/.dotfiles
+else
+    cd $HOME/.dotfiles
+    echo "Updating .dotfiles"
+    git pull
+fi
+rcup
 
-wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
-echo "deb https://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
-sudo apt-get update
-sudo apt-get install rcm
+# Check zsh and install it
+command -v zsh >/dev/null || {
+    install_zsh
+    BASH_PROFILE="/home/$USER/.bash_profile"
+    if [[ ! -z "$ALT" ]]; then
+        echo "export HOME=$ALT" > $BASH_PROFILE
+    fi
+    echo "export SHELL=\`which zsh\`" >> $BASH_PROFILE
+    echo "[ -z \"\$ZSH_VERSION\" ] && exec \"\$SHELL\" -l" >> $BASH_PROFILE
+}
+
+# Install oh-my-zsh
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+    git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+fi
+
+# Install powerlevel9k theme
+if [[ ! -d "$HOME/.oh-my-zsh/themes/powerlevel9k" ]]; then
+    git clone https://github.com/bhilburn/powerlevel9k $HOME/.oh-my-zsh/themes/powerlevel9k
+fi
 
 # Install neovim (https://github.com/neovim/neovim/wiki/Installing-Neovim)
-
-sudo add-apt-repository ppa:neovim-ppa/stable -y
-sudo apt-get update # realy needed?
-sudo apt-get install neovim
-
-sudo apt-get install python-dev python-pip python3-dev python3-pip
-pip3 install pynvim
-
-# Use as default
-
-sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-sudo update-alternatives --set vi /usr/bin/nvim
-sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-sudo update-alternatives --set vim /usr/bin/nvim
-sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-sudo update-alternatives --set editor /usr/bin/nvim
+command -v nvim -version >/dev/null || {
+    install_neovim
+    pip3 install pynvim
+}
 
