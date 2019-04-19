@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Run on new machine as:
+#   bash <(curl -s https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh)
+# OR
+#   wget -q https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh -O - | bash
+
 set -e
 
 function detect_OS {
@@ -34,13 +39,30 @@ function detect_OS {
     fi
 }
 
+function install_rcup {
+	echo "Installing RCM"
+	case $OS in
+	Ubuntu)
+		sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
+		sudo apt-get -y update
+		sudo apt-get -y install rcm
+		;;
+	CentOS*)
+		;;
+	Arch*)
+		pikaur -S --noconfirm rcm
+		;;
+	*)
+		;;
+	esac
+}
+
 detect_OS
 echo "Detected OS: $OS, version: $VER"
-exit
-
-# Ubuntu only
 
 # Install rcm (https://github.com/thoughtbot/rcm)
+command -v rcup >/dev/null || install_rcup
+exit
 
 # Zsh
 Check zsh and install it
