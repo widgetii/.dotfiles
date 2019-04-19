@@ -44,15 +44,15 @@ function detect_OS {
 function check_home_space {
     FREESZ=$((`stat -f --format="%a*%S" $HOME`))
     # lower than 1Gb
-    [[ $FREESZ -lt 1000000000 ]] && {
-        [[ ! -d "$ALTHOMESPACE" ]] && {
+    [[ $FREESZ -lt 1000000000 ]] || {
+        [[ ! -d "$ALTHOMESPACE" ]] || {
             echo "Low free space detected in $HOME and no alternatives"
             exit 1
         }
     }
     # create alternative home directory
     ALT="$ALTHOMESPACE/$USER"
-    [[ ! -d "$ALT" ]] && {
+    [[ ! -d "$ALT" ]] || {
         echo "Creating $ALT..."
         sudo mkdir "$ALT"
         sudo chown $USER:root "$ALT"
