@@ -76,6 +76,7 @@ function install_rcup {
     Darwin*)
         brew tap thoughtbot/formulae
         brew install rcm
+        ;;
 	*)
 		;;
 	esac
