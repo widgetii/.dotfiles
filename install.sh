@@ -73,6 +73,9 @@ function install_rcup {
 	Arch*)
 		pikaur -S --noconfirm rcm
 		;;
+    Darwin*)
+        brew tap thoughtbot/formulae
+        brew install rcm
 	*)
 		;;
 	esac
@@ -81,7 +84,8 @@ function install_rcup {
 detect_OS
 [[ ! -z "$SUDO_USER" ]] && USER=$SUDO_USER
 echo "Detected OS: $OS, version: $VER, user: $USER"
-check_home_space
+
+[[ "$OS" -ne "Darwin" ]] && check_home_space
 
 # Install rcm (https://github.com/thoughtbot/rcm)
 command -v rcup >/dev/null || install_rcup
