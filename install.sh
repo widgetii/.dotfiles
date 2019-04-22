@@ -170,6 +170,18 @@ echo "Detected OS: $OS, version: $VER, user: $USER"
 
 [[ "$OS" == "Darwin" ]] || check_home_space
 
+# Check zsh and install it
+command -v zsh >/dev/null || {
+    install_zsh
+    BASH_PROFILE="/home/$USER/.bash_profile"
+    if [[ ! -z "$ALT" ]]; then
+        echo "export HOME=$ALT" >> $BASH_PROFILE
+        echo "cd $ALT" >> $BASH_PROFILE
+    fi
+    echo "export SHELL=\`which zsh\`" >> $BASH_PROFILE
+    echo "[ -z \"\$ZSH_VERSION\" ] && exec \"\$SHELL\" -l" >> $BASH_PROFILE
+}
+
 # Install rcm (https://github.com/thoughtbot/rcm)
 command -v rcup >/dev/null || install_rcup
 
@@ -186,18 +198,6 @@ else
     git pull
 fi
 rcup
-
-# Check zsh and install it
-command -v zsh >/dev/null || {
-    install_zsh
-    BASH_PROFILE="/home/$USER/.bash_profile"
-    if [[ ! -z "$ALT" ]]; then
-        echo "export HOME=$ALT" > $BASH_PROFILE
-        echo "cd $ALT" >> $BASH_PROFILE
-    fi
-    echo "export SHELL=\`which zsh\`" >> $BASH_PROFILE
-    echo "[ -z \"\$ZSH_VERSION\" ] && exec \"\$SHELL\" -l" >> $BASH_PROFILE
-}
 
 # Install oh-my-zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
