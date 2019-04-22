@@ -58,6 +58,7 @@ function check_home_space {
             sudo chmod 700 "$ALT"
         fi
         export HOME="$ALT"
+        cd $HOME
     fi
 }
 
@@ -192,6 +193,7 @@ command -v zsh >/dev/null || {
     BASH_PROFILE="/home/$USER/.bash_profile"
     if [[ ! -z "$ALT" ]]; then
         echo "export HOME=$ALT" > $BASH_PROFILE
+        echo "cd $ALT" >> $BASH_PROFILE
     fi
     echo "export SHELL=\`which zsh\`" >> $BASH_PROFILE
     echo "[ -z \"\$ZSH_VERSION\" ] && exec \"\$SHELL\" -l" >> $BASH_PROFILE
