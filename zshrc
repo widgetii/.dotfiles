@@ -208,6 +208,11 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # Copy entire file to system clipboard
 alias xc="xclip -sel clip < "
 
+# Sticky SSH
+sssh() {
+    while true; do command ssh -q "$@"; [ $? -eq 0 ] && break || sleep 0.5; done
+}
+
 alias d8="~/git/v8/v8/out/x64.release/d8 --experimental-wasm-threads"
 
 # Colemak vi-mode
