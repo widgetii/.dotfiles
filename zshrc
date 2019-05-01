@@ -216,6 +216,9 @@ bindkey -M vicmd 'n' down-line-or-history
 bindkey -M vicmd 'e' up-line-or-history
 bindkey -M vicmd 'i' vi-forward-char
 bindkey -M vicmd '^L' vi-join
+# same as on bash
+bindkey -M vicmd '^X^e' edit-command-line
+bindkey '^X^e' edit-command-line
 bindkey '^[f' forward-word
 bindkey '^[b' backward-word
 bindkey "^[." insert-last-word
