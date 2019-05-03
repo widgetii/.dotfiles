@@ -169,8 +169,8 @@ bindsym $mod+mod2+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    output HDMI2
-    status_command    i3status+
+    output HDMI-0
+    status_command    i3status
     position          bottom
     mode              dock
     workspace_buttons yes
