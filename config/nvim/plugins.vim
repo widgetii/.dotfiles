@@ -136,6 +136,13 @@ Plug 'tpope/vim-abolish'
 " Need for working Colemak layout while use inneR object
 let g:abolish_no_mappings = 1
 
+" Convenient mappings for navigation
+Plug 'tpope/vim-unimpaired'
+" ]q is :cnext
+" [q is :cprevious
+" [b is :bprevious
+" TODO: https://github.com/tpope/vim-unimpaired
+
 " Language Client Support
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',

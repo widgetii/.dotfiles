@@ -19,8 +19,8 @@
 " python: python-language-server python-pylint
 
 let g:LanguageClient_serverCommands = {
-    \ 'c': ['clangd'],
-    \ 'cpp': ['clangd'],
+    \ 'c': ['clangd', '-clang-tidy'],
+    \ 'cpp': ['clangd', '-clang-tidy'],
     \ 'cuda': ['clangd'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
@@ -136,7 +136,8 @@ endf
 autocmd FileType c,cpp,cuda,objc,javascript,javascript.jsx,python,rust,sh,typescript call LC_maps()
 
 fu! C_init()
-    setl formatexpr=LanguageClient#textDocument_rangeFormatting()
+" TODO: WTF?
+"    setl formatexpr=LanguageClient#textDocument_rangeFormatting()
     nmap <leader>r :make run<CR>
     nmap <leader>b :make<CR>
 endf
