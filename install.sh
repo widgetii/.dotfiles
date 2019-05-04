@@ -61,7 +61,7 @@ function clean_up {
     [[ ! -z "$CLEANCMD" ]] && {
         echo "Perform cleanup:"
         echo $CLEANCMD
-        $CLEANCMD
+        bash -c "$CLEANCMD"
         CLEANCMD=""
     }
 }
@@ -407,6 +407,11 @@ command -v nvim -version >/dev/null || {
 }
 
 clean_up
+
+# close stdin after dup'ing it to FD 6
+exec 6<&0
+# open /dev/tty as stdin
+exec 0</dev/tty
 
 [[ "$SHELL" =~ (bash) ]] && exec zsh
 
