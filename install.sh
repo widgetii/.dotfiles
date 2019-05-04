@@ -57,17 +57,27 @@ function check_connectivity {
     return 1
 }
 
+function clean_up {
+    [[ ! -z "$CLEANCMD" ]] && {
+        echo "Perform cleanup:"
+        echo $CLEANCMD
+        $CLEANCMD
+        CLEANCMD=""
+    }
+}
+
 function setup_temp_proxies {
     case $OS in
     Ubuntu* | Debian*)
         echo "Acquire::http::Proxy \"http://$http_proxy\";" | sudo tee /etc/apt/apt.conf.d/proxy
-        trap "sudo rm /etc/apt/apt.conf.d/proxy" EXIT
+        CLEANCMD="sudo rm /etc/apt/apt.conf.d/proxy"
+        trap clean_up EXIT SIGHUP SIGINT SIGTERM
         ;;
     CentOS*)
         grep -q "^proxy" /etc/yum.conf || \
             echo "proxy=http://$http_proxy" | sudo tee -a /etc/yum.conf
-        trap "grep -q '^proxy' /etc/yum.conf && sudo sed -i '/^proxy/d' /etc/yum.conf" \
-            EXIT SIGHUP SIGINT SIGTERM
+        CLEANCMD="grep -q '^proxy' /etc/yum.conf && sudo sed -i '/^proxy/d' /etc/yum.conf"
+        trap clean_up EXIT SIGHUP SIGINT SIGTERM
         ;;
     esac
 }
@@ -391,7 +401,12 @@ command -v nvim -version >/dev/null || {
     install_neovim
     command -v pip3 >/dev/null || install_pip3
     pip3 install pynvim --user
-    sh -c 'nvim +PlugInstall +qall </dev/null'
+    #sh -c 'nvim +PlugInstall +qall </dev/null'
+    echo "run:"
+    echo "nvim +PlugInstall +qall"
 }
 
+clean_up
+
 [[ "$SHELL" =~ (bash) ]] && exec zsh
+
