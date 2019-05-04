@@ -151,8 +151,8 @@ fi
 export GTEST_COLOR=yes
 alias ip="ip -c"
 alias tree="tree -C"
+alias rcat="/bin/cat"
 alias cat="ccat"
-alias rcat="cat"
 #alias colors='for code in {0..255}; do echo -e "\e[38;05;${code}m $code: test"; done'
 
 # more settings for theme

@@ -296,9 +296,11 @@ function install_ccat {
         brew install ccat
         ;;
     *)
+        LBIN="$HOME/.local/bin"
+        mkdir -p $LBIN
         curl -L --output /tmp/ccat.tgz \
             https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
-        tar xvf /tmp/ccat.tgz -C $HOME/.local/bin --strip-components 1 linux-amd64-1.1.0/ccat
+        tar xvf /tmp/ccat.tgz -C $LBIN --strip-components 1 linux-amd64-1.1.0/ccat
         ;;
     esac
 }
