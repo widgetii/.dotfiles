@@ -11,6 +11,8 @@
 set -e
 
 ALTHOMESPACE="/opt/local"
+# Find last stable version on https://github.com/neovim/neovim/releases/tag/stable
+NVIM_AIMG="https://github.com/neovim/neovim/releases/download/stable/nvim.appimage"
 
 function detect_OS {
     if [ -f /etc/os-release ]; then
@@ -148,6 +150,21 @@ function install_zsh {
     esac
 }
 
+function install_neovim_as_appimage {
+    LCL="$HOME/.local"
+    mkdir -p $LCL
+
+    APPIMG="/tmp/nvim.appimage"
+    curl -L $NVIM_AIMG > $APPIMG
+    chmod u+x $APPIMG
+    $APPIMG --appimage-extract
+    mv /tmp/squashfs-root/* $LCL
+    rm -rf /tmp/squashfs-root
+    rm -rf $APPIMG
+    cd $LCL/bin
+    ln -sv ../usr/bin/nvim nvim
+}
+
 function install_neovim {
     echo "Installing Neovim"
     case $OS in
@@ -162,7 +179,7 @@ function install_neovim {
     Debian*)
         # for Debian only
         [ -z "$ONLY_ALTUPD" ] && {
-            sudo apt-get install -y neovim
+            install_neovim_as_appimage
         }
         # Use as default
         sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
@@ -179,6 +196,7 @@ function install_neovim {
         brew install neovim
         ;;
     CentOS*)
+        install_neovim_as_appimage
         ;;
     *)
         ;;
@@ -200,6 +218,7 @@ function install_pip3 {
             sudo yum install -y https://centos7.iuscommunity.org/ius-release.rpm
             sudo yum install -y python36u-pip
             sudo ln -sv /usr/bin/pip3.6 /usr/local/bin/pip3
+            sudo ln -sv /usr/bin/python3.6 /usr/local/bin/python3
         }
         ;;
     *)
