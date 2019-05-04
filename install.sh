@@ -270,7 +270,14 @@ echo "Detected OS: $OS, version: $VER, user: $USER"
 
 [[ "$OS" == "Darwin" ]] || check_home_space
 
-check_connectivity
+check_connectivity || {
+    echo "launch goproxy on local machine:"
+    echo "  proxy http --local-type=tcp --local=:33080"
+    echo "and make a connection to remote one with forwarding:"
+    echo "  ssh -R 8080:localhost:33080 <host>"
+    echo "  export http_proxy=127.1:8080 && export https_proxy=127.1:8080"
+    exit 2
+}
 
 # Check zsh and install it
 command -v zsh >/dev/null || {
