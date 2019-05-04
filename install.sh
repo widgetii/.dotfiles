@@ -149,7 +149,11 @@ function install_neovim {
         sudo apt-get -y update
         sudo apt-get -y install neovim
         sudo apt-get -y install python-dev python-pip python3-dev python3-pip
-
+        ONLY_ALTUPD=1
+    Debian*)
+        [ -z "$ONLY_ALTUPD" ] && {
+            sudo apt-get install -y neovim
+        }
         # Use as default
         sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
         sudo update-alternatives --set vi /usr/bin/nvim
@@ -157,10 +161,6 @@ function install_neovim {
         sudo update-alternatives --set vim /usr/bin/nvim
         sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
         sudo update-alternatives --set editor /usr/bin/nvim
-        ;;
-    Debian*)
-        sudo apt-get install -y neovim
-        sudo apt-get install -y python-neovim python3-neovim
         ;;
     Arch*)
         sudo pacman -S neovim python-neovim
