@@ -88,6 +88,13 @@ function install_rcup {
         brew tap thoughtbot/formulae
         brew install rcm
         ;;
+    CentOS*)
+        [ "$VER" == "7" ] && {
+            curl https://download.opensuse.org/repositories/utilities/RHEL_7/utilities.repo | sudo tee /etc/yum.repos.d/utilities.repo
+            sudo yum install -y rcm
+            # remove repo after install
+            sudo rm /etc/yum.repos.d/utilities.repo
+        }
     *)
         TMPDIR=`mktemp -d -p "${XDG_RUNTIME_DIR}"`
         cd "$TMPDIR"
@@ -150,7 +157,9 @@ function install_neovim {
         sudo apt-get -y install neovim
         sudo apt-get -y install python-dev python-pip python3-dev python3-pip
         ONLY_ALTUPD=1
+        ;&
     Debian*)
+        # for Debian only
         [ -z "$ONLY_ALTUPD" ] && {
             sudo apt-get install -y neovim
         }
