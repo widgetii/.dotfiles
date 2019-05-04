@@ -394,6 +394,3 @@ vnoremap <LeftRelease> "*ygv
 nnoremap g. @:
 set autowriteall
 
-" Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
-
