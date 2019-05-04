@@ -63,21 +63,29 @@ function check_home_space {
 }
 
 function install_rcup {
-	echo "Installing RCM"
-	case $OS in
-	Ubuntu)
-		sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
-		sudo apt-get -y update
-		sudo apt-get -y install rcm
-		;;
-	Arch*)
-		pikaur -S --noconfirm rcm
-		;;
+    echo "Installing RCM"
+    case $OS in
+    Ubuntu)
+        sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
+        sudo apt-get -y update
+        sudo apt-get -y install rcm
+        ;;
+    Debian)
+        wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
+        echo "deb https://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
+        # fix for "The method driver /usr/lib/apt/methods/https could not be found."
+        sudo apt install -y apt-transport-https
+        sudo apt-get -y update
+        sudo apt-get install rcm
+        ;;
+    Arch*)
+        pikaur -S --noconfirm rcm
+        ;;
     Darwin*)
         brew tap thoughtbot/formulae
         brew install rcm
         ;;
-	*)
+    *)
         TMPDIR=`mktemp -d -p "${XDG_RUNTIME_DIR}"`
         cd "$TMPDIR"
         curl -LO https://thoughtbot.github.io/rcm/dist/rcm-1.3.3.tar.gz &&
@@ -87,8 +95,8 @@ function install_rcup {
             make &&
             sudo make install
         rm -rf "$TMPDIR"
-		;;
-	esac
+        ;;
+    esac
 }
 
 function install_git {
