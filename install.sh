@@ -95,6 +95,7 @@ function install_rcup {
             # remove repo after install
             sudo rm /etc/yum.repos.d/utilities.repo
         }
+        ;;
     *)
         TMPDIR=`mktemp -d -p "${XDG_RUNTIME_DIR}"`
         cd "$TMPDIR"
