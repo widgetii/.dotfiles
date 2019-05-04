@@ -196,6 +196,11 @@ function install_pip3 {
     Darwin*)
         ;;
     CentOS*)
+        [ "$VER" == "7" ] && {
+            sudo yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+            sudo yum install -y python36u-pip
+            sudo ln -sv /usr/bin/pip3.6 /usr/local/bin/pip3
+        }
         ;;
     *)
         ;;
@@ -256,6 +261,6 @@ fi
 command -v nvim -version >/dev/null || {
     install_neovim
     command -v pip3 >/dev/null || install_pip3
-    pip3 install pynvim
+    pip3 install pynvim --user
 }
 
