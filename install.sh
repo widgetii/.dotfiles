@@ -164,13 +164,14 @@ function install_zsh {
 function install_neovim_as_appimage {
     LCL="$HOME/.local"
     mkdir -p $LCL
+    cd $LCL
 
-    APPIMG="/tmp/nvim.appimage"
+    APPIMG="nvim.appimage"
     curl -L $NVIM_AIMG > $APPIMG
     chmod u+x $APPIMG
-    $APPIMG --appimage-extract
-    mv /tmp/squashfs-root/* $LCL
-    rm -rf /tmp/squashfs-root
+    ./$APPIMG --appimage-extract
+    mv squashfs-root/* $LCL
+    rm -rf ./squashfs-root
     rm -rf $APPIMG
     cd $LCL/bin
     ln -sv ../usr/bin/nvim nvim
