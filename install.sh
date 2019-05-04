@@ -268,6 +268,12 @@ function install_zsh_autojump {
     esac
 }
 
+function fix_term_for_root {
+    ROOTDIR="/root"
+    [[ "$OS" =~ Darwin ]] && ROOTDIR="/var/root"
+    sudo cp -rv $HOME/.terminfo $ROOTDIR
+}
+
 if [[ "$USER" == "root" ]]; then
     echo "Don't run the script from root!"
     exit 2
@@ -312,11 +318,15 @@ command -v git >/dev/null || install_git
 if [[ ! -d "$HOME/.dotfiles" ]]; then
     cd $HOME
     git clone https://github.com/widgetii/.dotfiles
+    fix_term_for_root
 else
     cd $HOME/.dotfiles
     echo "Updating .dotfiles"
     git pull
 fi
+
+# workaround for avoid error with Code's dir
+mkdir -p "$HOME/.config/Code - OSS/User/"
 rcup
 
 # Install oh-my-zsh
@@ -336,4 +346,9 @@ command -v nvim -version >/dev/null || {
     command -v pip3 >/dev/null || install_pip3
     pip3 install pynvim --user
 }
+
+[[ "$SHELL" =~ (bash) ]] && exec zsh
+
+# test nvim +q
+
 

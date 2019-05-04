@@ -113,8 +113,10 @@ if [[ `uname` == 'Linux' ]]
 then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /opt/google-cloud-sdk/path.zsh.inc
-    source /opt/google-cloud-sdk/completion.zsh.inc
+    [[ -d /opt/google-cloud-sdk ]] && {
+        source /opt/google-cloud-sdk/path.zsh.inc
+        source /opt/google-cloud-sdk/completion.zsh.inc
+    }
 
     export LIBVIRT_DEFAULT_URI=qemu:///system
     export VAGRANT_DEFAULT_PROVIDER=libvirt
