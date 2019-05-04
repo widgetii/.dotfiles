@@ -363,7 +363,7 @@ command -v nvim -version >/dev/null || {
     install_neovim
     command -v pip3 >/dev/null || install_pip3
     pip3 install pynvim --user
-    nvim +PlugInstall +qall
+    nvim +PlugInstall +qall </dev/null
 }
 
 [[ "$SHELL" =~ (bash) ]] && exec zsh
