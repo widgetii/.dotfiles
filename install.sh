@@ -286,6 +286,23 @@ function install_golang {
     esac
 }
 
+function install_ccat {
+    echo "Installing Ccat"
+    case $OS in
+    Arch*)
+        pikaur -S ccat-git
+        ;;
+    Darwin*)
+        brew install ccat
+        ;;
+    *)
+        curl -L --output /tmp/ccat.tgz \
+            https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
+        tar xvf /tmp/ccat.tgz -C $HOME/.local/bin --strip-components 1 linux-amd64-1.1.0/ccat
+        ;;
+    esac
+}
+
 function fix_term_for_root {
     ROOTDIR="/root"
     [[ "$OS" =~ Darwin ]] && ROOTDIR="/var/root"
@@ -331,6 +348,9 @@ command -v rcup >/dev/null || install_rcup
 
 # Install git
 command -v git >/dev/null || install_git
+
+# Install small utilities
+command -v ccat >/dev/null || install_ccat
 
 # Clone dotfiles
 if [[ ! -d "$HOME/.dotfiles" ]]; then
