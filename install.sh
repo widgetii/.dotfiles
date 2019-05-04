@@ -60,8 +60,14 @@ function check_connectivity {
 function setup_temp_proxies {
     case $OS in
     Ubuntu* | Debian*)
-        echo "Acquire::http::Proxy \"http://127.0.0.1:8080\";" | sudo tee /etc/apt/apt.conf.d/proxy
+        echo "Acquire::http::Proxy \"http://$http_proxy\";" | sudo tee /etc/apt/apt.conf.d/proxy
         trap "sudo rm /etc/apt/apt.conf.d/proxy" EXIT
+        ;;
+    CentOS*)
+        grep -q "^proxy" /etc/yum.conf || \
+            echo "proxy=http://$http_proxy" | sudo tee -a /etc/yum.conf
+        trap "grep -q '^proxy' /etc/yum.conf && sudo sed -i '/^proxy/d' /etc/yum.conf" \
+            EXIT SIGHUP SIGINT SIGTERM
         ;;
     esac
 }
@@ -385,7 +391,7 @@ command -v nvim -version >/dev/null || {
     install_neovim
     command -v pip3 >/dev/null || install_pip3
     pip3 install pynvim --user
-    sh -c nvim +PlugInstall +qall </dev/null
+    sh -c 'nvim +PlugInstall +qall </dev/null'
 }
 
 [[ "$SHELL" =~ (bash) ]] && exec zsh
