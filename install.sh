@@ -46,6 +46,17 @@ function detect_OS {
     fi
 }
 
+function check_connectivity {
+    case "$(curl -s --max-time 2 -I http://google.com | sed 's/^[^ ]*  *\([0-9]\).*/\1/; 1q')" in
+        # HTTP connectivity is up"
+        [23]) return 0;;
+        # Something goes wrong
+        5) echo "The web proxy won't let us through";;
+        *) echo "The network is down or very slow";;
+    esac
+    return 1
+}
+
 function check_home_space {
     FREESZ=$((`stat -f --format="%a*%S" $HOME`))
     # check if home partition is lower than 1Gb
@@ -236,6 +247,8 @@ detect_OS
 echo "Detected OS: $OS, version: $VER, user: $USER"
 
 [[ "$OS" == "Darwin" ]] || check_home_space
+
+check_connectivity
 
 # Check zsh and install it
 command -v zsh >/dev/null || {
