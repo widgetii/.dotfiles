@@ -57,6 +57,15 @@ function check_connectivity {
     return 1
 }
 
+function setup_temp_proxies {
+    case $OS in
+    Ubuntu* | Debian*)
+        echo "Acquire::http::Proxy \"http://127.0.0.1:8080\";" | sudo tee /etc/apt/apt.conf.d/proxy
+        trap "sudo rm /etc/apt/apt.conf.d/proxy" EXIT
+        ;;
+    esac
+}
+
 function check_home_space {
     FREESZ=$((`stat -f --format="%a*%S" $HOME`))
     # check if home partition is lower than 1Gb
@@ -276,8 +285,10 @@ check_connectivity || {
     echo "and make a connection to remote one with forwarding:"
     echo "  ssh -R 8080:localhost:33080 <host>"
     echo "  export http_proxy=127.1:8080 && export https_proxy=127.1:8080"
-    exit 2
+    exit 3
 }
+
+[ -z "$https_proxy" ] || setup_temp_proxies
 
 # Check zsh and install it
 command -v zsh >/dev/null || {
