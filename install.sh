@@ -389,4 +389,3 @@ command -v nvim -version >/dev/null || {
 }
 
 [[ "$SHELL" =~ (bash) ]] && exec zsh
-
