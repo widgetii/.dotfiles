@@ -5,6 +5,9 @@
 # OR
 #   wget -q https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh -O - | bash
 
+# TODO:
+# setup OS X using ideas from https://github.com/diimdeep/dotfiles/tree/master/osx/configure
+
 set -e
 
 ALTHOMESPACE="/opt/local"
@@ -65,12 +68,12 @@ function check_home_space {
 function install_rcup {
     echo "Installing RCM"
     case $OS in
-    Ubuntu)
+    Ubuntu*)
         sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
         sudo apt-get -y update
         sudo apt-get -y install rcm
         ;;
-    Debian)
+    Debian*)
         wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
         echo "deb https://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
         # fix for "The method driver /usr/lib/apt/methods/https could not be found."
@@ -102,7 +105,8 @@ function install_rcup {
 function install_git {
     echo "Installing Git"
     case $OS in
-    Ubuntu)
+    Ubuntu* | Debian*)
+        apt install -y git
         ;;
     Arch*)
         ;;
@@ -119,7 +123,7 @@ function install_git {
 function install_zsh {
     echo "Installing Zsh"
     case $OS in
-    Ubuntu)
+    Ubuntu* | Debian*)
         apt install -y zsh
         ;;
     Arch*)
