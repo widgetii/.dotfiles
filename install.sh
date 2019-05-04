@@ -175,6 +175,7 @@ function install_neovim_as_appimage {
     rm -rf $APPIMG
     cd $LCL/bin
     ln -sv ../usr/bin/nvim nvim
+    sudo ln -sv $LCL/usr/bin/nvim /usr/bin/nvim
 }
 
 function install_neovim {
@@ -238,6 +239,26 @@ function install_pip3 {
     esac
 }
 
+function install_zsh_autojump {
+    echo "Installing autojump"
+    case $OS in
+    Ubuntu* | Debian*)
+        sudo apt install -y autojump
+        ;;
+    Arch*)
+        # ?
+        ;;
+    Darwin*)
+        brew install autojump
+        ;;
+    CentOS*)
+        sudo yum install -y autojump-zsh
+        ;;
+    *)
+        ;;
+    esac
+}
+
 if [[ "$USER" == "root" ]]; then
     echo "Don't run the script from root!"
     exit 2
@@ -283,6 +304,7 @@ rcup
 # Install oh-my-zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
+    install_zsh_autojump
 fi
 
 # Install powerlevel9k theme
