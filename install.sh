@@ -318,16 +318,16 @@ command -v git >/dev/null || install_git
 if [[ ! -d "$HOME/.dotfiles" ]]; then
     cd $HOME
     git clone https://github.com/widgetii/.dotfiles
+    # workaround for avoid error with Code's dir
+    mkdir -p "$HOME/.config/Code - OSS/User/"
+    rcup
     fix_term_for_root
 else
     cd $HOME/.dotfiles
     echo "Updating .dotfiles"
     git pull
+    rcup
 fi
-
-# workaround for avoid error with Code's dir
-mkdir -p "$HOME/.config/Code - OSS/User/"
-rcup
 
 # Install oh-my-zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
