@@ -302,12 +302,14 @@ set imsearch=0
 " }}} LOCALIZATION
 
 " GRUVBOX {{{
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_terminal_colors = 1
-" Don't show tildes on blank lines
-highlight NonText ctermfg=bg guifg=bg
+if isdirectory(g:vim_config."plugged/gruvbox")
+    colorscheme gruvbox
+    set background=dark
+    let g:gruvbox_italic=1
+    let g:gruvbox_terminal_colors = 1
+    " Don't show tildes on blank lines
+    highlight NonText ctermfg=bg guifg=bg
+endif
 " }}}
 
 " SEOUL256 {{{
