@@ -106,7 +106,7 @@ function install_git {
     echo "Installing Git"
     case $OS in
     Ubuntu* | Debian*)
-        apt install -y git
+        sudo apt install -y git
         ;;
     Arch*)
         ;;
@@ -124,7 +124,7 @@ function install_zsh {
     echo "Installing Zsh"
     case $OS in
     Ubuntu* | Debian*)
-        apt install -y zsh
+        sudo apt install -y zsh
         ;;
     Arch*)
         sudo pacman -S zsh
@@ -143,7 +143,7 @@ function install_zsh {
 function install_neovim {
     echo "Installing Neovim"
     case $OS in
-    Ubuntu)
+    Ubuntu*)
         sudo apt-get install -y software-properties-common
         sudo add-apt-repository -y ppa:neovim-ppa/stable
         sudo apt-get -y update
@@ -163,6 +163,23 @@ function install_neovim {
         ;;
     Darwin*)
         brew install neovim
+        ;;
+    CentOS*)
+        ;;
+    *)
+        ;;
+    esac
+}
+
+function install_pip3 {
+    echo "Installing pip3"
+    case $OS in
+    Ubuntu* | Debian*)
+        sudo apt-get -y install python3-pip
+        ;;
+    Arch*)
+        ;;
+    Darwin*)
         ;;
     CentOS*)
         ;;
@@ -224,6 +241,7 @@ fi
 # Install neovim (https://github.com/neovim/neovim/wiki/Installing-Neovim)
 command -v nvim -version >/dev/null || {
     install_neovim
+    command -v pip3 >/dev/null || install_pip3
     pip3 install pynvim
 }
 
