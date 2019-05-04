@@ -154,7 +154,7 @@ function install_zsh {
     echo "Installing Zsh"
     case $OS in
     Ubuntu* | Debian*)
-        sudo apt install -y zsh
+        sudo apt install -y zsh #zsh-syntax-highlighting
         ;;
     Arch*)
         sudo pacman -S zsh
@@ -268,6 +268,24 @@ function install_zsh_autojump {
     esac
 }
 
+function install_golang {
+    echo "Installing Go"
+    case $OS in
+    Ubuntu* | Debian*)
+        sudo apt install -y golang
+        ;;
+    Arch*)
+        # ?
+        ;;
+    Darwin*)
+        ;;
+    CentOS*)
+        ;;
+    *)
+        ;;
+    esac
+}
+
 function fix_term_for_root {
     ROOTDIR="/root"
     [[ "$OS" =~ Darwin ]] && ROOTDIR="/var/root"
@@ -345,10 +363,8 @@ command -v nvim -version >/dev/null || {
     install_neovim
     command -v pip3 >/dev/null || install_pip3
     pip3 install pynvim --user
+    nvim +PlugInstall +qall
 }
 
 [[ "$SHELL" =~ (bash) ]] && exec zsh
-
-# test nvim +q
-
 
