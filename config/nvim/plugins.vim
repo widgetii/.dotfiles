@@ -196,6 +196,10 @@ if executable('go')
     " }}}
 endif
 
+" Vimscript support {{{
+Plug 'junegunn/vader.vim'
+" }}}
+
 " HTML support {{{
 Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key = '<C-y>'
