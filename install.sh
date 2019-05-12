@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Run on new machine as:
-#   curl -L https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh | bash
+#   curl -L https://git.io/fjWOf | bash
 # OR
-#   wget -q https://raw.githubusercontent.com/widgetii/.dotfiles/master/install.sh -O - | bash
+#   wget -q https://git.io/fjWOf -O - | bash
 
 # TODO:
 # setup OS X using ideas from https://github.com/diimdeep/dotfiles/tree/master/osx/configure
