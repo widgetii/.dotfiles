@@ -182,7 +182,7 @@ bar {
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
     }
-    tray_output HDMI2
+    tray_output HDMI-0
 }
 
 bar {
