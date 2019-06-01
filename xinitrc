@@ -84,5 +84,6 @@ export TERMINAL=/usr/bin/kitty
 #exec bspwm
 compton -b -i 0.8
 flameshot &
+clipit &
 exec i3
 
