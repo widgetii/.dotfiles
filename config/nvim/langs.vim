@@ -47,9 +47,12 @@ let g:LanguageClient_serverCommands.rust = ['~/.cargo/bin/rustup', 'run', 'stabl
 " npm install -g javascript-typescript-langserver
 "   Looks like javascript-typescript-langserver requires 
 "   `jsconfig.json` to work with javascript files.
-let g:LanguageClient_serverCommands.javascript = ['javascript-typescript-stdio']
-"let g:LanguageClient_serverCommands.javascript.jsx = ['javascript-typescript-stdio']
-let g:LanguageClient_serverCommands.typescript = ['javascript-typescript-stdio']
+let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript.tsx': ['javascript-typescript-stdio'],
+    \ })
 
 " Docker
 " npm install -g dockerfile-language-server-nodejs
