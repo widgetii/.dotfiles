@@ -222,6 +222,10 @@ for_window [class="skype"] floating disable
 exec "cd $HOME/git/teams-for-linux && yarn start"
 assign [title="Microsoft Teams"] $ws5
 
+# Workspace specific startups
+# https://www.reddit.com/r/i3wm/comments/8oyzmy/automatically_open_applications_on_specific/
+exec --no-startup-id i3-msg 'workspace $ws6; exec '
+
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable
 

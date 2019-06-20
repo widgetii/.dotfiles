@@ -111,7 +111,8 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ `uname` == 'Linux' ]]
 then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     [[ -d /opt/google-cloud-sdk ]] && {
         source /opt/google-cloud-sdk/path.zsh.inc
@@ -127,6 +128,8 @@ then
     fi
     if [[ ! "$SSH_AUTH_SOCK" ]]; then
         eval "$(<~/.ssh-agent-thing)"
+        ssh-add
+        ssh-add .ssh/pg-20190326
     fi
 fi
 

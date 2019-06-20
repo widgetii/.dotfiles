@@ -57,6 +57,17 @@
 #"xterm -geom 50x20+20+20"
 #   Shift+Mod2+alt + s
 #
+
+# TODO: recognize terminal and translate to another binding
+#"(no)"
+#  control + w
+
+##"~/.config/bin/paste.sh"
+##  mod4 + v + Release
+#
+#"xdotool key --clearmodifiers ctrl+c"
+#  mod4 + c + Release
+
 ## set directly keycode (here control+alt+mod2 + f with my keyboard)
 #"xterm"
 #  alt + c:0x29 + m:4 + mod2

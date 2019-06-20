@@ -3,8 +3,8 @@
 #
 
 # terminal emulator
-super + Return
-	urxvt
+alt + Return
+	kitty
 
 # program launcher
 super + @space
@@ -119,3 +119,46 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Reload this config
+alt + shift + r
+  killall -USR1 -u "$USER" sxhkd
+
+# Cut, copy and paste
+alt + x
+  xte "keyup x" "keyup Meta_L" "keydown Control_L" "key x" "keyup Control_L" "keydown Meta_L"
+alt + c
+  xte "keyup c" "keyup Meta_L" "keydown Control_L" "key c" "keyup Control_L" "keydown Meta_L"    
+alt + v
+  xte "keyup v" "keyup Meta_L" "keydown Control_L" "key v" "keyup Control_L" "keydown Meta_L"
+
+# Open tab, close tab, restore closed tab
+alt + t
+  xte "keyup t" "keyup Meta_L" "keydown Control_L" "key t" "keyup Control_L" "keydown Meta_L"
+alt + w
+  xte "keyup w" "keyup Meta_L" "keydown Control_L" "key w" "keyup Control_L" "keydown Meta_L"    
+alt + shift + t
+  xte "keyup t" "keyup Meta_L" "keydown Control_L" "key t" "keyup Control_L" "keydown Meta_L"
+
+# Move to home/end
+alt + Left
+  xte "keyup Meta_L" "keyup Left" "key Home" "keydown Meta_L"
+alt + Right
+  xte "keyup Meta_L" "keyup Right" "key End" "keydown Meta_L"
+alt + shift + Left
+  xte "keyup Meta_L" "keyup Left" "key Home" "keydown Meta_L"
+alt + shift + Right
+  xte "keyup Meta_L" "keyup Right" "key End" "keydown Meta_L"
+
+# Move one word
+super + Left
+  xte "keyup Super_L" "keyup Left" "keydown Control_L" "key Left" "keyup Control_L" "keydown Super_L"
+super + Right
+  xte "keyup Super_L" "keyup Right" "keydown Control_L" "key Right" "keyup Control_L" "keydown Super_L"
+super + shift + Left
+  xte "keyup Super_L" "keyup Left" "keydown Control_L" "key Left" "keyup Control_L" "keydown Super_L"
+super + shift + Right
+  xte "keyup Super_L" "keyup Right" "keydown Control_L" "key Right" "keyup Control_L" "keydown Super_L"
+
+# also see hacked version
+# https://github.com/joeytwiddle/rc_files/blob/master/.config/sxhkd/sxhkdrc

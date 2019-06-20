@@ -15,6 +15,7 @@
 " javascript: npm -g install javascript-typescript-langserver
 "   Looks like javascript-typescript-langserver requires `jsconfig.json` to work
 "   with javascript files.
+" json: npm install -g vscode-json-languageserver-bin
 " sh: npm -g install bash-language-server
 " python: python-language-server python-pylint
 
@@ -22,6 +23,7 @@ let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd', '-clang-tidy'],
     \ 'cpp': ['clangd', '-clang-tidy'],
     \ 'cuda': ['clangd'],
+    \ 'json': ['json-languageserver', '--stdio'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'objc': ['clangd'],
