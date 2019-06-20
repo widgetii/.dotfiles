@@ -236,6 +236,11 @@ let g:deoplete#enable_at_startup = 1
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
+" I want to close the preview window after completion is done
+autocmd InsertLeave * silent! pclose!
+
+" Less annoying completion preview window based on neovim's floating window
+Plug 'ncm2/float-preview.nvim'
 
 Plug 'Shougo/echodoc.vim'
 
