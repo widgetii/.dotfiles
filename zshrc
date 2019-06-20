@@ -111,8 +111,7 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ `uname` == 'Linux' ]]
 then
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-    #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     [[ -d /opt/google-cloud-sdk ]] && {
         source /opt/google-cloud-sdk/path.zsh.inc
