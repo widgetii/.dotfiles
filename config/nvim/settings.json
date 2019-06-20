@@ -1,6 +1,8 @@
 {
-  "initializationOptions": {
-    "cacheDirectory": "/tmp/ccls"
+  "yaml.schemas": {
+    "url": "globPattern",
+    "kubernetes": "globPattern",
+    "~/.config/nvim/yaml/schemas/": "ansible.json"
   }
 }
 

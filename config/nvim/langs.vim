@@ -1,5 +1,8 @@
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_autoStart = 1
+" Uses an absolute configuration path for system-wide settings
+let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
+
 " Uncomment to find bugs
 "let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 "let g:LanguageClient_loggingLevel = 'INFO'
@@ -22,6 +25,7 @@ autocmd FileType html nnoremap <buffer><Leader>f :call LanguageClient_textDocume
 let g:LanguageClient_serverCommands.json = ['json-languageserver', '--stdio']
 
 " Clangd language family: C, C++, ObjC, Cuda
+" https://clang.llvm.org/extra/clangd/Installation.html
 let g:LanguageClient_serverCommands.c = ['clangd', '-clang-tidy']
 let g:LanguageClient_serverCommands.cpp = ['clangd', '-clang-tidy']
 let g:LanguageClient_serverCommands.cuda = ['clangd', '-clang-tidy']
@@ -39,10 +43,27 @@ let g:LanguageClient_serverCommands.python = ['pyls']
 " Rust
 let g:LanguageClient_serverCommands.rust = ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
 
-" JavaScript:
+" JavaScript
 " npm install -g javascript-typescript-langserver
 "   Looks like javascript-typescript-langserver requires 
 "   `jsconfig.json` to work with javascript files.
 let g:LanguageClient_serverCommands.javascript = ['javascript-typescript-stdio']
 "let g:LanguageClient_serverCommands.javascript.jsx = ['javascript-typescript-stdio']
 let g:LanguageClient_serverCommands.typescript = ['javascript-typescript-stdio']
+
+" Docker
+" npm install -g dockerfile-language-server-nodejs
+let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver']
+
+" Java
+" pikaur -S jdtls
+let g:LanguageClient_serverCommands.java = ['jdtls', '-data', getcwd()]
+
+" YAML
+" npm install -g yaml-language-server
+let g:LanguageClient_serverCommands.yaml = ['yaml-language-server', '--stdio']
+
+augroup LanguageClient_config
+    autocmd!
+    autocmd User LanguageClientStarted call hurricane#yaml#SetSchema()
+augroup END
