@@ -37,7 +37,7 @@ let g:LanguageClient_serverCommands.objc = ['clangd', '-clang-tidy']
 let g:LanguageClient_serverCommands.sh = ['bash-language-server', 'start']
 
 " Python
-" install: python-language-server python-pylint
+" install: pip install python-language-server python-pylint
 let g:LanguageClient_serverCommands.python = ['pyls']
 
 " Rust
@@ -45,7 +45,7 @@ let g:LanguageClient_serverCommands.rust = ['~/.cargo/bin/rustup', 'run', 'stabl
 
 " JavaScript
 " npm install -g javascript-typescript-langserver
-"   Looks like javascript-typescript-langserver requires 
+"   Looks like javascript-typescript-langserver requires
 "   `jsconfig.json` to work with javascript files.
 let g:LanguageClient_serverCommands.javascript = ['javascript-typescript-stdio']
 "let g:LanguageClient_serverCommands.javascript.jsx = ['javascript-typescript-stdio']
@@ -57,6 +57,7 @@ let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver']
 
 " Java
 " pikaur -S jdtls
+" brew tap nossralf/homebrew-jdt-language-server && brew install jdt-language-server
 let g:LanguageClient_serverCommands.java = ['jdtls', '-data', getcwd()]
 
 " YAML
