@@ -204,6 +204,10 @@ Plug 'junegunn/vader.vim'
 Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key = '<C-y>'
 " }}}
+"
+" Ansible support {{{
+Plug 'pearofducks/ansible-vim'
+" }}}
 
 " Many langs formatter support (see plugin page) {{{
 Plug 'sbdchd/neoformat'
@@ -229,6 +233,9 @@ nnoremap <C-p> :FZF<CR>
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+" don't give |ins-completion-menu| messages.  For example,
+" '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
+set shortmess+=c
 
 Plug 'Shougo/echodoc.vim'
 
