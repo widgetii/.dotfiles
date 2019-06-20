@@ -15,3 +15,7 @@ My choice is [kitty](https://sw.kovidgoyal.net/kitty/)
 ## Editor
 
 [NeoVim](https://neovim.io/)
+
+### Test Language Servers
+
+* `JavaScript` - Completion of built-in JavaScript and TypeScript methods like `Math.sin` and custom methods from the current project.
