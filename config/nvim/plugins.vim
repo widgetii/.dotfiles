@@ -95,8 +95,28 @@ Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Neat startup screen
+" Neat startup screen (and sessions manager)
 Plug 'mhinz/vim-startify'
+let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'} ]
+let g:startify_skiplist = ['init.vim', '/usr/local/Cellar/neovim/*']
+let g:startify_custom_header = []
+" Also you'd may prefer 'vim-rooter' with g:rooter_patterns
+let g:startify_change_to_vcs_root = 1
+" Use Vim sessions for all projects, so just after project directory creation do
+" 'git init', open first file and:
+" 1. For local projects do ':SSave', give it a name
+" 2. For portable projects do ':mksession'
+" and after that you can automatically restore your work via Startify
+let g:startify_session_persistence = 1
+" open portable project sessions using 'Session.vim' files
+let g:startify_session_autoload = 1
+let g:startify_lists = [
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ ]
 
 " Intelligently reopen files at your last edit position. By default git, svn,
 " and mercurial commit messages are ignored because you probably want to type a
@@ -217,7 +237,7 @@ autocmd FileType html,css,javascript.jsx imap <leader>id id=""<esc>s
 autocmd FileType html,css,javascript.jsx imap <leader>cl class=""<esc>s
 
 " close last open tag
-autocmd FileType html,css,javascript.jsx imap <leader>/ </<C-x><C-o>
+autocmd FileType html,css,javascript.jsx imap <leader>/ </><esc>s<C-x><C-o>
 
 " easy br:
 imap <M-Return> <br />
@@ -346,3 +366,4 @@ autocmd FileType html,css,javascript.jsx EmmetInstall
 " AndrewRadev/splitjoin.vim - switching between a single-line statement and a multi-line one
 " rhysd/git-messenger.vim
 " semanticart/tag-peek.vim
+" https://github.com/hobbestigrou/vimtips-fortune , but spaced
