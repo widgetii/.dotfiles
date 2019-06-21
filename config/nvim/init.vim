@@ -147,7 +147,8 @@ function! TerminalOpen()
     if empty(bnr)
         silent! exec 'sp|terminal' 
 " uncomment if you want disposable terminal
-"       silent! exec 'set bufhidden=delete'
+"       silent! exec 'setlocal bufhidden=delete'
+        silent! exec 'setlocal bufhidden=hide'
     else
         " Check if terminal already on the screen
         silent! exec 'sp|b '.bnr
@@ -159,6 +160,9 @@ function! TerminalOpen()
     silent! exec 'resize '.height
 endfunc
 nnoremap <silent> <leader>t :call TerminalOpen()<CR>
+
+autocmd TermOpen * set bufhidden=hide
+autocmd TermOpen * set nobuflisted
 
 " Ctrl-V in terminal mode
 tmap <C-V>    <C-\><C-n>"+gPi

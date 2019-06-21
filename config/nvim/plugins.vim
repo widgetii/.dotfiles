@@ -367,3 +367,4 @@ autocmd FileType html,css,javascript.jsx EmmetInstall
 " rhysd/git-messenger.vim
 " semanticart/tag-peek.vim
 " https://github.com/hobbestigrou/vimtips-fortune , but spaced
+" https://github.com/MaryHal/nvim_config/blob/master/init.vim
