@@ -225,8 +225,32 @@ Plug 'embear/vim-localvimrc'
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 
-" (Optional) Multi-entry selection UI.
+" Multi-entry selection UI.
 Plug 'junegunn/fzf'
+
+" Code was borrowed from https://github.com/junegunn/fzf.vim/issues/664
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+function! FloatingFZF()
+    let buf = nvim_create_buf(v:false, v:true)
+    call setbufvar(buf, '&signcolumn', 'no')
+
+    let height = &lines / 2
+    let width = float2nr(&columns - (&columns * 2 / 4))
+    let col = float2nr((&columns - width) / 2)
+
+    let opts = {
+                \ 'relative': 'editor',
+                \ 'row': &lines / 5,
+                \ 'col': col,
+                \ 'width': width,
+                \ 'height': height
+                \ }
+
+    call nvim_open_win(buf, v:true, opts)
+endfunction
+
 " Fuzzy finder shortcut
 nnoremap <C-p> :FZF<CR>
 
@@ -281,10 +305,9 @@ endif
 "https://github.com/wellle/targets.vim
 "https://github.com/ggreer/the_silver_searcher
 "+https://github.com/mileszs/ack.vim
-"Exuberant Ctags - Faster than Ag, but it builds an index beforehand. Good for really big codebases.
-"Test on Linux kernel
 "In one of its cleverest innovations, Vim doesn't model undo as a simple stack. In Vim it's a tree. This makes sure you never lose an action in Vim, but also makes it much more difficult to traverse around that tree. gundo.vim fixes this by displaying that undo tree in graphical form
 "https://github.com/sjl/gundo.vim
+"mbbill/undotree
 " others - https://dougblack.io/words/a-good-vimrc.html
 
 " Try tmux+vimux
@@ -294,4 +317,9 @@ endif
 
 " https://github.com/tpope/vim-eunuch
 " /tpope/vim-commentary - make comments
-
+" airblade/vim-rooter - Changes Vim working directory to project root (identified by presence of known directory or file).
+" MattesGroeger/vim-bookmarks - Vim bookmark plugin
+" https://github.com/junegunn/vim-peekaboo - learning, Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode so you can see the contents of the registers.
+" andymass/vim-matchup - Extends vim's % motion to language-specific words
+" AndrewRadev/splitjoin.vim - switching between a single-line statement and a multi-line one
+" rhysd/git-messenger.vim
