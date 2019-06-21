@@ -208,10 +208,22 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-autocmd FileType html,css,javascript.jsx EmmetInstall
 autocmd FileType html,css,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" autocmd for manual loading moved below 'call plug#end()' line to avoid E492
+" error
+
+" quick attributes, eg:
+autocmd FileType html,css,javascript.jsx imap <leader>id id=""<esc>s
+autocmd FileType html,css,javascript.jsx imap <leader>cl class=""<esc>s
+
+" close last open tag
+autocmd FileType html,css,javascript.jsx imap <leader>/ </<C-x><C-o>
+
+" easy br:
+imap <M-Return> <br />
+nmap <M-Return> o<br /><esc>
 " }}}
-"
+
 " Ansible support {{{
 Plug 'pearofducks/ansible-vim'
 " }}}
@@ -306,6 +318,9 @@ call plug#end() " to update &runtimepath and initialize plugin system
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
+" Post vim-emmet plugin load command
+autocmd FileType html,css,javascript.jsx EmmetInstall
 
 " FOR FUTURE LEARNING
 " Targets.vim is a Vim plugin that adds various text objects to give you more targets to operate on

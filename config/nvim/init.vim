@@ -234,10 +234,11 @@ inoremap hh <BS>
 inoremap рр <BS>
 imap цц <C-w>
 imap ww <C-w>
-"
-"
-"
-"
+
+augroup textfiles
+  autocmd!
+  autocmd filetype markdown :setlocal spell spelllang=en
+augroup end
 " }}} TEXT EDITING
 
 " PROGRAMMING {{{
