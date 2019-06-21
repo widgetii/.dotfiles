@@ -201,8 +201,15 @@ Plug 'junegunn/vader.vim'
 " }}}
 
 " HTML support {{{
-Plug 'mattn/emmet-vim'
-let g:user_emmet_leader_key = '<C-y>'
+Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
+let g:user_emmet_install_global = 0
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
+autocmd FileType html,css,javascript.jsx EmmetInstall
+autocmd FileType html,css,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " }}}
 "
 " Ansible support {{{
@@ -323,3 +330,4 @@ endif
 " andymass/vim-matchup - Extends vim's % motion to language-specific words
 " AndrewRadev/splitjoin.vim - switching between a single-line statement and a multi-line one
 " rhysd/git-messenger.vim
+" semanticart/tag-peek.vim

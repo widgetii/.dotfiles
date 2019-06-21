@@ -254,7 +254,7 @@ set clipboard+=unnamedplus
 
 " SEARCHING {{{
 " turn off search highlight
-nnoremap <silent> <leader><space> :nohlsearch<CR>
+nnoremap <silent> <leader><space> :nohlsearch<Bar>:echo<CR>
 
 " }}} SEARCHING
 
