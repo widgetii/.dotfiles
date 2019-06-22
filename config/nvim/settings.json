@@ -1,8 +1,17 @@
 {
-  "yaml.schemas": {
-    "url": "globPattern",
-    "kubernetes": "globPattern",
-    "~/.config/nvim/yaml/schemas/": "ansible.json"
-  }
+    "pyls": {
+        "plugins": {
+            "pyflakes": {
+                "enabled": true
+            },
+            "pydocstyle": {
+                "enabled": true
+            }
+        }
+    },
+    "yaml.schemas": {
+        "url": "globPattern",
+        "kubernetes": "globPattern",
+        "~/.config/nvim/yaml/schemas/": "ansible.json"
+    }
 }
-
