@@ -203,8 +203,6 @@ if executable('go')
         nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
         nmap <leader>r <Plug>(go-run)
         nmap <leader>n <Plug>(go-test)
-        nmap <C-n> :cnext<CR>
-        nmap <C-e> :cprevious<CR>
         nnoremap <leader>a :cclose<CR>
     endf
     autocmd FileType go call Go_init()
@@ -218,6 +216,9 @@ endif
 
 " Vimscript support {{{
 Plug 'junegunn/vader.vim'
+
+" TODO: test
+"Plug 'fcpg/vim-complimentary'
 " }}}
 
 " HTML support {{{
@@ -265,7 +266,8 @@ let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 
 " Multi-entry selection UI.
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Code was borrowed from https://github.com/junegunn/fzf.vim/issues/664
 let $FZF_DEFAULT_OPTS='--layout=reverse'
@@ -304,13 +306,23 @@ autocmd InsertLeave * silent! pclose!
 
 " Less annoying completion preview window based on neovim's floating window
 Plug 'ncm2/float-preview.nvim'
+let g:float_preview#docked = 0
+set completeopt-=preview
+
+function! DisableExtras()
+  call nvim_win_set_option(g:float_preview#win, 'number', v:false)
+  call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
+  call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
+endfunction
+
+autocmd User FloatPreviewWinOpen call DisableExtras()
 
 Plug 'Shougo/echodoc.vim'
-
 set cmdheight=2
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'signature'
 
+" Great learning block
 " Master t/f movements
 Plug 'deris/vim-shot-f'
 " Master j/k movements
@@ -325,6 +337,8 @@ nmap gn <Plug>(gothrough-jk-gj)
 nmap ge <Plug>(gothrough-jk-gk)
 vmap gn <Plug>(gothrough-jk-gj)
 vmap ge <Plug>(gothrough-jk-gk)
+" Master your memory for multi-char mappings
+"Plug 'fcpg/vim-showmap'
 
 Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
