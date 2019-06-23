@@ -114,13 +114,13 @@ endfunction
 " Automatic Hover
 " slightly adapted from https://github.com/autozimu/LanguageClient-neovim/issues/618
 function! LspMaybeHover(is_running) abort
-  if a:is_running.result && b:LanguageClient_autoHover
+  if a:is_running.result && exists("b:LanguageClient_autoHover")
     call LanguageClient_textDocument_hover()
   endif
 endfunction
 
 function! LspMaybeHighlight(is_running) abort
-  if a:is_running.result && b:LanguageClient_autoHightlight
+  if a:is_running.result && exists("b:LanguageClient_autoHightlight")
     call LanguageClient#textDocument_documentHighlight()
   endif
 endfunction
@@ -129,7 +129,7 @@ endfunction
 function SetLSPShortcuts()
   if has_key(g:LanguageClient_serverCommands, &ft)
     nnoremap <buffer> <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
-    inoremap <buffer> <silent> <c-i> <c-o>:call LanguageClient#textDocument_hover()<cr>
+    inoremap <buffer> <silent> <c-k> <c-o>:call LanguageClient#textDocument_hover()<cr>
 
     nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <buffer> <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
@@ -139,11 +139,9 @@ function SetLSPShortcuts()
         vnoremap <buffer> = :call LanguageClient_textDocument_rangeFormatting()<CR>
     endif
 
-    let b:LanguageClient_autoHover = 0
     if IsMappingEnabled('Hover')
         let b:LanguageClient_autoHover = 1
     endif
-    let b:LanguageClient_autoHightlight = 0
     if IsMappingEnabled('Highlight')
         let b:LanguageClient_autoHightlight = 1
     endif
