@@ -56,7 +56,7 @@ let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
 
 " Docker
 " npm install -g dockerfile-language-server-nodejs
-let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver', '--stdio']
+let g:LanguageClient_serverCommands.Dockerfile = ['docker-langserver', '--stdio']
 
 " ERuby/Vim/Markdown
 " go get github.com/mattn/efm-langserver/cmd/efm-langserver
