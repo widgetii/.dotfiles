@@ -99,9 +99,9 @@ let g:LanguageClient_serverCommands.java = [s:jdtls_name, '-data', getcwd()]
 " npm install -g yaml-language-server
 let g:LanguageClient_serverCommands.yaml = ['yaml-language-server', '--stdio']
 
-augroup LanguageClient_config
+augroup LanguageClient_config_YAML
     autocmd!
-    autocmd User LanguageClientStarted call hurricane#yaml#SetSchema()
+    autocmd User LanguageClientStarted call hurricane#yamlLS#SetSchema(&ft)
 augroup END
 
 function IsMappingEnabled(param_name)
