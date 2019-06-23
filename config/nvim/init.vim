@@ -255,8 +255,9 @@ imap ww <C-w>
 
 augroup textfiles
   autocmd!
-  autocmd filetype markdown :setlocal spell spelllang=en
+  autocmd filetype markdown :setlocal spell spelllang=en,ru
 augroup end
+set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
 " }}} TEXT EDITING
 
 " PROGRAMMING {{{
@@ -416,6 +417,10 @@ augroup easy_close
     autocmd FileType help,qf nnoremap <buffer> q :q<cr>
     autocmd FileType help,qf nnoremap <buffer> <Esc> :q<cr>
     autocmd FileType help,qf nnoremap <buffer> <C-c> :q<cr>
+    autocmd BufEnter __LanguageClient__ nnoremap <buffer> q :q<cr>
+    autocmd BufEnter __LanguageClient__ nnoremap <buffer> <Esc> :q<cr>
+    autocmd BufEnter __LanguageClient__ nnoremap <buffer> <C-c> :q<cr>
+    autocmd BufEnter __LanguageClient__ setlocal nospell
 augroup END
 " }}}
 

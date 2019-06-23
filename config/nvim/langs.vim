@@ -98,6 +98,15 @@ if os == "Darwin"
 endif
 let g:LanguageClient_serverCommands.java = [s:jdtls_name, '-data', getcwd()]
 
+" Groovy
+" clone sources from https://github.com/prominic/groovy-language-server
+" build jar and place it to ~/.local/bin
+let g:LanguageClient_serverCommands.groovy = ['java', '-jar', 
+    \ '~/.local/bin/groovy-language-server-all.jar']
+let g:LanguageClient_mappings.groovy = {
+    \ 'disableHighlight':  v:true,
+    \ }
+
 " YAML
 " npm install -g yaml-language-server
 let g:LanguageClient_serverCommands.yaml = ['yaml-language-server', '--stdio']
@@ -204,7 +213,6 @@ function RunCode()
 endfunction
 
 " TODO:
-" close floating window by Esc or q
 " rangeFormat on clangd
 " show colors for HTML in floating window
 " https://github.com/prominic/groovy-language-server
