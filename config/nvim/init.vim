@@ -269,6 +269,23 @@ nnoremap ci) %ci)
 ":h clipboard
 set clipboard+=unnamedplus
 
+":h provider-clipboard
+if s:is_ssh 
+    let cprov = expand('~/.config/nvim/bin/clipboard-provider')
+    let g:clipboard = {
+      \   'name': 'ocs52',
+      \   'copy': {
+      \      '+': cprov . " copy",
+      \      '*': cprov . " copy",
+      \    },
+      \   'paste': {
+      \      '+': '+',
+      \      '*': '*',
+      \   },
+      \   'cache_enabled': 1,
+      \ }
+endif
+
 " }}} CLIPBOARD
 
 " SEARCHING {{{
