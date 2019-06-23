@@ -5,9 +5,9 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
 
 " Uncomment to find bugs
-"let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-"let g:LanguageClient_loggingLevel = 'INFO'
-"let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 
 " Extracted langservers from VS Code:
 "  https://github.com/vscode-langservers
@@ -101,7 +101,7 @@ let g:LanguageClient_serverCommands.yaml = ['yaml-language-server', '--stdio']
 
 augroup LanguageClient_config_YAML
     autocmd!
-    autocmd User LanguageClientStarted call hurricane#yamlLS#SetSchema(&ft)
+    autocmd User LanguageClientStarted call hurricane#yamlLS#SetSchema("ansible")
 augroup END
 
 function IsMappingEnabled(param_name)
