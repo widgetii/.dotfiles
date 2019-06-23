@@ -204,7 +204,6 @@ function RunCode()
 endfunction
 
 " TODO:
-" close floating window by Esc or q
 " rangeFormat on clangd
 " show colors for HTML in floating window
 " https://github.com/prominic/groovy-language-server
