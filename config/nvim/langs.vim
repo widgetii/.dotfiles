@@ -17,8 +17,6 @@ let g:LanguageClient_serverCommands.css = ['css-languageserver', '--stdio']
 " HTML
 " npm install -g vscode-html-languageserver-bin
 let g:LanguageClient_serverCommands.html = ['html-languageserver', '--stdio']
-" TODO: TEST
-autocmd FileType html nnoremap <buffer><Leader>f :call LanguageClient_textDocument_formatting()<CR>
 
 " JSON
 " npm install -g vscode-json-languageserver-bin
@@ -34,10 +32,12 @@ let g:LanguageClient_serverCommands.objc = ['clangd', '-clang-tidy']
 " Bash language server
 "  https://github.com/mads-hartmann/bash-language-server
 " npm install -g bash-language-server
+" due to issue https://github.com/tree-sitter/node-tree-sitter/issues/46
+" you may need to tie bash with node@10
 let g:LanguageClient_serverCommands.sh = ['bash-language-server', 'start']
 
 " Python
-" install: pip install python-language-server python-pylint
+" install: pip install 'python-language-server[all]' python-pylint
 let g:LanguageClient_serverCommands.python = ['pyls']
 
 " Rust
@@ -56,7 +56,7 @@ let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
 
 " Docker
 " npm install -g dockerfile-language-server-nodejs
-let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver']
+let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver', '--stdio']
 
 " Java
 " pikaur -S jdtls
