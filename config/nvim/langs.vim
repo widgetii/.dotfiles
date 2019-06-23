@@ -70,7 +70,11 @@ let g:LanguageClient_serverCommands.markdown = ['efm-langserver']
 " Java
 " pikaur -S jdtls
 " brew tap nossralf/homebrew-jdt-language-server && brew install jdt-language-server
-let g:LanguageClient_serverCommands.java = ['jdtls', '-data', getcwd()]
+let s:jdtls_name = 'jdtls'
+if os == "Darwin"
+    let s:jdtls_name = 'jdt-ls'
+endif
+let g:LanguageClient_serverCommands.java = [s:jdtls_name, '-data', getcwd()]
 
 " YAML
 " npm install -g yaml-language-server
