@@ -1,4 +1,5 @@
 let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_mappings = {}
 let g:LanguageClient_autoStart = 1
 " Uses an absolute configuration path for system-wide settings
 let g:LanguageClient_settingsPath = '~/.config/nvim/settings.json'
@@ -53,6 +54,9 @@ let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'typescript.tsx': ['javascript-typescript-stdio'],
     \ })
+let g:LanguageClient_mappings = extend(g:LanguageClient_mappings, {
+    \ 'javascript': { 'disableHover': 1, 'disableHighlight': 1 },
+    \ })
 
 " Docker
 " npm install -g dockerfile-language-server-nodejs
@@ -64,8 +68,23 @@ let g:LanguageClient_serverCommands.Dockerfile = ['docker-langserver', '--stdio'
 " markdownlint
 " npm install -g markdownlint-cli
 let g:LanguageClient_serverCommands.eruby = ['efm-langserver']
+let g:LanguageClient_mappings.eruby = { 
+    \ 'disableFormat': v:true,
+    \ 'disableHover':  v:true,
+    \ 'disableHighlight':  v:true,
+    \ }
 let g:LanguageClient_serverCommands.vim = ['efm-langserver']
+let g:LanguageClient_mappings.vim = {
+    \ 'disableFormat': v:true,
+    \ 'disableHover':  v:true,
+    \ 'disableHighlight':  v:true,
+    \ }
 let g:LanguageClient_serverCommands.markdown = ['efm-langserver']
+let g:LanguageClient_mappings.markdown = {
+    \ 'disableFormat': v:true,
+    \ 'disableHover':  v:true,
+    \ 'disableHighlight':  v:true,
+    \ }
 
 " Java
 " pikaur -S jdtls
@@ -84,3 +103,88 @@ augroup LanguageClient_config
     autocmd!
     autocmd User LanguageClientStarted call hurricane#yaml#SetSchema()
 augroup END
+
+function IsMappingEnabled(param_name)
+    let l:mappings = get(g:LanguageClient_mappings, &ft, {})
+    let l:enabled = !get(l:mappings, 'disable' . a:param_name, v:false)
+    "echom &ft . ": Mapping ". a:param_name . " is ". l:enabled
+    return l:enabled
+endfunction
+
+" Automatic Hover
+" slightly adapted from https://github.com/autozimu/LanguageClient-neovim/issues/618
+function! LspMaybeHover(is_running) abort
+  if a:is_running.result && b:LanguageClient_autoHover
+    call LanguageClient_textDocument_hover()
+  endif
+endfunction
+
+function! LspMaybeHighlight(is_running) abort
+  if a:is_running.result && b:LanguageClient_autoHightlight
+    call LanguageClient#textDocument_documentHighlight()
+  endif
+endfunction
+
+" Language Client keymaps
+function SetLSPShortcuts()
+  if has_key(g:LanguageClient_serverCommands, &ft)
+    nnoremap <buffer> <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
+    inoremap <buffer> <silent> <c-i> <c-o>:call LanguageClient#textDocument_hover()<cr>
+
+    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
+
+    if IsMappingEnabled('Format')
+        setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+        vnoremap <buffer> = :call LanguageClient_textDocument_rangeFormatting()<CR>
+    endif
+
+    let b:LanguageClient_autoHover = 0
+    if IsMappingEnabled('Hover')
+        let b:LanguageClient_autoHover = 1
+    endif
+    let b:LanguageClient_autoHightlight = 0
+    if IsMappingEnabled('Highlight')
+        let b:LanguageClient_autoHightlight = 1
+    endif
+  endif
+endfunction
+
+augroup LanguageClient_config
+    au!
+    "autocmd BufNewFile,BufRead * call SetLSPShortcuts()
+    autocmd BufEnter * call SetLSPShortcuts()
+    autocmd CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
+    autocmd CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+augroup end
+
+function! s:get_visual_selection()
+    " Why is this not a built-in Vim script function?!
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+" used to handle the response of #Call
+function Log(result, error)
+	echo a:result
+endfunction
+
+function RunCode()
+    let codeString = s:get_visual_selection()
+
+    " And the #Call here that does get properly sent to the language server
+    call LanguageClient#Call("evaluate", { 'expression': s:get_visual_selection() }, function("Log"))
+endfunction
+
+" TODO:
+" close floating window by Esc or q
+" rangeFormat on clangd
+" show colors for HTML in floating window
+" https://github.com/prominic/groovy-language-server
