@@ -63,9 +63,9 @@ let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver', '--stdio'
 " pip install vim-vint
 " markdownlint
 " npm install -g markdownlint-cli
-let g:LanguageClient_serverCommands.eruby = ['efm-langserver-erb', '--stdio']
-let g:LanguageClient_serverCommands.vim = ['efm-langserver-erb', '--stdio']
-let g:LanguageClient_serverCommands.markdown = ['efm-langserver-erb', '--stdio']
+let g:LanguageClient_serverCommands.eruby = ['efm-langserver']
+let g:LanguageClient_serverCommands.vim = ['efm-langserver']
+let g:LanguageClient_serverCommands.markdown = ['efm-langserver']
 
 " Java
 " pikaur -S jdtls
