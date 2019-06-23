@@ -26,7 +26,7 @@ let g:LanguageClient_serverCommands.json = ['json-languageserver', '--stdio']
 " Clangd language family: C, C++, ObjC, Cuda
 " https://clang.llvm.org/extra/clangd/Installation.html
 let g:LanguageClient_serverCommands.c = ['clangd', '-clang-tidy']
-let g:LanguageClient_serverCommands.cpp = ['clangd', '-clang-tidy']
+let g:LanguageClient_serverCommands.cpp = ['clangd']
 let g:LanguageClient_serverCommands.cuda = ['clangd', '-clang-tidy']
 let g:LanguageClient_serverCommands.objc = ['clangd', '-clang-tidy']
 

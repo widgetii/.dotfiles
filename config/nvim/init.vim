@@ -225,6 +225,20 @@ set expandtab
 "
 " :%retab
 "
+" Common file style conventions
+au FileType dockerfile     setlocal noexpandtab list
+au FileType fstab,systemd  setlocal noexpandtab list
+au FileType gitconfig,toml setlocal noexpandtab list
+au FileType html setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au FileType ruby setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au FileType sh   setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au FileType vim  setlocal ts=4 sts=4 sw=4 tw=79 et ai fileformat=unix list
+au FileType javascript  setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au FileType python      setlocal ts=4 sts=4 sw=4 tw=79 et ai fileformat=unix list
+au FileType yaml        setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au BufRead,BufNewFile MAINTAINERS setlocal ft=toml
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+
 " }}} TABS&SPACES
 
 " TEXT EDITING {{{
