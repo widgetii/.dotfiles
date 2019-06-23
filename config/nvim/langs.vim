@@ -58,6 +58,15 @@ let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
 " npm install -g dockerfile-language-server-nodejs
 let g:LanguageClient_serverCommands.dockerfile = ['docker-langserver', '--stdio']
 
+" ERuby/Vim/Markdown
+" go get github.com/mattn/efm-langserver/cmd/efm-langserver
+" pip install vim-vint
+" markdownlint
+" npm install -g markdownlint-cli
+let g:LanguageClient_serverCommands.eruby = ['efm-langserver-erb', '--stdio']
+let g:LanguageClient_serverCommands.vim = ['efm-langserver-erb', '--stdio']
+let g:LanguageClient_serverCommands.markdown = ['efm-langserver-erb', '--stdio']
+
 " Java
 " pikaur -S jdtls
 " brew tap nossralf/homebrew-jdt-language-server && brew install jdt-language-server
