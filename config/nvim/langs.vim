@@ -1,3 +1,6 @@
+" Always draw the signcolumn.
+set signcolumn=yes
+
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_mappings = {}
 let g:LanguageClient_autoStart = 1
@@ -98,10 +101,29 @@ let g:LanguageClient_serverCommands.java = [s:jdtls_name, '-data', getcwd()]
 " YAML
 " npm install -g yaml-language-server
 let g:LanguageClient_serverCommands.yaml = ['yaml-language-server', '--stdio']
+let g:LanguageClient_mappings.yaml = {
+    \ 'disableHighlight':  v:true,
+    \ }
+
+function! s:isAnsible()
+    return 1
+endfunction
+
+function! s:setupYamlLS()
+    echom &ft
+    if &ft == "yaml.ansible"
+        call hurricane#yamlLS#SetSchema("ansible")
+    elseif &ft == "yaml"
+        if !s:isAnsible() | call hurricane#yamlLS#SetSchema("default") | en
+    endif
+endfunction
 
 augroup LanguageClient_config_YAML
     autocmd!
-    autocmd User LanguageClientStarted call hurricane#yamlLS#SetSchema("ansible")
+    " TODO: add ansible detection from 
+    " https://github.com/hurricanehrndz/nvim/blob/f83a8e6939e3ae9fdcf50aad3bf46293c7221a5f/plugin/languageclient.vim
+   "autocmd User LanguageClientStarted call s:setupYamlLS()
+    autocmd FileType yaml call s:setupYamlLS()
 augroup END
 
 function IsMappingEnabled(param_name)
