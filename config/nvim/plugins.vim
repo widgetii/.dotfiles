@@ -151,8 +151,18 @@ Plug 'farmergreg/vim-lastplace'
 set termguicolors
 
 " Colorschemes, pick one, but others stay disabled
-Plug 'junegunn/seoul256.vim'
+"Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
+" Without backgroung lines italic font won't work
+let g:gruvbox_italic=1
+let g:gruvbox_improved_strings=1
+set background=dark
+
+" Indent Lines
+Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -363,6 +373,8 @@ vmap gn <Plug>(gothrough-jk-gj)
 vmap ge <Plug>(gothrough-jk-gk)
 " Master your memory for multi-char mappings
 "Plug 'fcpg/vim-showmap'
+" Easy to work with marks
+Plug 'kshenoy/vim-signature'
 
 Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
