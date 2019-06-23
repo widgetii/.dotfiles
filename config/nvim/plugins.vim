@@ -377,6 +377,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
 
+Plug 'ntpeters/vim-better-whitespace'
+
 call plug#end() " to update &runtimepath and initialize plugin system 
 " Automatically executes filetype plugin indent on and syntax enable. You can
 " revert the settings after the call. e.g. filetype indent off, syntax off, etc.
