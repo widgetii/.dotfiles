@@ -71,6 +71,7 @@ plugins=(
   kubectl
   npm
   python
+  safe-paste
   sudo
   systemd
   vagrant
