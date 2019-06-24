@@ -279,6 +279,10 @@ imap <M-Return> <br />
 nmap <M-Return> o<br /><esc>
 " }}}
 
+" CSS support {{{
+Plug 'ap/vim-css-color'
+" }}}
+
 " Ansible support {{{
 Plug 'pearofducks/ansible-vim'
 " }}}

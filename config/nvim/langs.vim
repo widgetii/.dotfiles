@@ -214,5 +214,3 @@ endfunction
 
 " TODO:
 " rangeFormat on clangd
-" show colors for HTML in floating window
-" https://github.com/prominic/groovy-language-server
