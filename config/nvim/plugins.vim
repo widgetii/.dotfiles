@@ -33,7 +33,7 @@ Plug 'scrooloose/nerdtree'
 " NERDTree settings {{{
 let g:NERDTreeMinimalUI = 1
 
-" use Ctrl-n for invoke NERDTree
+" use Ctrl-q for invoke NERDTree
 map <silent> <C-q> :NERDTreeToggle<CR>
 
 " How can I open a NERDTree automatically when vim starts up?
@@ -100,11 +100,14 @@ Plug 'sheerun/vim-polyglot'
 
 " Git support
 Plug 'tpope/vim-fugitive'
+" Try also https://github.com/jreybert/vimagit
 Plug 'airblade/vim-gitgutter'
 " * stage the hunk with (hunk add)
 nmap <Leader>ha <Plug>GitGutterStageHunk
 " * revert it with (hunk revert)
 nmap <Leader>hr <Plug>GitGutterRevertHunk
+" Git + Floating Preview Window
+Plug 'rhysd/git-messenger.vim'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
