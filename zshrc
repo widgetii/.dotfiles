@@ -180,6 +180,10 @@ alias icat="kitty +kitten icat"
 # open file(s) with fzf+vim
 alias vf='vim $(fzf)'
 
+# TODO
+# good source to work out for git, tmux, docker commands
+# https://github.com/liuchengxu/dotfiles/blob/master/bashrc
+
 # some localizations
 # Russian linux man pages
 alias rman="LANG=ru_RU.UTF-8 man"
