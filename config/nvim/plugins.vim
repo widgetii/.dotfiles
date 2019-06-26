@@ -204,6 +204,17 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 " See other options in langs.vim
 
+" Outline support for LS
+Plug 'liuchengxu/vista.vim'
+let g:vista_default_executive = 'lcn'
+nmap <F9> :Vista!!<CR>
+"
+" close vim if the only window left open is a Vista
+autocmd bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#sidebar#IsVisible()) | q | endif
+
+" TODO:
+" NearestMethodOrFunction from readme
+
 " Cpp support {{{
 Plug 'https://github.com/Kris2k/A.vim.git'
   let g:alternateExtensions_cc = "hh,h,hpp"
@@ -375,6 +386,7 @@ vmap gn <Plug>(gothrough-jk-gj)
 vmap ge <Plug>(gothrough-jk-gk)
 " Master your memory for multi-char mappings
 "Plug 'fcpg/vim-showmap'
+"https://github.com/liuchengxu/vim-which-key
 " Easy to work with marks
 Plug 'kshenoy/vim-signature'
 
