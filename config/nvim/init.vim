@@ -439,3 +439,6 @@ vnoremap <LeftRelease> "*ygv
 nnoremap g. @:
 set autowriteall
 
+" From nvim 0.4
+" Enables pseudo-transparency for a floating window
+set winblend=10
