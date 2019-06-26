@@ -12,7 +12,9 @@
 
 ### Others
 
-* Borrow suggestions from [Oni](https://github.com/onivim/oni/wiki/Language-Support#java): ocaml-language-server, vue-language-server
+* Borrow suggestions from
+  [Oni](https://github.com/onivim/oni/wiki/Language-Support#java):
+  ocaml-language-server, vue-language-server
 
 * [Clojure](https://github.com/snoe/clojure-lsp)
 
@@ -21,3 +23,5 @@
 * [Lua](https://github.com/sumneko/lua-language-server)
 
 * [Tex](https://github.com/astoff/digestif)
+
+* [Swift](https://github.com/apple/sourcekit-lsp)
