@@ -178,7 +178,7 @@ function! BuildComposer(info)
 endfunction
 
 " You should run cargo build --release in the plugin directory after installation on new machine
-"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for': 'markdown' }
 " don't open browser each time on md files
 let g:markdown_composer_open_browser = 0
 
@@ -263,7 +263,7 @@ if executable('go')
 endif
 
 " Vimscript support {{{
-Plug 'junegunn/vader.vim', { 'for': 'vim' }
+Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 
 " TODO: test
 "Plug 'fcpg/vim-complimentary'
