@@ -17,7 +17,9 @@ gf
 
 ### Others
 
-* Borrow suggestions from [Oni](https://github.com/onivim/oni/wiki/Language-Support#java): ocaml-language-server, vue-language-server
+* Borrow suggestions from
+  [Oni](https://github.com/onivim/oni/wiki/Language-Support#java):
+  ocaml-language-server, vue-language-server
 
 * [Clojure](https://github.com/snoe/clojure-lsp)
 
@@ -31,6 +33,8 @@ gf
 
 * [Pascal](https://www.omnipascal.com/). Check its screenshots  in code
     completion and learn about modern CC
+
+* [Swift](https://github.com/apple/sourcekit-lsp)
 
 ## Zsh
 
