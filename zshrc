@@ -121,7 +121,7 @@ then
 
     export LIBVIRT_DEFAULT_URI=qemu:///system
     export VAGRANT_DEFAULT_PROVIDER=libvirt
-     
+
     # one ssh-agent at a time
     if ! pgrep -u "$USER" ssh-agent > /dev/null; then
         ssh-agent > ~/.ssh-agent-thing
@@ -129,7 +129,7 @@ then
     if [[ ! "$SSH_AUTH_SOCK" ]]; then
         eval "$(<~/.ssh-agent-thing)"
         ssh-add
-        ssh-add .ssh/pg-20190326
+        ssh-add .ssh/pg-20190624
     fi
 fi
 
@@ -256,5 +256,10 @@ bindkey '^y' autosuggest-execute
 bindkey '^q' autosuggest-clear
 # fill the line (make autocompletion but don't execute it)
 bindkey '^f' autosuggest-accept
+
+# Stash for Zsh
+# you can cancel any ongoing command that you might be typing by hitting <CTRL>q
+# perform another command and then come back just to where you left off
+bindkey '^`' push-line-or-edit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
