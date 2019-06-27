@@ -22,14 +22,14 @@ elseif os == "Linux"
 endif
 
 if os == "Darwin"
-    Plug 'rizzatti/dash.vim'
+    Plug 'rizzatti/dash.vim', { 'on':  'DashSearch' }
     " Same mapping as in Zeal
     nmap <silent> <leader>z <Plug>DashSearch
 elseif os == "Linux"
-    Plug 'KabbAmine/zeavim.vim'
+    Plug 'KabbAmine/zeavim.vim', { 'on': 'Zeavim' }
 endif
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " NERDTree settings {{{
 let g:NERDTreeMinimalUI = 1
 
@@ -47,7 +47,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "
 " NERDTree settings }}}
 
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 " Nerdtree git plugin symbols
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "ᵐ",
@@ -107,7 +107,7 @@ nmap <Leader>ha <Plug>GitGutterStageHunk
 " * revert it with (hunk revert)
 nmap <Leader>hr <Plug>GitGutterRevertHunk
 " Git + Floating Preview Window
-Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/git-messenger.vim', { 'on':  'GitMessenger' }
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -118,7 +118,7 @@ let g:AutoPairsShortcutJump = '<M-k>'
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align', { 'on':  'EasyAlign' }
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
@@ -185,7 +185,7 @@ let g:markdown_composer_open_browser = 0
 " If you use vim-airline you need this
 let g:airline_powerline_fonts = 1
 " Always load the vim-devicons as the very last one.
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons', { 'on':  'NERDTreeToggle' }
 
 " Good thing for code refactoring, conversions to camelCase, snake_case,
 " UPPER_CASE and so on
@@ -208,7 +208,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 " See other options in langs.vim
 
 " Outline support for LS
-Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim', { 'on':  'Vista' }
 let g:vista_default_executive = 'lcn'
 nmap <F9> :Vista!!<CR>
 "
@@ -219,20 +219,20 @@ autocmd bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#si
 " NearestMethodOrFunction from readme
 
 " Cpp support {{{
-Plug 'https://github.com/Kris2k/A.vim.git'
+Plug 'Kris2k/A.vim.git', { 'for': 'cpp' }
   let g:alternateExtensions_cc = "hh,h,hpp"
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
-Plug 'drmikehenry/vim-headerguard'
+Plug 'drmikehenry/vim-headerguard', { 'for': 'cpp' }
 
 " Use gf for jump to #include files based on compiledb info
-Plug 'martong/vim-compiledb-path'
+Plug 'martong/vim-compiledb-path', { 'for': 'cpp' }
 " Cpp support}}}
 
 if executable('go')
     " Go support {{{
-    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for': 'go'}
     let g:go_term_mode = "split"
     let g:go_term_height = 10
     let g:go_list_type = "quickfix"
@@ -263,7 +263,7 @@ if executable('go')
 endif
 
 " Vimscript support {{{
-Plug 'junegunn/vader.vim'
+Plug 'junegunn/vader.vim', { 'for': 'vim' }
 
 " TODO: test
 "Plug 'fcpg/vim-complimentary'
@@ -294,11 +294,11 @@ nmap <M-Return> o<br /><esc>
 " }}}
 
 " CSS support {{{
-Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color', { 'for': 'css' }
 " }}}
 
 " Ansible support {{{
-Plug 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 " }}}
 
 " Many langs formatter support (see plugin page) {{{
@@ -312,10 +312,10 @@ augroup END
 " rustup component add rustfmt && rustup component add clippy
 " }}}
 
-Plug 'embear/vim-localvimrc'
+"Plug 'embear/vim-localvimrc'
 " Disable sandbox mode
-let g:localvimrc_sandbox = 0
-let g:localvimrc_ask = 0
+"let g:localvimrc_sandbox = 0
+"let g:localvimrc_ask = 0
 
 " Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -401,7 +401,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 
 Plug 'ntpeters/vim-better-whitespace'
 
-call plug#end() " to update &runtimepath and initialize plugin system 
+call plug#end() " to update &runtimepath and initialize plugin system
 " Automatically executes filetype plugin indent on and syntax enable. You can
 " revert the settings after the call. e.g. filetype indent off, syntax off, etc.
 
