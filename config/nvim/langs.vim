@@ -171,8 +171,8 @@ function SetLSPShortcuts()
     nnoremap <buffer> <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
 
     if IsMappingEnabled('Format')
-        setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-        vnoremap <buffer> = :call LanguageClient_textDocument_rangeFormatting()<CR>
+        setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+        vnoremap <buffer> = :call LanguageClient#textDocument_rangeFormatting_sync()<CR>
     endif
 
     if IsMappingEnabled('Hover')
