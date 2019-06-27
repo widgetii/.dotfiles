@@ -237,6 +237,8 @@ bindkey '^X^e' edit-command-line
 bindkey '^[f' forward-word
 bindkey '^[b' backward-word
 bindkey "^[." insert-last-word
+bindkey "^B" backward-char
+bindkey "^F" forward-char
 
 function zle-line-init zle-keymap-select {
 VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
@@ -261,5 +263,52 @@ bindkey '^f' autosuggest-accept
 # you can cancel any ongoing command that you might be typing by hitting <CTRL>q
 # perform another command and then come back just to where you left off
 bindkey '^`' push-line-or-edit
+
+# https://raw.githubusercontent.com/nachoparker/tab_list_files_zsh_widget/master/tab_list_files_zsh.sh
+# List files in zsh with <TAB>
+# In the middle of the command line:
+#   (command being typed)<TAB>(resume typing)
+# At the beginning of the command line:
+#   <SPACE><TAB>
+#   <SPACE><SPACE><TAB>
+# Notes:
+#   This does not affect other completions
+#   If you want 'cd ' or './' to be prepended, write in your .zshrc 'export TAB_LIST_FILES_PREFIX'
+function tab_list_files
+{
+  if [[ $#BUFFER == 0 ]]; then
+    BUFFER="ls "
+    CURSOR=3
+    zle list-choices
+    zle backward-kill-word
+  elif [[ $BUFFER =~ ^[[:space:]][[:space:]].*$ ]]; then
+    BUFFER="./"
+    CURSOR=2
+    # TODO: disable directories
+    zle list-choices
+    [ -z ${TAB_LIST_FILES_PREFIX+x} ] && BUFFER="  " CURSOR=2
+  elif [[ $BUFFER =~ ^[[:space:]]*$ ]]; then
+    BUFFER="cd "
+    CURSOR=3
+    zle list-choices
+    [ -z ${TAB_LIST_FILES_PREFIX+x} ] && BUFFER=" " CURSOR=1
+  else
+    BUFFER_=$BUFFER
+    CURSOR_=$CURSOR
+    zle expand-or-complete || zle expand-or-complete || {
+      BUFFER="ls "
+      CURSOR=3
+      zle list-choices
+      BUFFER=$BUFFER_
+      CURSOR=$CURSOR_
+    }
+  fi
+}
+zle -N tab_list_files
+bindkey '^I' tab_list_files
+
+# uncomment the following line to prefix 'cd ' and './'
+# when listing dirs and executables respectively
+export TAB_LIST_FILES_PREFIX
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
