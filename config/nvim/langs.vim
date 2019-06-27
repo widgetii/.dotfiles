@@ -25,13 +25,16 @@ let g:LanguageClient_serverCommands.html = ['html-languageserver', '--stdio']
 " JSON
 " npm install -g vscode-json-languageserver-bin
 let g:LanguageClient_serverCommands.json = ['json-languageserver', '--stdio']
+let g:LanguageClient_mappings.json = {
+    \ 'disableHighlight':  v:true,
+    \ }
 
 " Clangd language family: C, C++, ObjC, Cuda
 " https://clang.llvm.org/extra/clangd/Installation.html
-let g:LanguageClient_serverCommands.c = ['clangd', '-clang-tidy']
-let g:LanguageClient_serverCommands.cpp = ['clangd']
-let g:LanguageClient_serverCommands.cuda = ['clangd', '-clang-tidy']
-let g:LanguageClient_serverCommands.objc = ['clangd', '-clang-tidy']
+let g:LanguageClient_serverCommands.c = ['clangd', '-background-index']
+let g:LanguageClient_serverCommands.cpp = ['clangd', '-background-index']
+let g:LanguageClient_serverCommands.cuda = ['clangd', '-background-index']
+let g:LanguageClient_serverCommands.objc = ['clangd', '-background-index']
 
 " Bash language server
 "  https://github.com/mads-hartmann/bash-language-server
@@ -45,7 +48,9 @@ let g:LanguageClient_serverCommands.sh = ['bash-language-server', 'start']
 let g:LanguageClient_serverCommands.python = ['pyls']
 
 " Rust
-let g:LanguageClient_serverCommands.rust = ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+" install: rustup update
+"          rustup component add rls rust-analysis rust-src
+let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'stable', 'rls']
 
 " JavaScript
 " npm install -g javascript-typescript-langserver
@@ -71,7 +76,7 @@ let g:LanguageClient_serverCommands.Dockerfile = ['docker-langserver', '--stdio'
 " markdownlint
 " npm install -g markdownlint-cli
 let g:LanguageClient_serverCommands.eruby = ['efm-langserver']
-let g:LanguageClient_mappings.eruby = { 
+let g:LanguageClient_mappings.eruby = {
     \ 'disableFormat': v:true,
     \ 'disableHover':  v:true,
     \ 'disableHighlight':  v:true,
@@ -101,7 +106,7 @@ let g:LanguageClient_serverCommands.java = [s:jdtls_name, '-data', getcwd()]
 " Groovy
 " clone sources from https://github.com/prominic/groovy-language-server
 " build jar and place it to ~/.local/bin
-let g:LanguageClient_serverCommands.groovy = ['java', '-jar', 
+let g:LanguageClient_serverCommands.groovy = ['java', '-jar',
     \ '~/.local/bin/groovy-language-server-all.jar']
 let g:LanguageClient_mappings.groovy = {
     \ 'disableHighlight':  v:true,
@@ -129,7 +134,7 @@ endfunction
 
 augroup LanguageClient_config_YAML
     autocmd!
-    " TODO: add ansible detection from 
+    " TODO: add ansible detection from
     " https://github.com/hurricanehrndz/nvim/blob/f83a8e6939e3ae9fdcf50aad3bf46293c7221a5f/plugin/languageclient.vim
    "autocmd User LanguageClientStarted call s:setupYamlLS()
     autocmd FileType yaml call s:setupYamlLS()
