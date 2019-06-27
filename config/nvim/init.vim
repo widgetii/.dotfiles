@@ -92,13 +92,6 @@ tnoremap <A--> <C-w>-
 tnoremap <A-<> <C-w><
 tnoremap <A->> <C-w>>
 
-" Neat navigation in view mode (as man-pages)
-" https://stackoverflow.com/questions/36322321/how-do-i-check-if-ive-been-run-in-read-only-mode-r-in-vimrc
-autocmd BufReadPost *
-    \  if &readonly
-    \|  echom "Man"
-    \| endif
-
 " One thing to keep in mind is that by default, vim won't let you switch between
 " buffers without saving current buffer you are in first. This gets old pretty
 " quick, and is not helpful when you are just one file as a reference.  To get
@@ -406,7 +399,7 @@ fun! SuperWrite()
     " Or with :silent (but that doesn't seem to work for everyone)
     silent write !sudo tee % > /dev/null
     edit!
-    echo "Sudo writed %"
+    echo "Sudo writed " . expand('%')
 endfun
 command! -nargs=0 W call SuperWrite()
 
