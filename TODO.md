@@ -1,5 +1,10 @@
 # Nvim
 
+## Terminal enhancements
+
+gf
+,gf - open file on top of terminal
+
 ## Language servers support
 
 ### Bash
@@ -24,6 +29,15 @@
 
 * [Tex](https://github.com/astoff/digestif)
 
+* [Haskell](https://github.com/haskell/haskell-ide-engine)
+
+* [Pascal](https://www.omnipascal.com/). Check its screenshots  in code
+    completion and learn about modern CC
+
 * [Swift](https://github.com/apple/sourcekit-lsp)
 
 * [XML](https://github.com/angelozerr/lsp4xml)
+
+## Zsh
+
+Ctrl-A, Ctrl-E keys in Vi mode
