@@ -25,3 +25,5 @@
 * [Tex](https://github.com/astoff/digestif)
 
 * [Swift](https://github.com/apple/sourcekit-lsp)
+
+* [XML](https://github.com/angelozerr/lsp4xml)
