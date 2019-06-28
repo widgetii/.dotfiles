@@ -168,10 +168,8 @@ let g:gruvbox_improved_strings=1
 set background=dark
 
 " Indent Lines
-Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
