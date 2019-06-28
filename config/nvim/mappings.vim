@@ -11,9 +11,16 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 autocmd FileType gitcommit,markdown nnoremap <buffer>N :<C-u>call system('open ' . shellescape('dict://' . expand('<cword>')))<CR>
 
 " vim-c++
-let s:cc_cmd="cc -E -x c++ - -v < /dev/null 2>&1 |
-    \ awk 'BEGIN { printf \".\" } /End of search list./ { show=0 }
-    \ { if (show) printf \",%s\",$1 };
-    \ /#include <...> search starts here:/ { show=1; }'"
-let g:cc_def_includes=system(s:cc_cmd)
-autocmd FileType cpp let &l:path = &l:path . g:cc_def_includes
+function! s:DetectCCIncludes()
+    " TODO: skip if we have compile_commands.json or compile_flags.txt
+    if !exists('g:cc_def_includes')
+        let s:cc_cmd="cc -E -x c++ - -v < /dev/null 2>&1 |
+                    \ awk 'BEGIN { printf \".\" } /End of search list./ { show=0 }
+                    \ { if (show) printf \",%s\",$1 };
+                    \ /#include <...> search starts here:/ { show=1; }'"
+        let g:cc_def_includes=system(s:cc_cmd)
+    endif
+    let &l:path = &l:path . g:cc_def_includes
+endfunction
+
+autocmd FileType cpp call s:DetectCCIncludes()
