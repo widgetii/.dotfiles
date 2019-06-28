@@ -32,15 +32,21 @@ if has('mouse')
   set mouse=a
 endif
 
-" Disable arrow keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" Disable arrow keys (for newbies)
+"noremap <up> <nop>
+"noremap <down> <nop>
+"noremap <left> <nop>
+"noremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+
+" Make arrow keys do something useful
+nnoremap <left> :vertical resize +2<cr>
+nnoremap <right> :vertical resize -2<cr>
+nnoremap <up> :resize -2<cr>
+nnoremap <down> :resize +2<cr>
 
 " Windows navigation
 " Use Alt-key rather than C-W-key
@@ -444,3 +450,5 @@ set winblend=10
 "vnoremap d "_d
 nnoremap C "_C
 vnoremap C "_C
+nnoremap c "_c
+xnoremap c "_c
