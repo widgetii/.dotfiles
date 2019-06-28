@@ -301,7 +301,7 @@ nnoremap <silent> <leader><space> :nohlsearch<Bar>:echo<CR>
 " very tricky way to type Space rather than Shift-;
 " but we need to provide key for unfold
 " TODO: if we just hit Space key and opened fold and stayed here, Space will close it again
-function! KeySpace()
+function! s:KeySpace()
   if bufname("%") =~ "NERD_tree_*"
     exe "normal \<c-w>\<c-l>"
     return
@@ -313,8 +313,7 @@ function! KeySpace()
   endif
 endfunction
 
-nnoremap <silent> <Space> :call KeySpace()<CR>
-
+nnoremap <silent> <Space> :call <SID>KeySpace()<CR>
 
 " }}} FOLDING
 
