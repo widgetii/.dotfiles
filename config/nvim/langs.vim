@@ -143,7 +143,6 @@ augroup END
 function IsMappingEnabled(param_name)
     let l:mappings = get(g:LanguageClient_mappings, &ft, {})
     let l:enabled = !get(l:mappings, 'disable' . a:param_name, v:false)
-    "echom &ft . ": Mapping ". a:param_name . " is ". l:enabled
     return l:enabled
 endfunction
 
@@ -216,6 +215,3 @@ function RunCode()
     " And the #Call here that does get properly sent to the language server
     call LanguageClient#Call("evaluate", { 'expression': s:get_visual_selection() }, function("Log"))
 endfunction
-
-" TODO:
-" rangeFormat on clangd
