@@ -28,6 +28,7 @@ if os == "Darwin"
 elseif os == "Linux"
     Plug 'KabbAmine/zeavim.vim', { 'on': 'Zeavim' }
 endif
+" Also consider https://github.com/rhysd/devdocs.vim
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " NERDTree settings {{{
@@ -99,7 +100,8 @@ set noshowmode
 Plug 'sheerun/vim-polyglot'
 
 " Git support
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff',
+            \ 'Gblame', 'Git', 'Ggrep'] }
 " Try also https://github.com/jreybert/vimagit
 Plug 'airblade/vim-gitgutter'
 " * stage the hunk with (hunk add)
@@ -108,6 +110,9 @@ nmap <Leader>ha <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterRevertHunk
 " Git + Floating Preview Window
 Plug 'rhysd/git-messenger.vim', { 'on':  'GitMessenger' }
+" Consider https://github.com/rhysd/conflict-marker.vim
+" https://github.com/rhysd/ghpr-blame.vim
+" https://github.com/hotwatermorning/auto-git-diff
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -121,6 +126,7 @@ let g:rainbow_active = 1
 Plug 'junegunn/vim-easy-align', { 'on':  'EasyAlign' }
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+" Consider https://github.com/junegunn/vim-easy-align
 
 " Neat startup screen (and sessions manager)
 Plug 'mhinz/vim-startify'
@@ -178,9 +184,21 @@ function! BuildComposer(info)
 endfunction
 
 " You should run cargo build --release in the plugin directory after installation on new machine
-"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for': 'markdown' }
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for':
+    \ 'markdown' }
 " don't open browser each time on md files
 let g:markdown_composer_open_browser = 0
+
+" Use grammar check
+Plug 'rhysd/vim-grammarous', { 'for': 'markdown' }
+" check comments only except for markdown and vim help
+let g:grammarous#default_comments_only_filetypes = {
+            \ '*' : 1, 'help' : 0, 'markdown' : 0,
+            \ }
+let g:grammarous#disabled_rules = {
+            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES'],
+            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
+            \ }
 
 " If you use vim-airline you need this
 let g:airline_powerline_fonts = 1
@@ -219,15 +237,19 @@ autocmd bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#si
 " NearestMethodOrFunction from readme
 
 " Cpp support {{{
-Plug 'Kris2k/A.vim.git', { 'for': 'cpp' }
+Plug 'Kris2k/A.vim', { 'for': 'cpp' }
   let g:alternateExtensions_cc = "hh,h,hpp"
   let g:alternateExtensions_hh = "cc"
   let g:alternateExtensions_hxx = "cxx"
   let g:alternateExtensions_cxx = "hxx,h"
+" Look at the alternative
+" https://github.com/derekwyatt/vim-fswitch/blob/master/doc/fswitch.txt
 Plug 'drmikehenry/vim-headerguard', { 'for': 'cpp' }
 
 " Use gf for jump to #include files based on compiledb info
 Plug 'martong/vim-compiledb-path', { 'for': 'cpp' }
+
+" Consider https://github.com/rhysd/unite-n3337
 " Cpp support}}}
 
 if executable('go')
@@ -395,6 +417,7 @@ Plug 'kshenoy/vim-signature'
 
 Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
+" Also consider https://github.com/rhysd/vim-operator-surround
 
 " Try to resolve paste troubles
 Plug 'ConradIrwin/vim-bracketed-paste'
@@ -440,3 +463,7 @@ autocmd FileType html,css,javascript.jsx EmmetInstall
 " semanticart/tag-peek.vim
 " https://github.com/hobbestigrou/vimtips-fortune , but spaced
 " https://github.com/MaryHal/nvim_config/blob/master/init.vim
+" matze/vim-move
+" https://github.com/rhysd/reply.vim
+" https://github.com/thinca/vim-quickrun/blob/master/doc/quickrun.txt
+"  with config https://github.com/rhysd/dogfiles/blob/master/vimrc#L1759
