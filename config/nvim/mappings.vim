@@ -1,13 +1,20 @@
+" vim:fileencoding=utf-8:ft=vim:foldmethod=marker:tw=80
+
+" TABS&SPACES {{{
 " https://vim.fandom.com/wiki/Remove_unwanted_spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+" }}} TABS&SPACES
 
 " close all temporary windows
 " https://github.com/rhysd/dogfiles/blob/master/vimrc#L298
 
+" CLIPBOARD {{{
 " copy current path
 " Put full path on the default register
 nmap cp :let @+ = expand("%:p")<cr>
+" }}}
 
+" FILES {{{
 " Open file even if it is not exists
 " https://stackoverflow.com/questions/6158294/create-and-open-for-editing-nonexistent-file-under-the-cursor
 function! s:OpenOrCreateFile()
@@ -23,11 +30,14 @@ function! s:OpenOrCreateFile()
     execute 'e ' . l:file
 endfunction
 nmap <leader>gf :call <SID>OpenOrCreateFile()<CR>
+" }}}
 
+" TEXT EDITING {{{
 " MacDict support
 autocmd FileType gitcommit,markdown nnoremap <buffer>N :<C-u>call system('open ' . shellescape('dict://' . expand('<cword>')))<CR>
+" }}} TEXT EDITING
 
-" vim-c++
+" vim-c++ {{{
 function! s:DetectCCIncludes()
     " TODO: skip if we have compile_commands.json or compile_flags.txt
     if !exists('g:cc_def_includes')
@@ -41,3 +51,4 @@ function! s:DetectCCIncludes()
 endfunction
 
 autocmd FileType cpp call s:DetectCCIncludes()
+" }}}
