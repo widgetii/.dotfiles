@@ -5,7 +5,24 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 " https://github.com/rhysd/dogfiles/blob/master/vimrc#L298
 
 " copy current path
-" https://github.com/rhysd/dogfiles/blob/master/vimrc#L326
+" Put full path on the default register
+nmap cp :let @+ = expand("%:p")<cr>
+
+" Open file even if it is not exists
+" https://stackoverflow.com/questions/6158294/create-and-open-for-editing-nonexistent-file-under-the-cursor
+function! s:OpenOrCreateFile()
+    let l:file = expand('<cfile>')
+    if !filereadable(l:file)
+        echo "File " . l:file . " doesn't exists. Create? (y/n)"
+        let l:answer = nr2char(getchar())
+        echon "\r\r"
+        if l:answer !=? 'y'
+            return
+        endif
+    endif
+    execute 'e ' . l:file
+endfunction
+nmap <leader>gf :call <SID>OpenOrCreateFile()<CR>
 
 " MacDict support
 autocmd FileType gitcommit,markdown nnoremap <buffer>N :<C-u>call system('open ' . shellescape('dict://' . expand('<cword>')))<CR>

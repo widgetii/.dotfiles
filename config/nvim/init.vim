@@ -20,7 +20,9 @@ let s:modules = [
 for s:module in s:modules
     execute "source" g:vim_config . s:module . ".vim"
 endfor
-"
+" https://google.github.io/styleguide/vimscriptguide.xml
+"  use plugin-names-like-this, FunctionNamesLikeThis, CommandNamesLikeThis,
+"  augroup_names_like_this, variable_names_like_this
 " }}} BASICS
 
 " CONTROLS {{{
@@ -107,10 +109,6 @@ set splitright
 " https://stackoverflow.com/questions/4465095/vim-delete-buffer-without-losing-the-split-window
 " will switch to the last used buffer, then bd# ("buffer detete" "alternate file")
 nmap <silent> <leader>d :b#\|bd #<CR>
-
-" Open file even if it is not exists
-" https://stackoverflow.com/questions/6158294/create-and-open-for-editing-nonexistent-file-under-the-cursor
-nmap <leader>gf :e <cfile><CR>
 
 "" Scrolling
 "set scrolloff=20    " Start scrolling when we're 20 lines away from margins
@@ -376,6 +374,9 @@ noremap j e
 noremap J E
 " noremap ge gk|
 
+" Restore man function
+noremap N K
+
 " TARMAK5
 noremap s i|noremap в i
 "noremap S I
@@ -437,3 +438,9 @@ set autowriteall
 set winblend=10
 
 " Use :Rg for file finds
+
+" Don't cut to clipboard by default
+"nnoremap d "_d
+"vnoremap d "_d
+nnoremap C "_C
+vnoremap C "_C
