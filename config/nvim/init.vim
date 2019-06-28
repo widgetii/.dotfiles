@@ -11,11 +11,11 @@ let s:is_ssh = !empty($SSH_TTY)
 let g:vim_config = $HOME . "/.config/nvim/"
 
 let s:modules = [
-    \"settings",
-    \"mappings",
-    \"plugins",
-	\"langs",
-    \]
+            \ "settings",
+            \ "mappings",
+            \ "plugins",
+            \ "langs",
+            \]
 
 for s:module in s:modules
     execute "source" g:vim_config . s:module . ".vim"
