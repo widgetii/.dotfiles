@@ -161,11 +161,7 @@ set termguicolors
 
 " Colorschemes, pick one, but others stay disabled
 "Plug 'junegunn/seoul256.vim'
-Plug 'morhetz/gruvbox'
-" Without backgroung lines italic font won't work
-let g:gruvbox_italic=1
-let g:gruvbox_improved_strings=1
-set background=dark
+Plug 'gruvbox-community/gruvbox'
 
 " Indent Lines
 Plug 'nathanaelkane/vim-indent-guides'
