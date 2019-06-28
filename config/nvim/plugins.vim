@@ -371,6 +371,7 @@ let g:deoplete#enable_at_startup = 1
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
+Plug 'Shougo/neopairs.vim'
 
 " Less annoying completion preview window based on neovim's floating window
 Plug 'ncm2/float-preview.nvim'
@@ -388,11 +389,18 @@ autocmd User FloatPreviewWinOpen call DisableExtras()
 Plug 'Shougo/echodoc.vim'
 set cmdheight=2
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
+"let g:echodoc#type = 'signature'
+let g:echodoc#type = 'floating'
+" To use a custom highlight for the float window,
+" change Pmenu to your highlight group
+highlight link EchoDocFloat Pmenu
 
 " Great learning block
 " Master t/f movements
 Plug 'deris/vim-shot-f'
+" Alternative
+" https://github.com/rhysd/clever-f.vim
+" Also consider about f/t findings on next lines too
 " Master j/k movements
 Plug 'deris/vim-gothrough-jk'
 let g:gothrough_jk_no_default_key_mappings = 1
@@ -410,13 +418,15 @@ vmap ge <Plug>(gothrough-jk-gk)
 "https://github.com/liuchengxu/vim-which-key
 " Easy to work with marks
 Plug 'kshenoy/vim-signature'
+" See what you copying
+" Plug 'machakann/vim-highlightedyank'
 
 Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
 " Also consider https://github.com/rhysd/vim-operator-surround
 
 " Try to resolve paste troubles
-Plug 'ConradIrwin/vim-bracketed-paste'
+"Plug 'ConradIrwin/vim-bracketed-paste'
 
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -432,6 +442,42 @@ endif
 
 " Post vim-emmet plugin load command
 autocmd FileType html,css,javascript.jsx EmmetInstall
+
+" Post deoplete plugin load configuration
+"call deoplete#custom#option('sources', {
+"    \ '_': ['buffer'],
+"    \ 'cpp': ['buffer', 'tag'],
+"    \})
+"    let g:deoplete#sources.cpp = ['LanguageClient']
+" call deoplete#custom#option('ignore_sources', {'_': ['around', 'file', 'dictionary', 'tag', 'buffer']})
+call deoplete#custom#option('skip_chars', [])
+call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
+" Disable the candidates in Comment/String syntaxes.
+call deoplete#custom#source('_',
+    \ 'disabled_syntaxes', ['Comment', 'String'])
+
+call deoplete#custom#option('candidate_marks', ['A', 'R', 'S', 'T', 'D'])
+inoremap <expr>A   pumvisible() ? deoplete#insert_candidate(0) : 'A'
+inoremap <expr>R   pumvisible() ? deoplete#insert_candidate(1) : 'R'
+inoremap <expr>S   pumvisible() ? deoplete#insert_candidate(2) : 'S'
+inoremap <expr>T   pumvisible() ? deoplete#insert_candidate(3) : 'T'
+inoremap <expr>D   pumvisible() ? deoplete#insert_candidate(4) : 'D'
+
+"   This instructs deoplete to use omni completion for Go files.
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
+" use the language keywords from syntax highlighting as a completion source
+" https://github.com/Shougo/neco-syntax
+"
+"Another solution: Using neosnippet with the configuration.
+"
+"let g:neosnippet#enable_completed_snippet = 1
+"autocmd CompleteDone * call neosnippet#complete_done()
+
+" TODO:
+" Test Vimscript + Deoplete + neco-vim
+
 
 " FOR FUTURE LEARNING
 " Targets.vim is a Vim plugin that adds various text objects to give you more targets to operate on
