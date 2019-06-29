@@ -338,13 +338,15 @@ set imsearch=0
 
 " GRUVBOX {{{
 if isdirectory(g:vim_config."plugged/gruvbox")
-    colorscheme gruvbox
-    set background=dark
     let g:gruvbox_terminal_colors = 1
-    " Don't show tildes on blank lines
-    highlight NonText ctermfg=bg guifg=bg
     " Without backgroung lines italic font won't work
     let g:gruvbox_italic=1
+    set background=dark
+    colorscheme gruvbox
+    " Don't show tildes on blank lines
+    highlight NonText ctermfg=bg guifg=bg
+    " Fixing too much bold in method names
+    hi! link Function GruvboxGreen
 endif
 " }}}
 
