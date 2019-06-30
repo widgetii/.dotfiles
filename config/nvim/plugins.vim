@@ -216,8 +216,9 @@ Plug 'tpope/vim-unimpaired'
 " Outline support for LS
 Plug 'liuchengxu/vista.vim', { 'on':  'Vista' }
 let g:vista_default_executive = 'coc'
+let g:vista_echo_cursor_strategy = 'floating_win'
 nmap <F9> :Vista!!<CR>
-"
+
 " close vim if the only window left open is a Vista
 autocmd bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#sidebar#IsVisible()) | q | endif
 
