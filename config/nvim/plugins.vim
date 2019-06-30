@@ -166,6 +166,8 @@ Plug 'gruvbox-community/gruvbox'
 " Indent Lines
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'man://.*']
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
