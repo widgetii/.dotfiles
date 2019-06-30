@@ -1,6 +1,10 @@
 " vim:fileencoding=utf-8:ft=vim:foldmethod=marker:tw=80
 
 " BASICS {{{
+
+" Clear old autocmds
+augroup vimrc | autocmd! | augroup end
+
 " We've just elected new leader, welcome "," key!
 let mapleader = ","
 set timeoutlen=5000
@@ -150,6 +154,7 @@ function! TerminalOpen()
         " Check if terminal already on the screen
         silent! exec 'sp|b '.bnr
     endif
+    silent! exec setlocal laststatus=0
     let height = 10
     if exists("g:terminalHeight")
         let height = g:terminalHeight
@@ -160,7 +165,7 @@ nnoremap <silent> <leader>t :call TerminalOpen()<CR>
 
 autocmd TermOpen * setl bufhidden=hide
 autocmd TermOpen * setl nobuflisted
-autocmd TermOpen * setl laststatus=0
+"autocmd TermOpen * setl laststatus=0
 
 " Ctrl-V in terminal mode
 tmap <C-V>    <C-\><C-n>"+gPi
@@ -196,7 +201,7 @@ augroup startup
     autocmd TermOpen,BufWinEnter,BufEnter term://*zsh startinsert
 augroup END
 
-" Test scrolling problems 
+" Test scrolling problems
 let g:neoterm_autoscroll = 1
 " Test if will any problems
 let g:neoterm_autoinsert=1
@@ -251,10 +256,7 @@ inoremap рр <BS>
 imap цц <C-w>
 imap ww <C-w>
 
-augroup textfiles
-  autocmd!
-  autocmd filetype markdown :setlocal spell spelllang=en,ru
-augroup end
+autocmd vimrc FileType markdown,gitcommit :setlocal spell spelllang=en,ru
 set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
 " }}} TEXT EDITING
 

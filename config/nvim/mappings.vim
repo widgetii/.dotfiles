@@ -34,7 +34,7 @@ nmap <leader>gf :call <SID>OpenOrCreateFile()<CR>
 
 " TEXT EDITING {{{
 " MacDict support
-autocmd FileType gitcommit,markdown nnoremap <buffer>N :<C-u>call system('open ' . shellescape('dict://' . expand('<cword>')))<CR>
+autocmd vimrc FileType gitcommit,markdown nnoremap <buffer>N :<C-u>call system('open ' . shellescape('dict://' . expand('<cword>')))<CR>
 " }}} TEXT EDITING
 
 " vim-c++ {{{
@@ -50,7 +50,8 @@ function! s:DetectCCIncludes()
     let &l:path = &l:path . g:cc_def_includes
 endfunction
 
-autocmd FileType cpp call s:DetectCCIncludes()
+autocmd vimrc FileType cpp call s:DetectCCIncludes()
+autocmd vimrc FileType cpp setlocal cinoptions+=L0 " disable automatic label dedent
 " }}}
 
 " COLEMAK {{{

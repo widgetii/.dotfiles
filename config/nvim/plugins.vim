@@ -43,12 +43,12 @@ map <silent> <C-q> :NERDTreeToggle<CR>
 
 " How can I open a NERDTree automatically when vim starts up?
 " https://stackoverflow.com/questions/24808932/vim-open-nerdtree-and-move-the-cursor-to-the-file-editing-area
-"autocmd VimEnter * if argc() == 1 | NERDTree | wincmd p | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"autocmd vimrc VimEnter * if argc() == 1 | NERDTree | wincmd p | endif
+autocmd vimrc StdinReadPre * let s:std_in=1
+autocmd vimrc VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "
 " NERDTree settings }}}
 
@@ -73,6 +73,8 @@ Plug 'sheerun/vim-polyglot'
 
 " JSON {{{
 "Plug 'elzr/vim-json'
+" Correct highlight on coc.nvim settings file
+autocmd vimrc FileType json syntax match Comment +\/\/.\+$+
 " }}}
 " QMake {{{
 "Plug 'suy/vim-qmake'
@@ -106,7 +108,8 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 "Plug 'rust-lang/rust.vim'
 " }}}
 " i3 {{{
-"Plug 'mboughaba/i3config.vim'
+Plug 'mboughaba/i3config.vim'
+autocmd vimrc BufNewFile,BufRead ~/.config/i3/config set ft=i3config
 " }}}
 " C++ {{{
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -153,7 +156,7 @@ if executable('go')
         nmap <leader>n <Plug>(go-test)
         nnoremap <leader>a :cclose<CR>
     endf
-    autocmd FileType go call Go_init()
+    autocmd vimrc FileType go call Go_init()
 endif
 
 " }}}
@@ -197,16 +200,16 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-autocmd FileType html,css,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+autocmd vimrc FileType html,css,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " autocmd for manual loading moved below 'call plug#end()' line to avoid E492
 " error
 
 " quick attributes, eg:
-autocmd FileType html,css,javascript.jsx imap <leader>id id=""<esc>s
-autocmd FileType html,css,javascript.jsx imap <leader>cl class=""<esc>s
+autocmd vimrc FileType html,css,javascript.jsx imap <leader>id id=""<esc>s
+autocmd vimrc FileType html,css,javascript.jsx imap <leader>cl class=""<esc>s
 
 " close last open tag
-autocmd FileType html,css,javascript.jsx imap <leader>/ </><esc>s<C-x><C-o>
+autocmd vimrc FileType html,css,javascript.jsx imap <leader>/ </><esc>s<C-x><C-o>
 
 " easy br:
 imap <M-Return> <br />
@@ -366,17 +369,14 @@ let g:vista_echo_cursor_strategy = 'floating_win'
 nmap <F9> :Vista!!<CR>
 
 " close vim if the only window left open is a Vista
-autocmd bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#sidebar#IsVisible()) | q | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#sidebar#IsVisible()) | q | endif
 
 " TODO:
 " NearestMethodOrFunction from readme
 
 " Many langs formatter support (see plugin page) {{{
 Plug 'sbdchd/neoformat'
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+autocmd vimrc BufWritePre * undojoin | Neoformat
 " install formatters:
 " pip install --user cmake_format
 " rustup component add rustfmt && rustup component add clippy
@@ -484,7 +484,7 @@ if exists("g:loaded_webdevicons")
 endif
 
 " Post vim-emmet plugin load command
-autocmd FileType html,css,javascript.jsx EmmetInstall
+autocmd vimrc FileType html,css,javascript.jsx EmmetInstall
 
 
 " FOR FUTURE LEARNING
