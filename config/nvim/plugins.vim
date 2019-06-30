@@ -369,6 +369,19 @@ nnoremap <C-p> :FZF<CR>
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 
+" TODO: coc-git, coc-pairs
+let g:coc_global_extensions = [
+            \   'coc-css',
+            \   'coc-rls',
+            \   'coc-html',
+            \   'coc-json',
+            \   'coc-java',
+            \   'coc-pyls',
+            \   'coc-yaml',
+            \   'coc-emmet',
+            \   'coc-eslint',
+            \   'coc-tsserver'
+            \ ]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
