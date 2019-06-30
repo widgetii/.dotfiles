@@ -315,6 +315,9 @@ let g:lightline = {
             \   'currentfunction': 'CocCurrentFunction'
             \ },
             \ }
+let g:lightline.separator = {'left': '', 'right': ''}
+let g:lightline.subseparator = {'left': '', 'right': ''}
+
 Plug 'mengelbrecht/lightline-bufferline'
 " Forces the tabline to always show
 set showtabline=2
@@ -432,12 +435,19 @@ let g:coc_global_extensions = [
             \   'coc-yaml',
             \   'coc-emmet',
             \   'coc-eslint',
-            \   'coc-tsserver'
+            \   'coc-tsserver',
+            \   'coc-sh'
             \ ]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
+nmap     <silent>       gd <Plug>(coc-definition)
+autocmd vimrc CursorHold * silent call CocActionAsync('doHover')
+set updatetime=300
+autocmd CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
+" :h coc
+" :h coc-diagnostic-prev , coc-diagnostic-next
 " }}}
 
 " Great learning block

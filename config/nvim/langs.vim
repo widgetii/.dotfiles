@@ -1,6 +1,8 @@
 " Always draw the signcolumn.
 set signcolumn=yes
 
+finish
+
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_mappings = {}
 let g:LanguageClient_autoStart = 1
