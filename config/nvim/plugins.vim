@@ -62,33 +62,34 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-Plug 'vim-airline/vim-airline'
-" vim-airline settings {{{
-let g:airline_extensions = ['tabline', 'languageclient']
-let g:airline#extensions#tabline#buffer_idx_mode=1
-let g:airline#extensions#tabline#buffer_idx_format = {
-    \ '0': '➓ ',
-    \ '1': '➊ ',
-    \ '2': '➋ ',
-    \ '3': '➌ ',
-    \ '4': '➍ ',
-    \ '5': '➎ ',
-    \ '6': '➏ ',
-    \ '7': '➐ ',
-    \ '8': '➑ ',
-    \ '9': '➒ '
-    \}
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>= <Plug>AirlineSelectNextTab
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+            \ 'colorscheme': 'gruvbox',
+            \ }
+Plug 'mengelbrecht/lightline-bufferline'
+" Forces the tabline to always show
+set showtabline=2
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#number_map = {
+            \ 0: '➓', 1: '➊', 2: '➋', 3: '➌', 4: '➍',
+            \ 5: '➎', 6: '➏', 7: '➐', 8: '➑', 9: '➒'}
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#min_buffer_count = 2
+
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " After installing statusline plugin by the way, -- INSERT -- is unnecessary
 " anymore because the mode information is displayed in the statusline.
