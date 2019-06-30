@@ -197,8 +197,6 @@ let g:grammarous#disabled_rules = {
             \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
             \ }
 
-" If you use vim-airline you need this
-let g:airline_powerline_fonts = 1
 " Always load the vim-devicons as the very last one.
 Plug 'ryanoasis/vim-devicons', { 'on':  'NERDTreeToggle' }
 
@@ -215,16 +213,9 @@ Plug 'tpope/vim-unimpaired'
 " [b is :bprevious
 " TODO: https://github.com/tpope/vim-unimpaired
 
-" Language Client Support
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" See other options in langs.vim
-
 " Outline support for LS
 Plug 'liuchengxu/vista.vim', { 'on':  'Vista' }
-let g:vista_default_executive = 'lcn'
+let g:vista_default_executive = 'coc'
 nmap <F9> :Vista!!<CR>
 "
 " close vim if the only window left open is a Vista
@@ -273,12 +264,6 @@ if executable('go')
         nnoremap <leader>a :cclose<CR>
     endf
     autocmd FileType go call Go_init()
-
-    " Autocompletion stuff
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
-    let g:deoplete#sources#go#unimported_packages = 1
-    " ATTENZIONE PREGO: install only https://github.com/mdempsky/gocode
-    " }}}
 endif
 
 " Vimscript support {{{
@@ -366,35 +351,14 @@ endfunction
 " Fuzzy finder shortcut
 nnoremap <C-p> :FZF<CR>
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" Vim files autocomplete support
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
-Plug 'Shougo/neopairs.vim'
-
-" Less annoying completion preview window based on neovim's floating window
-Plug 'ncm2/float-preview.nvim'
-let g:float_preview#docked = 0
-set completeopt-=preview
-
-function! DisableExtras()
-  call nvim_win_set_option(g:float_preview#win, 'number', v:false)
-  call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
-  call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
-endfunction
-
-autocmd User FloatPreviewWinOpen call DisableExtras()
-
-Plug 'Shougo/echodoc.vim'
-set cmdheight=2
-let g:echodoc#enable_at_startup = 1
-"let g:echodoc#type = 'signature'
-let g:echodoc#type = 'floating'
-" To use a custom highlight for the float window,
-" change Pmenu to your highlight group
-highlight link EchoDocFloat Pmenu
 
 " Great learning block
 " Master t/f movements
@@ -443,41 +407,6 @@ endif
 
 " Post vim-emmet plugin load command
 autocmd FileType html,css,javascript.jsx EmmetInstall
-
-" Post deoplete plugin load configuration
-"call deoplete#custom#option('sources', {
-"    \ '_': ['buffer'],
-"    \ 'cpp': ['buffer', 'tag'],
-"    \})
-"    let g:deoplete#sources.cpp = ['LanguageClient']
-" call deoplete#custom#option('ignore_sources', {'_': ['around', 'file', 'dictionary', 'tag', 'buffer']})
-call deoplete#custom#option('skip_chars', [])
-call deoplete#custom#source('_', 'converters', ['converter_auto_paren'])
-" Disable the candidates in Comment/String syntaxes.
-call deoplete#custom#source('_',
-    \ 'disabled_syntaxes', ['Comment', 'String'])
-
-call deoplete#custom#option('candidate_marks', ['A', 'R', 'S', 'T', 'D'])
-inoremap <expr>A   pumvisible() ? deoplete#insert_candidate(0) : 'A'
-inoremap <expr>R   pumvisible() ? deoplete#insert_candidate(1) : 'R'
-inoremap <expr>S   pumvisible() ? deoplete#insert_candidate(2) : 'S'
-inoremap <expr>T   pumvisible() ? deoplete#insert_candidate(3) : 'T'
-inoremap <expr>D   pumvisible() ? deoplete#insert_candidate(4) : 'D'
-
-"   This instructs deoplete to use omni completion for Go files.
-call deoplete#custom#option('omni_patterns', {
-\ 'go': '[^. *\t]\.\w*',
-\})
-" use the language keywords from syntax highlighting as a completion source
-" https://github.com/Shougo/neco-syntax
-"
-"Another solution: Using neosnippet with the configuration.
-"
-"let g:neosnippet#enable_completed_snippet = 1
-"autocmd CompleteDone * call neosnippet#complete_done()
-
-" TODO:
-" Test Vimscript + Deoplete + neco-vim
 
 
 " FOR FUTURE LEARNING
