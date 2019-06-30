@@ -142,7 +142,7 @@ function! TerminalOpen()
     endif
     let bnr = bufname("term://*")
     if empty(bnr)
-        silent! exec 'sp|terminal' 
+        silent! exec 'sp|terminal'
 " uncomment if you want disposable terminal
 "       silent! exec 'setlocal bufhidden=delete'
         silent! exec 'setlocal bufhidden=hide'
@@ -158,8 +158,9 @@ function! TerminalOpen()
 endfunc
 nnoremap <silent> <leader>t :call TerminalOpen()<CR>
 
-autocmd TermOpen * set bufhidden=hide
-autocmd TermOpen * set nobuflisted
+autocmd TermOpen * setl bufhidden=hide
+autocmd TermOpen * setl nobuflisted
+autocmd TermOpen * setl laststatus=0
 
 " Ctrl-V in terminal mode
 tmap <C-V>    <C-\><C-n>"+gPi
@@ -368,38 +369,6 @@ set relativenumber
 noremap <silent> <F12> :set number!<CR> :set relativenumber!<CR>
 " }}}
 
-" COLEMAK {{{
-" TARMAK1
-"
-" Disabled for vim-gothrough-jk plugin
-"noremap n j
-"noremap e k
-noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
-noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
-noremap k n
-noremap K N
-noremap j e
-noremap J E
-" noremap ge gk|
-
-" Restore man function
-noremap N K
-
-" TARMAK5
-noremap s i|noremap в i
-"noremap S I
-noremap i l|noremap д l
-
-" BOL/EOL/Join Lines.
-noremap l ^|noremap L $|noremap <C-l> J
-" r replaces i as the "inneR" modifier [e.g. "diw" becomes "drw"].
-onoremap r i
-
-" problem in NERD Tree
-" e key don't go up
-let g:NERDTreeMapOpenExpl = ''
-" }}}
-
 " TESTING {{{
 " Tricks?
 " Sudo editing
@@ -454,3 +423,6 @@ nnoremap C "_C
 vnoremap C "_C
 nnoremap c "_c
 xnoremap c "_c
+
+" Work as man pager settings
+let g:ft_man_folding_enable = 1

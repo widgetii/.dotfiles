@@ -1,9 +1,9 @@
 " vim:fileencoding=utf-8:ft=vim:foldmethod=marker:tw=80
 
-" TABS&SPACES {{{
-" https://vim.fandom.com/wiki/Remove_unwanted_spaces
-nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-" }}} TABS&SPACES
+" tabs&spaces {{{
+" https://vim.fandom.com/wiki/remove_unwanted_spaces
+nnoremap <silent> <f5> :let _s=@/ <bar> :%s/\s\+$//e <bar> :let @/=_s <bar> :nohl <bar> :unlet _s <cr>
+" }}} tabs&spaces
 
 " close all temporary windows
 " https://github.com/rhysd/dogfiles/blob/master/vimrc#L298
@@ -51,4 +51,49 @@ function! s:DetectCCIncludes()
 endfunction
 
 autocmd FileType cpp call s:DetectCCIncludes()
+" }}}
+
+" COLEMAK {{{
+" TARMAK1
+
+" Cursor keys
+" Disabled for vim-gothrough-jk plugin
+if !exists('g:loaded_gothrough_jk')
+    noremap n j
+    noremap e k
+endif
+noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
+noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
+" next/prev search keys
+noremap k n
+noremap K N
+" to end of word/WORD
+noremap j e
+noremap J E
+" noremap ge gk|
+
+" TARMAK5
+" insert mode
+noremap s i|noremap в i
+" Cursor keys
+noremap i l|noremap д l
+
+" BOL/EOL/Join Lines.
+" more conv begin and end of string l/L
+noremap l ^|noremap L $
+" join lines
+noremap <C-l> J
+" r replaces i as the "inneR" modifier [e.g. "diw" becomes "drw"].
+onoremap r i
+" E is free!
+
+" problem in NERD Tree
+" e key don't go up
+let g:NERDTreeMapOpenExpl = ''
+
+" disable mappings for internal man plugin
+let g:no_man_maps = 1
+let g:ft_man_folding_enable = 1
+nnoremap <silent> <buffer> N :Man<CR>
+vnoremap <silent> <buffer> N :Man<CR>
 " }}}
