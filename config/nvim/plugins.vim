@@ -1,3 +1,5 @@
+" vim:fileencoding=utf-8:ft=vim:foldmethod=marker:tw=80
+
 let s:plug_dir = g:vim_config . "plugged"
 let s:plugin_settings_dir = g:vim_config . "startup/plugins"
 
@@ -21,6 +23,7 @@ elseif os == "Linux"
     let g:XkbSwitchLib = '/usr/lib/libxkbswitch.so'
 endif
 
+" Documentation {{{
 if os == "Darwin"
     Plug 'rizzatti/dash.vim', { 'on':  'DashSearch' }
     " Same mapping as in Zeal
@@ -29,6 +32,7 @@ elseif os == "Linux"
     Plug 'KabbAmine/zeavim.vim', { 'on': 'Zeavim' }
 endif
 " Also consider https://github.com/rhysd/devdocs.vim
+" }}}
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " NERDTree settings {{{
@@ -39,12 +43,12 @@ map <silent> <C-q> :NERDTreeToggle<CR>
 
 " How can I open a NERDTree automatically when vim starts up?
 " https://stackoverflow.com/questions/24808932/vim-open-nerdtree-and-move-the-cursor-to-the-file-editing-area
-"autocmd VimEnter * if argc() == 1 | NERDTree | wincmd p | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"autocmd vimrc VimEnter * if argc() == 1 | NERDTree | wincmd p | endif
+autocmd vimrc StdinReadPre * let s:std_in=1
+autocmd vimrc VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "
 " NERDTree settings }}}
 
@@ -62,42 +66,157 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-Plug 'vim-airline/vim-airline'
-" vim-airline settings {{{
-let g:airline_extensions = ['tabline', 'languageclient']
-let g:airline#extensions#tabline#buffer_idx_mode=1
-let g:airline#extensions#tabline#buffer_idx_format = {
-    \ '0': '➓ ',
-    \ '1': '➊ ',
-    \ '2': '➋ ',
-    \ '3': '➌ ',
-    \ '4': '➍ ',
-    \ '5': '➎ ',
-    \ '6': '➏ ',
-    \ '7': '➐ ',
-    \ '8': '➑ ',
-    \ '9': '➒ '
-    \}
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>= <Plug>AirlineSelectNextTab
+" FileType {{{
 
-" After installing statusline plugin by the way, -- INSERT -- is unnecessary
-" anymore because the mode information is displayed in the statusline.
-" lightline.vim - tutorial If you want to get rid of it, configure as follows.
-set noshowmode
-" vim-airline settings}}}
-
-" Polyglot syntax pack
+" Universal polyglot syntax pack
 Plug 'sheerun/vim-polyglot'
+
+" JSON {{{
+"Plug 'elzr/vim-json'
+" Correct highlight on coc.nvim settings file
+autocmd vimrc FileType json syntax match Comment +\/\/.\+$+
+" }}}
+" QMake {{{
+"Plug 'suy/vim-qmake'
+" }}}
+" Vue {{{
+"Plug 'posva/vim-vue'
+" }}}
+" Binary {{{
+"Plug 'fidian/hexmode'
+" }}}
+" Swift {{{
+"Plug 'keith/swift.vim'
+" }}}
+" TOML {{{
+"Plug 'cespare/vim-toml'
+" }}}
+" QML {{{
+"Plug 'peterhoeg/vim-qml'
+" }}}
+" Ruby {{{
+"Plug 'vim-ruby/vim-ruby'
+" }}}
+" PGP {{{
+"Plug 'jamessan/vim-gnupg'
+" }}}
+" CSS {{{
+Plug 'ap/vim-css-color', { 'for': 'css' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+" }}}
+" Rust {{{
+"Plug 'rust-lang/rust.vim'
+" }}}
+" i3 {{{
+Plug 'mboughaba/i3config.vim'
+autocmd vimrc BufNewFile,BufRead ~/.config/i3/config set ft=i3config
+" }}}
+" C++ {{{
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'Kris2k/A.vim', { 'for': 'cpp' }
+  let g:alternateExtensions_cc = "hh,h,hpp"
+  let g:alternateExtensions_hh = "cc"
+  let g:alternateExtensions_hxx = "cxx"
+  let g:alternateExtensions_cxx = "hxx,h"
+" Look at the alternative
+" https://github.com/derekwyatt/vim-fswitch/blob/master/doc/fswitch.txt
+Plug 'drmikehenry/vim-headerguard', { 'for': 'cpp' }
+
+" Use gf for jump to #include files based on compiledb info
+Plug 'martong/vim-compiledb-path', { 'for': 'cpp' }
+
+" Consider https://github.com/rhysd/unite-n3337
+" }}}
+" VimL {{{
+Plug 'Shougo/neco-vim', { 'for': 'vim' }
+Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
+" TODO: test
+"Plug 'fcpg/vim-complimentary'
+" }}}
+" Go {{{
+if executable('go')
+    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for': 'go'}
+    let g:go_term_mode = "split"
+    let g:go_term_height = 10
+    let g:go_list_type = "quickfix"
+
+    " run :GoBuild or :GoTestCompile based on the go file
+    function! s:build_go_files()
+        let l:file = expand('%')
+        if l:file =~# '^\f\+_test\.go$'
+            call go#test#Test(0, 1)
+        elseif l:file =~# '^\f\+\.go$'
+            call go#cmd#Build(0)
+        endif
+    endfunction
+
+    function! Go_init()
+        nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+        nmap <leader>r <Plug>(go-run)
+        nmap <leader>n <Plug>(go-test)
+        nnoremap <leader>a :cclose<CR>
+    endf
+    autocmd vimrc FileType go call Go_init()
+endif
+
+" }}}
+" Speech {{{
+" Use grammar check
+Plug 'rhysd/vim-grammarous', { 'for': 'markdown' }
+" check comments only except for markdown and vim help
+let g:grammarous#default_comments_only_filetypes = {
+            \ '*' : 1, 'help' : 0, 'markdown' : 0,
+            \ }
+let g:grammarous#disabled_rules = {
+            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES'],
+            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
+            \ }
+" }}}
+" Markdown {{{
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+" You should run cargo build --release in the plugin directory after installation on new machine
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for':
+    \ 'markdown' }
+" don't open browser each time on md files
+let g:markdown_composer_open_browser = 0
+" }}}
+" Ansible {{{
+Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
+" }}}
+" HTML {{{
+Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
+let g:user_emmet_install_global = 0
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
+autocmd vimrc FileType html,css,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" autocmd for manual loading moved below 'call plug#end()' line to avoid E492
+" error
+
+" quick attributes, eg:
+autocmd vimrc FileType html,css,javascript.jsx imap <leader>id id=""<esc>s
+autocmd vimrc FileType html,css,javascript.jsx imap <leader>cl class=""<esc>s
+
+" close last open tag
+autocmd vimrc FileType html,css,javascript.jsx imap <leader>/ </><esc>s<C-x><C-o>
+
+" easy br:
+imap <M-Return> <br />
+nmap <M-Return> o<br /><esc>
+" }}}
+
+" }}}
 
 " Git support
 Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff',
@@ -156,52 +275,82 @@ let g:startify_lists = [
 " new message and not re-edit the previous one
 Plug 'farmergreg/vim-lastplace'
 
+" ColorScheme {{{
 " use 24-bit color
 set termguicolors
 
 " Colorschemes, pick one, but others stay disabled
 "Plug 'junegunn/seoul256.vim'
-Plug 'morhetz/gruvbox'
-" Without backgroung lines italic font won't work
-let g:gruvbox_italic=1
-let g:gruvbox_improved_strings=1
-set background=dark
+"Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'gruvbox-community/gruvbox'
+" }}}
+
+" Highlighting {{{
+" Trailing spaces
+Plug 'ntpeters/vim-better-whitespace'
 
 " Indent Lines
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'man://.*']
+" }}}
 
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
+" UI {{{
+
+" lightline and coc.nvim integration
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
 endfunction
 
-" You should run cargo build --release in the plugin directory after installation on new machine
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'for':
-    \ 'markdown' }
-" don't open browser each time on md files
-let g:markdown_composer_open_browser = 0
-
-" Use grammar check
-Plug 'rhysd/vim-grammarous', { 'for': 'markdown' }
-" check comments only except for markdown and vim help
-let g:grammarous#default_comments_only_filetypes = {
-            \ '*' : 1, 'help' : 0, 'markdown' : 0,
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+            \ 'colorscheme': 'gruvbox',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+            \ },
+            \ 'component_function': {
+            \   'cocstatus': 'coc#status',
+            \   'currentfunction': 'CocCurrentFunction'
+            \ },
             \ }
-let g:grammarous#disabled_rules = {
-            \ '*' : ['WHITESPACE_RULE', 'EN_QUOTES'],
-            \ 'help' : ['WHITESPACE_RULE', 'EN_QUOTES', 'SENTENCE_WHITESPACE', 'UPPERCASE_SENTENCE_START'],
-            \ }
+let g:lightline.separator = {'left': '', 'right': ''}
+let g:lightline.subseparator = {'left': '', 'right': ''}
 
-" If you use vim-airline you need this
-let g:airline_powerline_fonts = 1
-" Always load the vim-devicons as the very last one.
+Plug 'mengelbrecht/lightline-bufferline'
+" Forces the tabline to always show
+set showtabline=2
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#number_map = {
+            \ 0: '➓', 1: '➊', 2: '➋', 3: '➌', 4: '➍',
+            \ 5: '➎', 6: '➏', 7: '➐', 8: '➑', 9: '➒'}
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#min_buffer_count = 2
+
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
+" After installing statusline plugin by the way, -- INSERT -- is unnecessary
+" anymore because the mode information is displayed in the statusline.
+" lightline.vim - tutorial If you want to get rid of it, configure as follows.
+set noshowmode
+
 Plug 'ryanoasis/vim-devicons', { 'on':  'NERDTreeToggle' }
+
+" }}}
 
 " Good thing for code refactoring, conversions to camelCase, snake_case,
 " UPPER_CASE and so on
@@ -216,117 +365,21 @@ Plug 'tpope/vim-unimpaired'
 " [b is :bprevious
 " TODO: https://github.com/tpope/vim-unimpaired
 
-" Language Client Support
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" See other options in langs.vim
-
 " Outline support for LS
 Plug 'liuchengxu/vista.vim', { 'on':  'Vista' }
-let g:vista_default_executive = 'lcn'
+let g:vista_default_executive = 'coc'
+let g:vista_echo_cursor_strategy = 'floating_win'
 nmap <F9> :Vista!!<CR>
-"
+
 " close vim if the only window left open is a Vista
-autocmd bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#sidebar#IsVisible()) | q | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vista#sidebar#IsVisible()) | q | endif
 
 " TODO:
 " NearestMethodOrFunction from readme
 
-" Cpp support {{{
-Plug 'Kris2k/A.vim', { 'for': 'cpp' }
-  let g:alternateExtensions_cc = "hh,h,hpp"
-  let g:alternateExtensions_hh = "cc"
-  let g:alternateExtensions_hxx = "cxx"
-  let g:alternateExtensions_cxx = "hxx,h"
-" Look at the alternative
-" https://github.com/derekwyatt/vim-fswitch/blob/master/doc/fswitch.txt
-Plug 'drmikehenry/vim-headerguard', { 'for': 'cpp' }
-
-" Use gf for jump to #include files based on compiledb info
-Plug 'martong/vim-compiledb-path', { 'for': 'cpp' }
-
-" Consider https://github.com/rhysd/unite-n3337
-" Cpp support}}}
-
-if executable('go')
-    " Go support {{{
-    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries', 'for': 'go'}
-    let g:go_term_mode = "split"
-    let g:go_term_height = 10
-    let g:go_list_type = "quickfix"
-
-    " run :GoBuild or :GoTestCompile based on the go file
-    function! s:build_go_files()
-        let l:file = expand('%')
-        if l:file =~# '^\f\+_test\.go$'
-            call go#test#Test(0, 1)
-        elseif l:file =~# '^\f\+\.go$'
-            call go#cmd#Build(0)
-        endif
-    endfunction
-
-    function! Go_init()
-        nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-        nmap <leader>r <Plug>(go-run)
-        nmap <leader>n <Plug>(go-test)
-        nnoremap <leader>a :cclose<CR>
-    endf
-    autocmd FileType go call Go_init()
-
-    " Autocompletion stuff
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
-    let g:deoplete#sources#go#unimported_packages = 1
-    " ATTENZIONE PREGO: install only https://github.com/mdempsky/gocode
-    " }}}
-endif
-
-" Vimscript support {{{
-Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
-
-" TODO: test
-"Plug 'fcpg/vim-complimentary'
-" }}}
-
-" HTML support {{{
-Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
-let g:user_emmet_install_global = 0
-let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\      'extends' : 'jsx',
-\  },
-\}
-autocmd FileType html,css,javascript.jsx imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-" autocmd for manual loading moved below 'call plug#end()' line to avoid E492
-" error
-
-" quick attributes, eg:
-autocmd FileType html,css,javascript.jsx imap <leader>id id=""<esc>s
-autocmd FileType html,css,javascript.jsx imap <leader>cl class=""<esc>s
-
-" close last open tag
-autocmd FileType html,css,javascript.jsx imap <leader>/ </><esc>s<C-x><C-o>
-
-" easy br:
-imap <M-Return> <br />
-nmap <M-Return> o<br /><esc>
-" }}}
-
-" CSS support {{{
-Plug 'ap/vim-css-color', { 'for': 'css' }
-" }}}
-
-" Ansible support {{{
-Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
-" }}}
-
 " Many langs formatter support (see plugin page) {{{
 Plug 'sbdchd/neoformat'
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+autocmd vimrc BufWritePre * undojoin | Neoformat
 " install formatters:
 " pip install --user cmake_format
 " rustup component add rustfmt && rustup component add clippy
@@ -367,34 +420,42 @@ endfunction
 " Fuzzy finder shortcut
 nnoremap <C-p> :FZF<CR>
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" Diagnostics {{{
+" Vim files autocomplete support
+Plug 'neoclide/coc-neco'
+
+" TODO: coc-git, coc-pairs
+let g:coc_global_extensions = [
+            \   'coc-css',
+            \   'coc-rls',
+            \   'coc-html',
+            \   'coc-json',
+            \   'coc-java',
+            \   'coc-pyls',
+            \   'coc-yaml',
+            \   'coc-emmet',
+            \   'coc-eslint',
+            \   'coc-tsserver',
+            \   'coc-sh'
+            \ ]
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
-
-" Less annoying completion preview window based on neovim's floating window
-Plug 'ncm2/float-preview.nvim'
-let g:float_preview#docked = 0
-set completeopt-=preview
-
-function! DisableExtras()
-  call nvim_win_set_option(g:float_preview#win, 'number', v:false)
-  call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
-  call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
-endfunction
-
-autocmd User FloatPreviewWinOpen call DisableExtras()
-
-Plug 'Shougo/echodoc.vim'
-set cmdheight=2
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
+nmap     <silent>       gd <Plug>(coc-definition)
+autocmd vimrc CursorHold * silent call CocActionAsync('doHover')
+set updatetime=300
+autocmd CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
+" :h coc
+" :h coc-diagnostic-prev , coc-diagnostic-next
+" }}}
 
 " Great learning block
 " Master t/f movements
 Plug 'deris/vim-shot-f'
+" Alternative
+" https://github.com/rhysd/clever-f.vim
+" Also consider about f/t findings on next lines too
 " Master j/k movements
 Plug 'deris/vim-gothrough-jk'
 let g:gothrough_jk_no_default_key_mappings = 1
@@ -412,15 +473,15 @@ vmap ge <Plug>(gothrough-jk-gk)
 "https://github.com/liuchengxu/vim-which-key
 " Easy to work with marks
 Plug 'kshenoy/vim-signature'
+" See what you copying
+" Plug 'machakann/vim-highlightedyank'
 
 Plug 'tpope/vim-surround'
 " https://github.com/tpope/vim-surround, for surrounding by ", ', <tag>'"
 " Also consider https://github.com/rhysd/vim-operator-surround
 
 " Try to resolve paste troubles
-Plug 'ConradIrwin/vim-bracketed-paste'
-
-Plug 'ntpeters/vim-better-whitespace'
+"Plug 'ConradIrwin/vim-bracketed-paste'
 
 call plug#end() " to update &runtimepath and initialize plugin system
 " Automatically executes filetype plugin indent on and syntax enable. You can
@@ -433,7 +494,8 @@ if exists("g:loaded_webdevicons")
 endif
 
 " Post vim-emmet plugin load command
-autocmd FileType html,css,javascript.jsx EmmetInstall
+autocmd vimrc FileType html,css,javascript.jsx EmmetInstall
+
 
 " FOR FUTURE LEARNING
 " Targets.vim is a Vim plugin that adds various text objects to give you more targets to operate on
@@ -465,3 +527,7 @@ autocmd FileType html,css,javascript.jsx EmmetInstall
 " https://github.com/rhysd/reply.vim
 " https://github.com/thinca/vim-quickrun/blob/master/doc/quickrun.txt
 "  with config https://github.com/rhysd/dogfiles/blob/master/vimrc#L1759
+"augroup lightline-bu
+"    au! VimEnter * echom "Test"
+"augroup end
+"https://github.com/oblitum/dotfiles/blob/ArchLinux/.vimrc

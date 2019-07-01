@@ -1,6 +1,10 @@
 " vim:fileencoding=utf-8:ft=vim:foldmethod=marker:tw=80
 
 " BASICS {{{
+
+" Clear old autocmds
+augroup vimrc | autocmd! | augroup end
+
 " We've just elected new leader, welcome "," key!
 let mapleader = ","
 set timeoutlen=5000
@@ -20,7 +24,9 @@ let s:modules = [
 for s:module in s:modules
     execute "source" g:vim_config . s:module . ".vim"
 endfor
-"
+" https://google.github.io/styleguide/vimscriptguide.xml
+"  use plugin-names-like-this, FunctionNamesLikeThis, CommandNamesLikeThis,
+"  augroup_names_like_this, variable_names_like_this
 " }}} BASICS
 
 " CONTROLS {{{
@@ -30,15 +36,21 @@ if has('mouse')
   set mouse=a
 endif
 
-" Disable arrow keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" Disable arrow keys (for newbies)
+"noremap <up> <nop>
+"noremap <down> <nop>
+"noremap <left> <nop>
+"noremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+
+" Make arrow keys do something useful
+nnoremap <left> :vertical resize +2<cr>
+nnoremap <right> :vertical resize -2<cr>
+nnoremap <up> :resize -2<cr>
+nnoremap <down> :resize +2<cr>
 
 " Windows navigation
 " Use Alt-key rather than C-W-key
@@ -108,10 +120,6 @@ set splitright
 " will switch to the last used buffer, then bd# ("buffer detete" "alternate file")
 nmap <silent> <leader>d :b#\|bd #<CR>
 
-" Open file even if it is not exists
-" https://stackoverflow.com/questions/6158294/create-and-open-for-editing-nonexistent-file-under-the-cursor
-nmap <leader>gf :e <cfile><CR>
-
 "" Scrolling
 "set scrolloff=20    " Start scrolling when we're 20 lines away from margins
 "set sidescrolloff=15
@@ -138,7 +146,7 @@ function! TerminalOpen()
     endif
     let bnr = bufname("term://*")
     if empty(bnr)
-        silent! exec 'sp|terminal' 
+        silent! exec 'sp|terminal'
 " uncomment if you want disposable terminal
 "       silent! exec 'setlocal bufhidden=delete'
         silent! exec 'setlocal bufhidden=hide'
@@ -146,6 +154,7 @@ function! TerminalOpen()
         " Check if terminal already on the screen
         silent! exec 'sp|b '.bnr
     endif
+    silent! exec setlocal laststatus=0
     let height = 10
     if exists("g:terminalHeight")
         let height = g:terminalHeight
@@ -154,8 +163,9 @@ function! TerminalOpen()
 endfunc
 nnoremap <silent> <leader>t :call TerminalOpen()<CR>
 
-autocmd TermOpen * set bufhidden=hide
-autocmd TermOpen * set nobuflisted
+autocmd TermOpen * setl bufhidden=hide
+autocmd TermOpen * setl nobuflisted
+"autocmd TermOpen * setl laststatus=0
 
 " Ctrl-V in terminal mode
 tmap <C-V>    <C-\><C-n>"+gPi
@@ -191,7 +201,7 @@ augroup startup
     autocmd TermOpen,BufWinEnter,BufEnter term://*zsh startinsert
 augroup END
 
-" Test scrolling problems 
+" Test scrolling problems
 let g:neoterm_autoscroll = 1
 " Test if will any problems
 let g:neoterm_autoinsert=1
@@ -246,10 +256,7 @@ inoremap рр <BS>
 imap цц <C-w>
 imap ww <C-w>
 
-augroup textfiles
-  autocmd!
-  autocmd filetype markdown :setlocal spell spelllang=en,ru
-augroup end
+autocmd vimrc FileType markdown,gitcommit :setlocal spell spelllang=en,ru
 set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
 " }}} TEXT EDITING
 
@@ -303,7 +310,7 @@ nnoremap <silent> <leader><space> :nohlsearch<Bar>:echo<CR>
 " very tricky way to type Space rather than Shift-;
 " but we need to provide key for unfold
 " TODO: if we just hit Space key and opened fold and stayed here, Space will close it again
-function! KeySpace()
+function! s:KeySpace()
   if bufname("%") =~ "NERD_tree_*"
     exe "normal \<c-w>\<c-l>"
     return
@@ -315,8 +322,7 @@ function! KeySpace()
   endif
 endfunction
 
-nnoremap <silent> <Space> :call KeySpace()<CR>
-
+nnoremap <silent> <Space> :call <SID>KeySpace()<CR>
 
 " }}} FOLDING
 
@@ -335,12 +341,15 @@ set imsearch=0
 
 " GRUVBOX {{{
 if isdirectory(g:vim_config."plugged/gruvbox")
-    colorscheme gruvbox
-    set background=dark
-    let g:gruvbox_italic=1
     let g:gruvbox_terminal_colors = 1
+    " Without backgroung lines italic font won't work
+    let g:gruvbox_italic=1
+    set background=dark
+    colorscheme gruvbox
     " Don't show tildes on blank lines
     highlight NonText ctermfg=bg guifg=bg
+    " Fixing too much bold in method names
+    hi! link Function GruvboxGreen
 endif
 " }}}
 
@@ -360,35 +369,6 @@ set number
 set relativenumber
 " Use F12 for quickly remove line numbers
 noremap <silent> <F12> :set number!<CR> :set relativenumber!<CR>
-" }}}
-
-" COLEMAK {{{
-" TARMAK1
-"
-" Disabled for vim-gothrough-jk plugin
-"noremap n j
-"noremap e k
-noremap gn gj|noremap <C-w>n <C-w>j|noremap <C-w><C-n> <C-w>j|noremap о j
-noremap <C-w>e <C-w>k|noremap <C-w><C-e> <C-w>k|noremap л k
-noremap k n
-noremap K N
-noremap j e
-noremap J E
-" noremap ge gk|
-
-" TARMAK5
-noremap s i|noremap в i
-"noremap S I
-noremap i l|noremap д l
-
-" BOL/EOL/Join Lines.
-noremap l ^|noremap L $|noremap <C-l> J
-" r replaces i as the "inneR" modifier [e.g. "diw" becomes "drw"].
-onoremap r i
-
-" problem in NERD Tree
-" e key don't go up
-let g:NERDTreeMapOpenExpl = ''
 " }}}
 
 " TESTING {{{
@@ -437,3 +417,14 @@ set autowriteall
 set winblend=10
 
 " Use :Rg for file finds
+
+" Don't cut to clipboard by default
+"nnoremap d "_d
+"vnoremap d "_d
+nnoremap C "_C
+vnoremap C "_C
+nnoremap c "_c
+xnoremap c "_c
+
+" Work as man pager settings
+let g:ft_man_folding_enable = 1

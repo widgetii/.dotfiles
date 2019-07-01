@@ -179,6 +179,7 @@ alias e='f() { nvr --remote-send "<esc><C-w>e:e $(pwd)/$1<cr>" };f'
 alias icat="kitty +kitten icat"
 # open file(s) with fzf+vim
 alias vf='vim $(fzf)'
+alias gd='git difftool --no-symlinks --dir-diff'
 
 # TODO
 # good source to work out for git, tmux, docker commands

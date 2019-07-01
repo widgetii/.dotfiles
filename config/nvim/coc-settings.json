@@ -1,0 +1,26 @@
+{
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"]
+        },
+        "efm": {
+            "command": "efm-langserver",
+            "args": [],
+            "filetypes": ["vim", "eruby", "markdown"]
+        },
+        "yaml": {
+            "command": "yaml-language-server",
+            "args": ["--stdio"],
+            "filetypes": ["2aml.ansible"]
+        }
+    },
+    "signature.floatTimeout": 1000,
+    "suggest.noselect": false
+}
