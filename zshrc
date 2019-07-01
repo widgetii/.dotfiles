@@ -254,6 +254,7 @@ RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $RPROMPT_PREFIX%f%b%k$(build_
 # My trial of make autosuggestion like autocomplete in Vim
 
 bindkey '^y' autosuggest-execute
+bindkey -M vicmd '^y' autosuggest-execute
 # ^e as in Vim conflicts with Emacs to end of line shortcut
 bindkey '^q' autosuggest-clear
 # fill the line (make autocompletion but don't execute it)
