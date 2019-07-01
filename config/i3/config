@@ -40,13 +40,14 @@ bindsym $mod+Mod5+Q kill
 bindsym $mod+mod2+d exec rofi -show drun
 
 # change focus
-#bindsym $mod+h focus left
 bindsym $mod+mod2+h focus left
 bindsym $mod+mod2+n focus down
 bindsym $mod+mod2+e focus up
-#bindsym $mod+l focus right
 bindsym $mod+mod2+i focus right
-#bindsym $mod+semicolon focus right
+# Cmd+Tab switches between adjacent windows
+# see https://faq.i3wm.org/question/389/focus-next-window/%3C/p%3E.html
+# for non-trivial scipting solution
+bindsym mod4+Tab    focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
