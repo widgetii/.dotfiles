@@ -223,6 +223,8 @@ Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff',
             \ 'Gblame', 'Git', 'Ggrep'] }
 " Try also https://github.com/jreybert/vimagit
 Plug 'airblade/vim-gitgutter'
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 " * stage the hunk with (hunk add)
 nmap <Leader>ha <Plug>GitGutterStageHunk
 " * revert it with (hunk revert)
@@ -427,27 +429,33 @@ Plug 'neoclide/coc-neco'
 " TODO: coc-git, coc-pairs
 let g:coc_global_extensions = [
             \   'coc-css',
-            \   'coc-rls',
-            \   'coc-html',
-            \   'coc-json',
-            \   'coc-java',
-            \   'coc-pyls',
-            \   'coc-yaml',
             \   'coc-emmet',
             \   'coc-eslint',
+            \   'coc-html',
+            \   'coc-java',
+            \   'coc-json',
+            \   'coc-pyls',
+            \   'coc-rls',
+            \   'coc-sh',
             \   'coc-tsserver',
-            \   'coc-sh'
+            \   'coc-vimlsp',
+            \   'coc-yaml',
             \ ]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
-nmap     <silent>       gd <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+
 autocmd vimrc CursorHold * silent call CocActionAsync('doHover')
 set updatetime=300
 autocmd CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
 " :h coc
 " :h coc-diagnostic-prev , coc-diagnostic-next
+"   " Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " }}}
 
 " Great learning block
