@@ -2,6 +2,7 @@
     "languageserver": {
         "clangd": {
             "command": "clangd",
+            "args": ["-background-index"],
             "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "filetypes": ["c", "cpp", "objc", "objcpp"]
         },
@@ -13,14 +14,25 @@
         "efm": {
             "command": "efm-langserver",
             "args": [],
-            "filetypes": ["vim", "eruby", "markdown"]
+            "filetypes": ["eruby", "markdown"]
         },
         "yaml": {
             "command": "yaml-language-server",
             "args": ["--stdio"],
             "filetypes": ["2aml.ansible"]
-        }
+        },
+        "bash": {
+              "command": "bash-language-server",
+              "args": ["start"],
+              "filetypes": ["sh"],
+              "ignoredRootPaths": ["~"]
+        },
     },
     "signature.floatTimeout": 1000,
-    "suggest.noselect": false
+    "suggest.noselect": false,
+    "diagnostic.errorSign": " ",
+    "diagnostic.warningSign": " ",
+    "diagnostic.infoSign": " ",
+    "diagnostic.hintSign": "",
+    "codeLens.enable": true,
 }
