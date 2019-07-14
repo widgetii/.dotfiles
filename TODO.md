@@ -1,4 +1,11 @@
-# Nvim
+# Planned improvements in the future
+
+## Nvim
+
+## Bugs
+
+`Tab` on /etc/hosts on Mac while adding new line
+Editing shell files under sudo (ppp ip scripts)
 
 ## Terminal enhancements
 
@@ -41,3 +48,7 @@ gf
 ## Zsh
 
 Ctrl-A, Ctrl-E keys in Vi mode
+
+## Dotfiles manager
+
+[yadm - Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm)
