@@ -426,6 +426,8 @@ nnoremap <C-p> :FZF<CR>
 " Vim files autocomplete support
 Plug 'neoclide/coc-neco'
 
+" fix coc-sh
+let $MANPAGER="less"
 " TODO: coc-git, coc-pairs
 let g:coc_global_extensions = [
             \   'coc-css',
@@ -441,6 +443,7 @@ let g:coc_global_extensions = [
             \   'coc-vimlsp',
             \   'coc-yaml',
             \ ]
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
