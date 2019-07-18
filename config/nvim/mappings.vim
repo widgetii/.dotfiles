@@ -52,6 +52,8 @@ endfunction
 
 autocmd vimrc FileType cpp call s:DetectCCIncludes()
 autocmd vimrc FileType cpp setlocal cinoptions+=L0 " disable automatic label dedent
+" TODO:
+" autocreate .clang-tidy file for new project using "clang-tidy --dump-config"
 " }}}
 
 " COLEMAK {{{

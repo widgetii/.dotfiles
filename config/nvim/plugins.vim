@@ -426,6 +426,8 @@ nnoremap <C-p> :FZF<CR>
 " Vim files autocomplete support
 Plug 'neoclide/coc-neco'
 
+" fix coc-sh
+let $MANPAGER="less"
 " TODO: coc-git, coc-pairs
 let g:coc_global_extensions = [
             \   'coc-css',
@@ -441,6 +443,7 @@ let g:coc_global_extensions = [
             \   'coc-vimlsp',
             \   'coc-yaml',
             \ ]
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
@@ -517,6 +520,8 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+nmap <leader>, :echom "Smart Fix"<CR>
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 nmap <silent> <TAB> <Plug>(coc-range-select)

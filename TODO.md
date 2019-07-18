@@ -1,4 +1,11 @@
-# Nvim
+# Planned improvements in the future
+
+## Nvim
+
+## Bugs
+
+`Tab` on /etc/hosts on Mac while adding new line
+Editing shell files under sudo (ppp ip scripts)
 
 ## Terminal enhancements
 
@@ -45,3 +52,7 @@ Ctrl-A, Ctrl-E, Ctrl-W keys in Vi mode
 ## Kitty
 
 Test emoji both in Arch and MacOS - https://github.com/kovidgoyal/kitty/issues/73
+
+## Dotfiles manager
+
+[yadm - Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm)

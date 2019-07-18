@@ -27,12 +27,22 @@
               "filetypes": ["sh"],
               "ignoredRootPaths": ["~"]
         },
+        "groovy": {
+            "command": "java",
+            "args": ["-jar", "/usr/local/bin/groovy-language-server-all.jar"],
+            "filetypes": ["groovy"]
+        },
+        "dockerfile": {
+            "command": "docker-langserver",
+            "filetypes": ["Dockerfile"],
+            "args": ["--stdio"]
+        }
     },
-    "signature.floatTimeout": 1000,
+    "coc.preferences.hoverTarget": "echo",
     "suggest.noselect": false,
-    "diagnostic.errorSign": " ",
-    "diagnostic.warningSign": " ",
-    "diagnostic.infoSign": " ",
-    "diagnostic.hintSign": "",
-    "codeLens.enable": true,
+    "diagnostic.errorSign": "✗",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "•",
+    "diagnostic.hintSign": "λ",
+    "codeLens.enable": true
 }
