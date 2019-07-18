@@ -13,7 +13,7 @@ gf
 
 ### Go
 
-[Gopls](https://github.com/golang/go/wiki/gopls) when it will stable
+[Gopls](https://github.com/golang/go/wiki/gopls) when it will be stable
 
 ### Others
 
@@ -40,4 +40,8 @@ gf
 
 ## Zsh
 
-Ctrl-A, Ctrl-E keys in Vi mode
+Ctrl-A, Ctrl-E, Ctrl-W keys in Vi mode
+
+## Kitty
+
+Test emoji both in Arch and MacOS - https://github.com/kovidgoyal/kitty/issues/73
