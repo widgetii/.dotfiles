@@ -49,8 +49,10 @@ endif
 " Make arrow keys do something useful
 nnoremap <left> :vertical resize +2<cr>
 nnoremap <right> :vertical resize -2<cr>
-nnoremap <up> :resize -2<cr>
-nnoremap <down> :resize +2<cr>
+nnoremap <down> :resize -2<cr>
+tnoremap <down> <C-\><C-N>:resize -2<cr>a
+nnoremap <up> :resize +2<cr>
+tnoremap <up> <C-\><C-N>:resize +2<cr>a
 
 " Windows navigation
 " Use Alt-key rather than C-W-key
@@ -239,8 +241,9 @@ au FileType vim  setlocal ts=4 sts=4 sw=4 tw=79 et ai fileformat=unix list
 au FileType javascript  setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
 au FileType python      setlocal ts=4 sts=4 sw=4 tw=79 et ai fileformat=unix list
 au FileType yaml        setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au FileType hcl         setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
 au BufRead,BufNewFile MAINTAINERS setlocal ft=toml
-au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */infra_gil/*.yml set filetype=yaml.ansible
 
 " }}} TABS&SPACES
 

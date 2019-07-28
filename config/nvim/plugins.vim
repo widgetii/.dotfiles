@@ -385,6 +385,9 @@ autocmd vimrc BufWritePre * undojoin | Neoformat
 " install formatters:
 " pip install --user cmake_format
 " rustup component add rustfmt && rustup component add clippy
+
+" formats *.hcl, *.tf and *.nomad files
+Plug 'fatih/vim-hclfmt'
 " }}}
 
 "Plug 'embear/vim-localvimrc'
@@ -458,6 +461,7 @@ set updatetime=300
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" check inside check_back_space
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -537,7 +541,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-autocmd vimrc CursorHold * silent call CocActionAsync('doHover')
+" Disabled due to too annoying while navigating in normal mode
+"autocmd vimrc CursorHold * silent call CocActionAsync('doHover')
 
 " Show signature help while editing
 "autocmd CursorHoldI * silent! call CocAction('showSignatureHelp')

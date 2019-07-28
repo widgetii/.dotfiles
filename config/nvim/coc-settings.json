@@ -19,7 +19,7 @@
         "yaml": {
             "command": "yaml-language-server",
             "args": ["--stdio"],
-            "filetypes": ["yaml"],
+            "filetypes": ["yaml", "yaml.ansible"],
             "trace.server": "verbose",
             "settings": {
                 "yaml": {
@@ -27,7 +27,8 @@
                         "server": "verbose"
                     },
                     "schemas": {
-                        "kubernetes": "/**"
+                        "kubernetes": "/**",
+                        "http://json.schemastore.org/ansible-stable-2.5": "infra_gil/*"
                     },
                     "format": {
                         "enable": true
