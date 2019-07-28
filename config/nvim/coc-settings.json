@@ -16,16 +16,30 @@
             "args": [],
             "filetypes": ["eruby", "markdown"]
         },
-        "yaml": {
+        "yaml.kubernetes": {
             "command": "yaml-language-server",
             "args": ["--stdio"],
-            "filetypes": ["2aml.ansible"]
+            "filetypes": ["yaml.kubernetes"],
+            "settings": {
+                "yaml": {
+                    "trace": {
+                        "server": "verbose"
+                    },
+                    "schemas": {
+                        "kubernetes": "/**"
+                    },
+                    "format": {
+                        "enable": true
+                    },
+                    "validate": true
+                }
+            },
         },
         "bash": {
-              "command": "bash-language-server",
-              "args": ["start"],
-              "filetypes": ["sh"],
-              "ignoredRootPaths": ["~"]
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
         },
         "groovy": {
             "command": "java",
