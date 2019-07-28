@@ -16,10 +16,11 @@
             "args": [],
             "filetypes": ["eruby", "markdown"]
         },
-        "yaml.kubernetes": {
+        "yaml": {
             "command": "yaml-language-server",
             "args": ["--stdio"],
-            "filetypes": ["yaml.kubernetes"],
+            "filetypes": ["yaml"],
+            "trace.server": "verbose",
             "settings": {
                 "yaml": {
                     "trace": {
@@ -31,7 +32,9 @@
                     "format": {
                         "enable": true
                     },
-                    "validate": true
+                    "validate": true,
+                    "completion": true,
+                    "hover": true
                 }
             },
         },
