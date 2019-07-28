@@ -213,7 +213,7 @@ function install_neovim {
         sudo apt-get -y install neovim
         sudo apt-get -y install python-dev python-pip python3-dev python3-pip
         ONLY_ALTUPD=1
-        ;&
+        ;;
     Debian*)
         # for Debian only
         [ -z "$ONLY_ALTUPD" ] && {
