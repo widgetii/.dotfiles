@@ -18,7 +18,6 @@ let s:modules = [
             \ "settings",
             \ "mappings",
             \ "plugins",
-            \ "langs",
             \]
 
 for s:module in s:modules
