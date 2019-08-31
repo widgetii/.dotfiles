@@ -390,11 +390,6 @@ autocmd vimrc BufWritePre * undojoin | Neoformat
 Plug 'fatih/vim-hclfmt'
 " }}}
 
-"Plug 'embear/vim-localvimrc'
-" Disable sandbox mode
-"let g:localvimrc_sandbox = 0
-"let g:localvimrc_ask = 0
-
 " Multi-entry selection UI.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
