@@ -152,8 +152,7 @@ function! TerminalOpen()
 "       silent! exec 'setlocal bufhidden=delete'
         silent! exec 'setlocal bufhidden=hide'
     else
-        " Check if terminal already on the screen
-        silent! exec 'sp|b '.bnr
+        silent! exec 'sbuffer '.bnr
     endif
     silent! exec setlocal laststatus=0
     let height = 10
@@ -162,6 +161,8 @@ function! TerminalOpen()
     endif
     silent! exec 'resize '.height
 endfunc
+" Check if terminal is already on the screen
+set switchbuf=useopen
 nnoremap <silent> <leader>t :call TerminalOpen()<CR>
 
 autocmd TermOpen * setl bufhidden=hide

@@ -335,15 +335,25 @@ let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#min_buffer_count = 2
 
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+tmap <Leader>1 <C-\><C-N><C-w>k<Leader>1
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+tmap <Leader>2 <C-\><C-N><C-w>k<Leader>2
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+tmap <Leader>3 <C-\><C-N><C-w>k<Leader>3
 nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+tmap <Leader>4 <C-\><C-N><C-w>k<Leader>4
 nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+tmap <Leader>5 <C-\><C-N><C-w>k<Leader>5
 nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+tmap <Leader>6 <C-\><C-N><C-w>k<Leader>6
 nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+tmap <Leader>7 <C-\><C-N><C-w>k<Leader>7
 nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+tmap <Leader>8 <C-\><C-N><C-w>k<Leader>8
 nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+tmap <Leader>9 <C-\><C-N><C-w>k<Leader>9
 nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+tmap <Leader>0 <C-\><C-N><C-w>k<Leader>0
 
 " After installing statusline plugin by the way, -- INSERT -- is unnecessary
 " anymore because the mode information is displayed in the statusline.
