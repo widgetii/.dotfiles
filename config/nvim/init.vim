@@ -154,7 +154,7 @@ function! TerminalOpen()
     else
         silent! exec 'sbuffer '.bnr
     endif
-    silent! exec setlocal laststatus=0
+    silent! exec 'setlocal laststatus=0'
     let height = 10
     if exists("g:terminalHeight")
         let height = g:terminalHeight
