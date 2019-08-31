@@ -56,3 +56,8 @@ Test emoji both in Arch and MacOS - https://github.com/kovidgoyal/kitty/issues/7
 ## Dotfiles manager
 
 [yadm - Yet Another Dotfiles Manager](https://github.com/TheLocehiliosan/yadm)
+
+## System improvements
+
+Work out how to handle `printf "\033]52;c;$(printf "%s" "blabla" | base64)\a"`
+with tmux. Think about how to log OCS52 sequences
