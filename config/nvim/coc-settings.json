@@ -54,9 +54,15 @@
             "command": "docker-langserver",
             "filetypes": ["Dockerfile"],
             "args": ["--stdio"]
+        },
+        "metals": {
+            "command": "metals-vim",
+            "rootPatterns": ["build.sbt"],
+            "filetypes": ["scala", "sbt"]
         }
     },
     "coc.preferences.hoverTarget": "echo",
+    "suggest.snippetIndicator": "🌟",
     "suggest.noselect": false,
     "diagnostic.errorSign": "✗",
     "diagnostic.warningSign": "⚠",
