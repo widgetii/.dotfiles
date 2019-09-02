@@ -18,6 +18,14 @@ highlighting using with Language Servers).
 
 Moreover is has common look-and-feel for both Mac OS and Linux (sorry MS fans).
 
+## Fonts
+
+Fonts kit for Archlinux:
+```sh
+pacman -S ttf-croscore ttf-dejavu ttf-ubuntu-font-family ttf-inconsolata
+ttf-liberation --noconfirm
+```
+
 ## Keyboard settings
 
 As I use both Mac and Linux I tried to use same keyboard in both cases. So I've
