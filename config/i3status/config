@@ -1,3 +1,6 @@
+# pacman -S ttf-font-awesome
+# select icons from https://fontawesome.com/cheatsheet
+
 general {
     output_format = "i3bar"
     colors = true
@@ -9,11 +12,13 @@ general {
 
 order += "ipv6"
 order += "disk /"
-order += "volume master"
+order += "volume monitor"
+order += "volume headphones"
 #order += "run_watch DHCP"
 #order += "run_watch VPNC"
 order += "path_exists PTech"
 order += "path_exists PGW"
+order += "path_exists MIT"
 order += "wireless wlp8s0"
 #order += "ethernet enp12s0"
 #order += "battery 0"
@@ -22,12 +27,22 @@ order += "load"
 order += "tztime local"
 #order += "tztime berlin"
 
-volume master {
-    format = "♪: %volume"
+volume monitor {
+    format = "♪:%volume"
     format_muted = "♪: (%volume)"
-    device = "pulse:alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2"
+    device = "default"
     mixer = "Master"
     mixer_idx = 0
+}
+
+volume headphones {
+    format = "♪: %volume"
+    format_muted = ": (%volume)"
+    # update with:
+    # $ pacmd list-sinks | grep name:
+    device = "alsa_output.usb-Plantronics_Wireless_Audio_Plantronics_GameCom_818-00.analog-stereo"
+#    mixer = "Master"
+#    mixer_idx = 0
 }
 
 wireless wlp8s0 {
@@ -67,8 +82,13 @@ path_exists PTech {
 }
 
 path_exists PGW {
-    format = " %title"
+    format = "%title"
     path = "/home/dima/.ssh/control-127.0.0.1-10003-dmitriii"
+}
+
+path_exists MIT {
+    format = "%title"
+    path = "/run/ppp205.active"
 }
 
 tztime local {
