@@ -410,9 +410,9 @@ command -v nvim -version >/dev/null || {
 clean_up
 
 # close stdin after dup'ing it to FD 6
-exec 6<&0
+#exec 6<&0
 # open /dev/tty as stdin
-exec 0</dev/tty
+#exec 0</dev/tty
 
-[[ "$SHELL" =~ (bash) ]] && exec zsh
+#[[ "$SHELL" =~ (bash) ]] && exec zsh
 
