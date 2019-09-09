@@ -48,11 +48,12 @@ xmodmap -e "add mod4 = Super_L Super_R"
 
 
 spare_modifier="Hyper_L"
-xmodmap -e "keycode 65 = $spare_modifier"   
+xmodmap -e "keycode 65 = $spare_modifier"
 xmodmap -e "add Hyper_L = $spare_modifier"
-xmodmap -e "keycode any = space"  
+xmodmap -e "keycode any = space"
 #xcape -t 1000 -e "$spare_modifier=space"
-$HOME/xcape3 -t 1000 -e "$spare_modifier=space"
+# let's bisect time period and find proper
+$HOME/xcape3 -t 500 -e "$spare_modifier=space"
 
 # Shift and parenthesis
 xcape -t 250 -e 'Shift_L=parenleft;ISO_Level3_Shift=parenright'
@@ -85,5 +86,6 @@ export TERMINAL=/usr/bin/kitty
 compton -b -i 0.8
 flameshot &
 clipit &
+/usr/lib/notify-osd/notify-osd &
 exec i3
 
