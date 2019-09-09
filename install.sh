@@ -7,6 +7,7 @@
 
 # TODO:
 # setup OS X using ideas from https://github.com/diimdeep/dotfiles/tree/master/osx/configure
+# setup node on Linux using https://github.com/nodesource/distributions
 
 set -e
 
