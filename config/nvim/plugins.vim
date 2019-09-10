@@ -619,6 +619,12 @@ Plug 'tpope/vim-surround'
 " Try to resolve paste troubles
 "Plug 'ConradIrwin/vim-bracketed-paste'
 
+Plug 'janko/vim-test'
+let test#strategy = "dispatch"
+Plug 'tpope/vim-dispatch'
+
+autocmd vimrc FileType java,scala nmap <silent> <leader>n :TestNearest<CR>
+
 call plug#end() " to update &runtimepath and initialize plugin system
 " Automatically executes filetype plugin indent on and syntax enable. You can
 " revert the settings after the call. e.g. filetype indent off, syntax off, etc.
