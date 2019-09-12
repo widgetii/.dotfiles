@@ -198,6 +198,7 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 " }}}
 " HTML {{{
 Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
+let g:user_emmet_leader_key='<C-z>'
 let g:user_emmet_install_global = 0
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
