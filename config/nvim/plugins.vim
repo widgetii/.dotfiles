@@ -228,12 +228,12 @@ Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff',
             \ 'Gblame', 'Git', 'Ggrep'] }
 " Try also https://github.com/jreybert/vimagit
 Plug 'airblade/vim-gitgutter'
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 " * stage the hunk with (hunk add)
-nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>ha <Plug>(GitGutterStageHunk)
 " * revert it with (hunk revert)
-nmap <Leader>hr <Plug>GitGutterRevertHunk
+nmap <Leader>hr <Plug>(GitGutterRevertHunk)
 " Git + Floating Preview Window
 Plug 'rhysd/git-messenger.vim', { 'on':  'GitMessenger' }
 " Consider https://github.com/rhysd/conflict-marker.vim
