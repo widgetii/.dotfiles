@@ -192,6 +192,10 @@ let g:markdown_composer_open_browser = 0
 " Ansible {{{
 Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 " }}}
+" {{{ JavaScript
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+" }}}
 " HTML {{{
 Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
 let g:user_emmet_install_global = 0
