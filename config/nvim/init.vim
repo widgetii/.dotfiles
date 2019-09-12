@@ -431,3 +431,10 @@ xnoremap c "_c
 
 " Work as man pager settings
 let g:ft_man_folding_enable = 1
+
+" When internal LSP will be ready
+if luaeval("vim.lsp ~= nil")
+    nnoremap <buffer> <C-]> :lua vim.lsp.request_async('textDocument/definition')
+    let g:lsp_serverconfig_c = {"cmd": ["clangd", "--background-index"]}
+    let g:lsp_serverconfig_rust = {"cmd": ["rls", "--some-opt"], "some_flag": v:true}
+endif
