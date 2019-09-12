@@ -396,8 +396,20 @@ autocmd vimrc bufenter * if (winnr("$") == 1 && bufname('') == '__vista__' && vi
 
 " Many langs formatter support (see plugin page) {{{
 Plug 'sbdchd/neoformat'
-autocmd vimrc BufWritePre * undojoin | Neoformat
+let g:neoformat_enabled_java = ['clangformat']
+let g:neoformat_java_clangformat = {
+    \ 'exe': 'clang-format',
+    \ 'args': ['-fallback-style=Google'],
+  \ }
+" Support e4x/jsx syntax
+let g:neoformat_javascript_jsbeautify = {
+    \ 'args': ['--e4x'],
+  \ }
+
+" https://github.com/sbdchd/neoformat/issues/134
+autocmd vimrc BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 " install formatters:
+" npm -g install js-beautify (JavaScript, HTML, JSON, CSS)
 " pip install --user cmake_format
 " rustup component add rustfmt && rustup component add clippy
 
