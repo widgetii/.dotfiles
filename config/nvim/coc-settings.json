@@ -59,6 +59,11 @@
             "command": "metals-vim",
             "rootPatterns": ["build.sbt"],
             "filetypes": ["scala", "sbt"]
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": ["terraform"],
+            "initializationOptions": {}
         }
     },
     "coc.preferences.hoverTarget": "echo",
@@ -68,5 +73,6 @@
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "•",
     "diagnostic.hintSign": "λ",
-    "codeLens.enable": true
+    "codeLens.enable": true,
+    "java.errors.incompleteClasspath.severity": "ignore"
 }
