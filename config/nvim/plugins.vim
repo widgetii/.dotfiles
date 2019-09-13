@@ -402,6 +402,7 @@ let g:neoformat_java_clangformat = {
     \ 'args': ['-fallback-style=Google'],
   \ }
 " Support e4x/jsx syntax
+let g:neoformat_enabled_javascript = ['jsbeautify']
 let g:neoformat_javascript_jsbeautify = {
     \ 'args': ['--e4x'],
   \ }
@@ -464,6 +465,7 @@ let g:coc_global_extensions = [
             \   'coc-pyls',
             \   'coc-rls',
             \   'coc-sh',
+            \   'coc-snippets',
             \   'coc-tsserver',
             \   'coc-vimlsp',
             \   'coc-yaml',
