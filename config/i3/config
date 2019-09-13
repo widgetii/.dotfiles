@@ -69,10 +69,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+mod2+b split h
+bindsym $mod+mod2+b split h;exec notify-send 'split horizontally'
 
 # split in vertical orientation
-bindsym $mod+mod2+v split v
+bindsym $mod+mod2+v split v;exec notify-send 'split vertically'
 
 # enter fullscreen mode for the focused container
 bindsym $mod+mod2+f fullscreen toggle
@@ -138,7 +138,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to poweroff your machine?' -b 'Yes, exit i3' 'poweroff'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -183,6 +183,8 @@ bar {
         inactive_workspace #888888 #222222
         urgent_workspace   #ffffff #900000
     }
+    separator_symbol ">"
+    font pango:DejaVu Sans Mono, FontAwesome 8
     tray_output HDMI-0
 }
 
@@ -206,9 +208,9 @@ bindsym $mod+mod2+x exec i3lock -t -i ~/Documents/My\ Pictures/vax11.png
 bindsym XF86AudioMicMute exec i3lock -t -i ~/Documents/My\ Pictures/vax11.png
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1 toggle # mute sound
 
 # Telegram
 bindsym $mod+Mod5+T exec /usr/bin/telegram-desktop
@@ -220,7 +222,7 @@ assign [class="skype"] $ws5
 for_window [class="skype"] floating disable
 
 # MS Teams
-exec "cd $HOME/git/teams-for-linux && yarn start"
+exec "cd $HOME/git/teams-fix && yarn start"
 assign [title="Microsoft Teams"] $ws5
 
 # Workspace specific startups
@@ -233,7 +235,7 @@ for_window [window_role="pop-up"] floating enable
 #for_window [class="Nautilus" instance="file_progress"] floating enable
 # OR
 for_window [class="Nautilus"] floating enable
-
+for_window [class="Vlc"] floating enable border pixel 2
 for_window [class="xfreerdp"] floating disable
 
 # new for bindsym exec
@@ -252,3 +254,5 @@ bindsym Mod4+shift+4 exec "flameshot gui -p ~/Downloads"
 # Use https://github.com/syl20bnr/i3ci/blob/master/i3_config
 # for new ideas, for eg. functions
 
+# FREE Combinations
+# Cmd + Space
