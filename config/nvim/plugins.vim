@@ -196,6 +196,29 @@ Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 " }}}
+" {{{ Python
+Plug 'numirias/semshi', { 'for': 'python', 'do': ':UpdateRemotePlugins' }
+function! CustomSemshiHighlights()
+  hi semshiLocal           ctermfg=208 guifg=#fe8019
+  hi semshiGlobal          ctermfg=172 guifg=#d79921
+  hi semshiImported        ctermfg=172 guifg=#d79921 gui=NONE
+  hi semshiParameter       ctermfg=109 guifg=#83a598
+  hi semshiParameterUnused ctermfg=108 guifg=#7c6f64 cterm=underline gui=underline
+  hi semshiFree            ctermfg=176 guifg=#d3869b
+  hi semshiBuiltin         ctermfg=132 guifg=#b16286
+  hi semshiAttribute       ctermfg=108 guifg=#8ec07c
+  hi semshiSelf            ctermfg=248 guifg=#bdae93
+  hi semshiUnresolved      ctermfg=166 guifg=#d65d0e cterm=underline gui=underline
+  hi semshiSelected        ctermfg=230 guifg=#f9f5d7 ctermbg=237 guibg=#504945
+
+  hi semshiErrorSign       ctermfg=230 guifg=#f9f5d7 ctermbg=124 guibg=#fb4934
+  hi semshiErrorChar       ctermfg=230 guifg=#f9f5d7 ctermbg=124 guibg=#fb4934
+  sign define semshiError text=E> texthl=semshiErrorSign
+endfunction
+autocmd filetype python call CustomSemshiHighlights()
+" TODO:
+" Look at Here are some possible mappings on plugin page
+" }}}
 " HTML {{{
 Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
 let g:user_emmet_leader_key='<C-z>'
