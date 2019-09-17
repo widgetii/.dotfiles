@@ -60,12 +60,12 @@ function check_connectivity {
 }
 
 function clean_up {
-    [[ ! -z "$CLEANCMD" ]] && {
+    if [[ ! -z "$CLEANCMD" ]]; then
         echo "Perform cleanup:"
         echo $CLEANCMD
         bash -c "$CLEANCMD"
         CLEANCMD=""
-    }
+    fi
 }
 
 function setup_temp_proxies {
