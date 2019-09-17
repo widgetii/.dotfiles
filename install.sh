@@ -10,6 +10,7 @@
 # setup node on Linux using https://github.com/nodesource/distributions
 
 set -e
+set -x
 
 ALTHOMESPACE="/opt/local"
 # Find last stable version on https://github.com/neovim/neovim/releases/tag/stable
