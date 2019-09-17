@@ -247,7 +247,7 @@ function install_pip3 {
     echo "Installing pip3"
     case $OS in
     Ubuntu* | Debian*)
-        sudo apt-get -y install python3-pip
+        sudo apt-get -y install python3-pip python3-setuptools
         ;;
     Arch*)
         ;;
