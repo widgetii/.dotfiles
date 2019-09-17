@@ -402,7 +402,7 @@ fi
 command -v nvim -version >/dev/null || {
     install_neovim
     command -v pip3 >/dev/null || install_pip3
-    pip3 install pynvim --user
+    pip3 install pynvim setuptools --user
     #sh -c 'nvim +PlugInstall +qall </dev/null'
     echo "run:"
     echo "nvim +PlugInstall +qall"
