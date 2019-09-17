@@ -52,6 +52,15 @@ endfunction
 
 autocmd vimrc FileType cpp call s:DetectCCIncludes()
 autocmd vimrc FileType cpp setlocal cinoptions+=L0 " disable automatic label dedent
+
+function! s:EditAlternate()
+    let l:alter = CocRequest('clangd', 'textDocument/switchSourceHeader', {'uri': 'file://'.expand("%:p")})
+    " remove file:/// from response
+    let l:alter = substitute(l:alter, "file://", "", "")
+    echo l:alter
+    execute 'edit ' . l:alter
+endfunction
+autocmd vimrc FileType cpp nmap <leader>z :call <SID>EditAlternate()<CR>
 " TODO:
 " autocreate .clang-tidy file for new project using "clang-tidy --dump-config"
 " }}}

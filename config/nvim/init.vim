@@ -347,6 +347,7 @@ if isdirectory(g:vim_config."plugged/gruvbox")
     let g:gruvbox_terminal_colors = 1
     " Without backgroung lines italic font won't work
     let g:gruvbox_italic=1
+    let g:gruvbox_undercurl=1
     set background=dark
     colorscheme gruvbox
     " Don't show tildes on blank lines
@@ -438,3 +439,8 @@ if luaeval("vim.lsp ~= nil")
     let g:lsp_serverconfig_c = {"cmd": ["clangd", "--background-index"]}
     let g:lsp_serverconfig_rust = {"cmd": ["rls", "--some-opt"], "some_flag": v:true}
 endif
+
+" Better errors/warnings highlights using undercurls
+hi CocUnderline gui=undercurl term=undercurl
+hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=undercurl term=undercurl
+hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl

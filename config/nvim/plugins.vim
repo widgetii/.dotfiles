@@ -197,6 +197,8 @@ Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 " {{{ JavaScript
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+" Install supplemental tools:
+"  npm install -g eslint
 " }}}
 " {{{ Python
 Plug 'numirias/semshi', { 'for': 'python', 'do': ':UpdateRemotePlugins' }
