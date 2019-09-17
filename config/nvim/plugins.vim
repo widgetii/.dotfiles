@@ -70,6 +70,8 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " Universal polyglot syntax pack
 Plug 'sheerun/vim-polyglot'
+" Usiversal hashed syntax highlighting
+Plug 'jaxbot/semantic-highlight.vim'
 
 " JSON {{{
 "Plug 'elzr/vim-json'
@@ -425,7 +427,6 @@ let g:neoformat_java_clangformat = {
     \ 'args': ['-fallback-style=Google'],
   \ }
 " Support e4x/jsx syntax
-let g:neoformat_enabled_javascript = ['jsbeautify']
 let g:neoformat_javascript_jsbeautify = {
     \ 'args': ['--e4x'],
   \ }
