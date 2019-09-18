@@ -197,6 +197,7 @@ Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 " {{{ JavaScript
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+let g:jsx_ext_required = 1
 " Install supplemental tools:
 "  npm install -g eslint
 " }}}
@@ -433,7 +434,7 @@ let g:neoformat_java_clangformat = {
 let g:neoformat_enabled_javascript = ['jsbeautify']
 let g:neoformat_javascript_jsbeautify = {
     \ 'exe': 'js-beautify',
-    \ 'args': ['--e4x'],
+    \ 'args': ['--e4x', '-j', '-s', '2'],
   \ }
 
 " https://github.com/sbdchd/neoformat/issues/134
