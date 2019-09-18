@@ -429,7 +429,10 @@ let g:neoformat_java_clangformat = {
     \ 'args': ['-fallback-style=Google'],
   \ }
 " Support e4x/jsx syntax
+" npm i -g js-beautify
+let g:neoformat_enabled_javascript = ['jsbeautify']
 let g:neoformat_javascript_jsbeautify = {
+    \ 'exe': 'js-beautify',
     \ 'args': ['--e4x'],
   \ }
 
