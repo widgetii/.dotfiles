@@ -223,6 +223,8 @@ endfunction
 autocmd filetype python call CustomSemshiHighlights()
 " TODO:
 " Look at Here are some possible mappings on plugin page
+" Install additional LSP support for coc.nvim:
+" pip install 'python-language-server[all]' pyls-black pyls-isort pyls-mypy
 " }}}
 " HTML {{{
 Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
@@ -436,6 +438,9 @@ let g:neoformat_javascript_jsbeautify = {
     \ 'exe': 'js-beautify',
     \ 'args': ['--e4x', '-j', '-s', '2'],
   \ }
+" Support Python black formatter
+" pip install black
+let g:neoformat_enabled_python = ['black']
 
 " https://github.com/sbdchd/neoformat/issues/134
 autocmd vimrc BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
@@ -492,7 +497,7 @@ let g:coc_global_extensions = [
             \   'coc-html',
             \   'coc-java',
             \   'coc-json',
-            \   'coc-pyls',
+            \   'coc-python',
             \   'coc-rls',
             \   'coc-sh',
             \   'coc-snippets',
