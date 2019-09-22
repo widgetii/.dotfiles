@@ -8,7 +8,6 @@ augroup vimrc | autocmd! | augroup end
 " We've just elected new leader, welcome "," key!
 let mapleader = ","
 set timeoutlen=5000
-let os = substitute(system('uname'), "\n", "", "")
 let s:is_tmux = !empty($TMUX)
 let s:is_ssh = !empty($SSH_TTY)
 

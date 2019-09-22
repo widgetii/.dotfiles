@@ -17,18 +17,18 @@ call plug#begin(s:plug_dir)
 " quickly send commands in English without kb switch
 Plug 'lyokha/vim-xkbswitch'
 let g:XkbSwitchEnabled = 1
-if os == "Darwin"
+if has('macunix')
     let g:XkbSwitchLib = '/usr/local/bin/libxkbswitch.dylib'
-elseif os == "Linux"
+elseif has('unix')
     let g:XkbSwitchLib = '/usr/lib/libxkbswitch.so'
 endif
 
 " Documentation {{{
-if os == "Darwin"
+if has('macunix')
     Plug 'rizzatti/dash.vim', { 'on':  'DashSearch' }
     " Same mapping as in Zeal
     nmap <silent> <leader>z <Plug>DashSearch
-elseif os == "Linux"
+elseif has('unix')
     Plug 'KabbAmine/zeavim.vim', { 'on': 'Zeavim' }
 endif
 " Also consider https://github.com/rhysd/devdocs.vim
