@@ -235,7 +235,7 @@ au FileType fstab,systemd  setlocal noexpandtab list
 au FileType gitconfig,toml setlocal noexpandtab list
 " LLVM style by default, 2 spaces
 " usr_30.txt, 30.2
-au FileType cpp setlocal ts=2 sts=2 sw=2 tw=79 et cindent fileformat=unix list
+au FileType c,cpp setlocal ts=2 sts=2 sw=2 tw=79 et cindent fileformat=unix list
 au FileType html setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
 au FileType ruby setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
 au FileType sh   setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
