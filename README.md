@@ -20,11 +20,24 @@ Moreover is has common look-and-feel for both Mac OS and Linux (sorry MS fans).
 
 ## Fonts
 
+
 Fonts kit for Archlinux:
 ```sh
 pacman -S ttf-croscore ttf-dejavu ttf-ubuntu-font-family ttf-inconsolata
 ttf-liberation --noconfirm
 ```
+
+### Consider to try
+
+[Agave](https://github.com/agarick/agave)
+
+[Fira Code](https://github.com/tonsky/FiraCode)
+
+[IBM Plex](https://github.com/IBM/plex/releases/latest)
+
+[Input](https://input.fontbureau.com)
+
+[Victor Mono](https://rubjo.github.io/victor-mono/)
 
 ## Keyboard settings
 
