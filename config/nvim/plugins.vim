@@ -28,7 +28,7 @@ if has('macunix')
     Plug 'rizzatti/dash.vim', { 'on':  'DashSearch' }
     " Same mapping as in Zeal
     nmap <silent> <leader>z :DashSearch<CR>
-elseif os == "Linux"
+elseif has('unix')
     Plug 'KabbAmine/zeavim.vim' ", { 'on': ['Zeavim', 'ZVVisSelection',
     " \ 'ZVOperator', 'ZVKeyDocset'] }
     nmap <silent> <leader>z :Zeavim<CR>
