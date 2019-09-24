@@ -29,7 +29,13 @@ if os == "Darwin"
     " Same mapping as in Zeal
     nmap <silent> <leader>z <Plug>DashSearch
 elseif os == "Linux"
-    Plug 'KabbAmine/zeavim.vim', { 'on': 'Zeavim' }
+    Plug 'KabbAmine/zeavim.vim' ", { 'on': ['Zeavim', 'ZVVisSelection',
+    " \ 'ZVOperator', 'ZVKeyDocset'] }
+    nmap <silent> <leader>z :Zeavim<CR>
+    vmap <leader>z <Plug>ZVVisSelection
+    " Use as operator, e.g. gzrW will search for the inner Word
+    nmap gz <Plug>ZVOperator
+    "nmap <leader><leader>z :ZVKeyDocset<CR>
 endif
 " Also consider https://github.com/rhysd/devdocs.vim
 " }}}
@@ -586,7 +592,7 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-nmap <leader>, :echom "Smart Fix"<CR>
+nmap <leader><leader> :echom "Smart Fix"<CR>
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 nmap <silent> <TAB> <Plug>(coc-range-select)

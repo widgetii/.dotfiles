@@ -60,7 +60,7 @@ function! s:EditAlternate()
     echo l:alter
     execute 'edit ' . l:alter
 endfunction
-autocmd vimrc FileType cpp nmap <leader>z :call <SID>EditAlternate()<CR>
+autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
 " TODO:
 " autocreate .clang-tidy file for new project using "clang-tidy --dump-config"
 " }}}
