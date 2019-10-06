@@ -511,8 +511,11 @@ let g:coc_global_extensions = [
             \   'coc-vimlsp',
             \   'coc-yaml',
             \ ]
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if executable('node')
+    "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
+
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
