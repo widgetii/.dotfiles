@@ -421,7 +421,9 @@ set autowriteall
 
 " From nvim 0.4
 " Enables pseudo-transparency for a floating window
-set winblend=10
+if has('nvim-0.4')
+    set winblend=10
+endif
 
 " Use :Rg for file finds
 

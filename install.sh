@@ -109,6 +109,9 @@ function install_rcup {
     echo "Installing RCM"
     case $OS in
     Ubuntu*)
+        command -v add-apt-repository || {
+          sudo apt install -y software-properties-common
+        }
         sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
         sudo apt-get -y update
         sudo apt-get -y install rcm
