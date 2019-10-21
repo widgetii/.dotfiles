@@ -228,6 +228,7 @@ sssh() {
 }
 
 alias d8="~/git/v8/v8/out/x64.release/d8 --experimental-wasm-threads"
+alias jfr="~/git/jenkinsfile-runner/app/target/appassembler/bin/jenkinsfile-runner"
 
 # Colemak vi-mode
 bindkey -M vicmd 's' vi-insert
