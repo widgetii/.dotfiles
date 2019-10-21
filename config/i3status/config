@@ -18,7 +18,8 @@ order += "volume headphones"
 #order += "run_watch VPNC"
 order += "path_exists PTech"
 order += "path_exists PGW"
-order += "path_exists MIT"
+order += "path_exists mitpg"
+order += "path_exists gibpg"
 order += "wireless wlp8s0"
 #order += "ethernet enp12s0"
 #order += "battery 0"
@@ -86,9 +87,14 @@ path_exists PGW {
     path = "/home/dima/.ssh/control-127.0.0.1-10003-dmitriii"
 }
 
-path_exists MIT {
+path_exists mitpg {
     format = "%title"
-    path = "/run/ppp205.active"
+    path = "/run/ppp245.active"
+}
+
+path_exists gibpg {
+    format = "%title"
+    path = "/run/ppp84.active"
 }
 
 tztime local {
