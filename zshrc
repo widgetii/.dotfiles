@@ -205,9 +205,8 @@ export npm_config_prefix="$HOME/.node_modules"
 # exports
 export PATH="$HOME/.local/bin:$GOBIN:$HOME/.node_modules/bin:$HOME/.kube/plugins/jordanwilson230:$PATH"
 
-# transfer.sh
-transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+# https://0x0.st
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\ntransfer filename"; return 1; fi; curl --progress-bar -F"file=@$1" https://0x0.st; }
 
 # Weather
 alias wtr='curl -H "Accept-Language: ru" wttr.in/Москва'
