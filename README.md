@@ -37,6 +37,8 @@ ttf-liberation --noconfirm
 
 [Input](https://input.fontbureau.com)
 
+[Operator Mono](https://github.com/kiliman/operator-mono-lig)
+
 [Victor Mono](https://rubjo.github.io/victor-mono/)
 
 ## Keyboard settings
