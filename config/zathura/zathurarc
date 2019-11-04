@@ -2,3 +2,31 @@
 map n scroll down
 map e scroll up
 map i scroll right
+
+# Enable copy to clipboard
+set selection-clipboard clipboard
+
+# Larger scoll steps with j/k (n/e)
+set scroll-step 50
+
+# Font
+set font "DejaVu Sans Mono 12"
+
+# Automatically adjust the document to full width
+set adjust-open width
+
+# Set the title to the filename
+set window-title-basename true
+
+# Adjusting the document
+map [normal] b adjust_window best-fit
+map [fullscreen] b adjust_window best-fit
+map [normal] w adjust_window width
+map [fullscreen] w adjust_window width
+
+# Dark mode
+set recolor "true"
+set recolor-lightcolor "#272C2D" #00
+set recolor-darkcolor "#BABDD6" #06
+set recolor-reverse-video "true"
+set recolor-keephue "true"
