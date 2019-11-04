@@ -160,7 +160,7 @@ if executable('go')
 
     function! Go_init()
         nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-        nmap <leader>r <Plug>(go-run)
+        nmap <leader>rr :split <bar> terminal go run %<CR>
         nmap <leader>n <Plug>(go-test)
         nnoremap <leader>a :cclose<CR>
     endf
