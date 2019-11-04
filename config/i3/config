@@ -221,6 +221,10 @@ exec /usr/bin/skypeforlinux
 assign [class="skype"] $ws5
 for_window [class="skype"] floating disable
 
+# Lazarus
+for_window [class="lazarus"] floating enable
+for_window [title="Form1"] floating enable
+
 # MS Teams
 exec "cd $HOME/git/teams-fix && yarn start"
 assign [title="Microsoft Teams"] $ws5
