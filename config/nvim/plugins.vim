@@ -163,6 +163,7 @@ if executable('go')
         nmap <leader>rr :split <bar> terminal go run %<CR>
         nmap <leader>n <Plug>(go-test)
         nnoremap <leader>a :cclose<CR>
+        nmap <silent> <leader>x :GoAlternate<CR>
     endf
     autocmd vimrc FileType go call Go_init()
 endif
