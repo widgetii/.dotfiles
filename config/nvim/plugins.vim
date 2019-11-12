@@ -74,11 +74,6 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " FileType {{{
 
-" Universal polyglot syntax pack
-Plug 'sheerun/vim-polyglot'
-" Usiversal hashed syntax highlighting
-Plug 'jaxbot/semantic-highlight.vim'
-
 " JSON {{{
 "Plug 'elzr/vim-json'
 " Correct highlight on coc.nvim settings file
@@ -257,6 +252,11 @@ autocmd vimrc FileType html,css,javascript.jsx imap <leader>/ </><esc>s<C-x><C-o
 imap <M-Return> <br />
 nmap <M-Return> o<br /><esc>
 " }}}
+
+" Universal polyglot syntax pack
+Plug 'sheerun/vim-polyglot'
+" Usiversal hashed syntax highlighting
+Plug 'jaxbot/semantic-highlight.vim'
 
 " }}}
 

@@ -53,7 +53,7 @@ xmodmap -e "add Hyper_L = $spare_modifier"
 xmodmap -e "keycode any = space"
 #xcape -t 1000 -e "$spare_modifier=space"
 # let's bisect time period and find proper
-$HOME/xcape3 -t 500 -e "$spare_modifier=space"
+$HOME/xcape3 -t 150 -e "$spare_modifier=space"
 
 # Shift and parenthesis
 xcape -t 250 -e 'Shift_L=parenleft;ISO_Level3_Shift=parenright'

@@ -20,6 +20,7 @@ order += "path_exists PTech"
 order += "path_exists PGW"
 order += "path_exists mitpg"
 order += "path_exists gibpg"
+order += "path_exists frpg"
 order += "wireless wlp8s0"
 #order += "ethernet enp12s0"
 #order += "battery 0"
@@ -95,6 +96,11 @@ path_exists mitpg {
 path_exists gibpg {
     format = "%title"
     path = "/run/ppp84.active"
+}
+
+path_exists frpg {
+    format = "%title"
+    path = "/run/ppp76.active"
 }
 
 tztime local {
