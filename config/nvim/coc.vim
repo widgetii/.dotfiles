@@ -1,5 +1,7 @@
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Erlang support
+Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
 
 " don't give |ins-completion-menu| messages.  For example,
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
