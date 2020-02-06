@@ -130,7 +130,8 @@ then
     if [[ ! "$SSH_AUTH_SOCK" ]]; then
         eval "$(<~/.ssh-agent-thing)"
         ssh-add
-        ssh-add .ssh/pg-20190624
+        ssh-add .ssh/pg-20191223
+        ssh-add .ssh/dev-20200114
     fi
 fi
 
@@ -227,7 +228,7 @@ sssh() {
     while true; do command ssh -q "$@"; [ $? -eq 0 ] && break || sleep 0.5; done
 }
 
-alias d8="~/git/v8/v8/out/x64.release/d8 --experimental-wasm-threads"
+alias d8="rlwrap ~/git/v8/v8/out.gn/x64.release/d8 --experimental-wasm-threads"
 alias jfr="~/git/jenkinsfile-runner/app/target/appassembler/bin/jenkinsfile-runner"
 
 # Colemak vi-mode

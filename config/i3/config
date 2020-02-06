@@ -225,6 +225,9 @@ for_window [class="skype"] floating disable
 for_window [class="lazarus"] floating enable
 for_window [title="Form1"] floating enable
 
+# DVR
+for_window [class="GStreamer"] floating enable
+
 # MS Teams
 exec "cd $HOME/git/teams-fix && yarn start"
 assign [title="Microsoft Teams"] $ws5
