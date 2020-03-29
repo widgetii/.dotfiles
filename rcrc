@@ -1,0 +1,3 @@
+EXCLUDES="*.md"
+UNDOTTED="Library"
+COPY_ALWAYS="Library/Fonts/*"
