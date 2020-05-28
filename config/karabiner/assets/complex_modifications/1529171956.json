@@ -2,7 +2,7 @@
   "title": "select_input_source example",
   "rules": [
     {
-      "description": "Change input source to U.S. by left_command, RussianWin by right_command.",
+      "description": "Change input source to U.S. by left_command, RussianWin by right_command, Chinese by control.",
       "manipulators": [
         {
           "type": "basic",
@@ -46,6 +46,29 @@
             {
               "select_input_source": {
                 "input_source_id": "^com\\.apple\\.keylayout\\.RussianWin$"
+              }
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "select_input_source": {
+                "input_source_id": "^com\\.apple\\.inputmethod\\.SCIM\\.ITABC$"
               }
             }
           ]
