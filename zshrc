@@ -130,8 +130,8 @@ then
     if [[ ! "$SSH_AUTH_SOCK" ]]; then
         eval "$(<~/.ssh-agent-thing)"
         ssh-add
-        ssh-add .ssh/pg-20191223
-        ssh-add .ssh/dev-20200114
+        ssh-add .ssh/pg-20200324
+        ssh-add .ssh/dev-20200514
     fi
 fi
 
