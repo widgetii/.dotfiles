@@ -1,0 +1,33 @@
+! Return&CapsLock -> Ctrl
+! Caps -> Escape
+
+keycode 0x69 = Return
+! Переименовываем Enter в Control_R
+keycode 0x24 = Control_R
+! Наделяем его полномочиями Ctrl
+add Control = Control_R
+remove Lock = Caps_Lock
+! теперь у нас CapsLock - это левый Ctrl
+keycode 0x42 = Control_L
+! добавляем ему функцию Control
+add Control = Control_L
+
+! однократное нажатие у нас будет для Enter->Return, для Caps->Escape
+
+! ВРЕМЕННО маппим на ненужные кнопки F9->English, F10->Russian
+keycode 250 = ISO_First_Group
+keycode 251 = ISO_Last_Group
+
+! Use Spacebar as a Modifier
+clear mod3
+clear mod4
+add mod3 = Hyper_L
+add mod4 = Super_L Super_R
+
+keycode 65 = Hyper_L
+!add Hyper_L = Hyper_L
+keycode any = space
+
+! {} on Alts
+keycode 247 = braceleft
+keycode 248 = braceright
