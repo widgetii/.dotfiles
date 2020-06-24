@@ -6,7 +6,7 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 # Launch Fcitx Config GUI from contrl center, add Google Pinyin.
-#fcitx
+fcitx --disable fcitx-xkb
 
 xkbcomp -I$HOME/.config/xkb ~/.config/xkb/keymap/my_layout $DISPLAY
 
