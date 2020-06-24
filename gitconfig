@@ -31,3 +31,5 @@
 	smudge = git-lfs smudge -- %f
 [credential]
 	helper = cache --timeout=100000
+[pull]
+	rebase = false
