@@ -36,3 +36,6 @@ set recolor-keephue "true"
 
 # Save document history at each page
 set continuous-hist-save "true"
+
+# Steady trackpad scrolling on macOS
+set scroll-step 1
