@@ -9,8 +9,14 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-#set $mod Mod4
-set $mod mod3
+# mod1 - Alt
+# mod2 - Num Lock
+# mod3 - empty
+# mod4 - Super
+# mod5 - Mode_switch
+
+set $mod Mod4
+#set $mod mod3
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -229,8 +235,8 @@ for_window [title="Form1"] floating enable
 for_window [class="GStreamer"] floating enable
 
 # MS Teams
-exec "cd $HOME/git/teams-fix && yarn start"
-assign [title="Microsoft Teams"] $ws5
+#exec "cd $HOME/git/teams-fix && yarn start"
+#assign [title="Microsoft Teams"] $ws5
 
 # Workspace specific startups
 # https://www.reddit.com/r/i3wm/comments/8oyzmy/automatically_open_applications_on_specific/
@@ -254,9 +260,9 @@ for_window [class="xfreerdp"] floating disable
 
 # Screenshots
 #bindsym $mod+shift+s exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
-bindsym Mod4+shift+3 exec "flameshot full -p ~/Downloads"
+#bindsym $mod+shift+3 exec "flameshot full -p ~/Downloads"
 # For usage check this https://github.com/lupoDharkael/flameshot#keyboard-shortcuts
-bindsym Mod4+shift+4 exec "flameshot gui -p ~/Downloads"
+#bindsym $mod+shift+4 exec "flameshot gui -p ~/Downloads"
 
 # Use https://github.com/syl20bnr/i3ci/blob/master/i3_config
 # for new ideas, for eg. functions

@@ -130,8 +130,8 @@ then
     if [[ ! "$SSH_AUTH_SOCK" ]]; then
         eval "$(<~/.ssh-agent-thing)"
         ssh-add
-        ssh-add .ssh/pg-20201006
-        ssh-add .ssh/dev-20201008
+        ssh-add .ssh/pg-20210108
+        ssh-add .ssh/dev-20210108
     fi
 fi
 
@@ -195,7 +195,7 @@ alias gd='git difftool --no-symlinks --dir-diff'
 alias rman="LANG=ru_RU.UTF-8 man"
 # I want to try vim as man viewer
 # https://kgrz.io/faster-vim-better-manpager.html
-export MANPAGER="$EDITOR -c 'set ft=man ts=8 nomod nolist nonu noma cursorline' -"
+#export MANPAGER="$EDITOR -c 'set ft=man ts=8 nomod nolist nonu noma cursorline' -"
 
 # Golang
 export GOPATH="$HOME/go"

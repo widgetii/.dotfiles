@@ -22,7 +22,7 @@ xmodmap ~/.Xmodmap
 # однократное нажатие у нас будет для Enter->Return, для Caps->Escape
 xcape -t 500 -e "Control_R=Return;Control_L=Escape"
 xcape -t 500 -e "Super_L=ISO_First_Group;Super_R=ISO_Last_Group"
-$HOME/xcape3 -t 150 -e "Hyper_L=space"
+#$HOME/xcape3 -t 150 -e "Hyper_L=space"
 # Shift and parenthesis
 xcape -t 250 -e 'Shift_L=parenleft;ISO_Level3_Shift=parenright'
 # {} on Alts

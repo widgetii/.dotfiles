@@ -19,14 +19,14 @@ keycode 250 = ISO_First_Group
 keycode 251 = ISO_Last_Group
 
 ! Use Spacebar as a Modifier
-clear mod3
-clear mod4
-add mod3 = Hyper_L
-add mod4 = Super_L Super_R
-
-keycode 65 = Hyper_L
-!add Hyper_L = Hyper_L
-keycode any = space
+!clear mod3
+!clear mod4
+!add mod3 = Hyper_L
+!add mod4 = Super_L Super_R
+!
+!keycode 65 = Hyper_L
+!!add Hyper_L = Hyper_L
+!keycode any = space
 
 ! {} on Alts
 keycode 247 = braceleft
