@@ -66,7 +66,6 @@
             "initializationOptions": {}
         }
     },
-    "coc.preferences.hoverTarget": "echo",
     "suggest.snippetIndicator": "🌟",
     "suggest.noselect": false,
     "diagnostic.errorSign": "✗",
@@ -75,20 +74,16 @@
     "diagnostic.hintSign": "λ",
     "codeLens.enable": true,
     "java.errors.incompleteClasspath.severity": "ignore",
-    "python.analysis.diagnosticEnabled": false,
-    "python.autoComplete.addBrackets": true,
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
         "--line-length=80",
         "--target-version=py37"
     ],
-    "python.jediEnabled": false,
     "python.linting.enabled": false,
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": [
         "--follow-imports=silent",
         "--show-column-numbers",
-        "--python-version 3.7",
         "--cache-dir /tmp/mypy/"
     ]
 }
