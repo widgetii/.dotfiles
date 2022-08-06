@@ -246,8 +246,11 @@ au FileType javascript  setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix lis
 au FileType python      setlocal ts=4 sts=4 sw=4 tw=79 et ai fileformat=unix list
 au FileType yaml        setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
 au FileType hcl         setlocal ts=2 sts=2 sw=2 tw=79 et ai fileformat=unix list
+au FileType asm setlocal ts=8 sts=8 sw=8 tw=79 noet cindent fileformat=unix list
 au BufRead,BufNewFile MAINTAINERS setlocal ft=toml
 au BufRead,BufNewFile */infra_gil/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile *.S set filetype=asm
+au BufRead,BufNewFile objdump.c setlocal cindent cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1 sw=2 sts=2 fo-=ro fo+=cql
 
 " }}} TABS&SPACES
 
@@ -278,7 +281,7 @@ nnoremap ci) %ci)
 set clipboard+=unnamedplus
 
 ":h provider-clipboard
-if s:is_ssh 
+if s:is_ssh
     let cprov = expand('~/.config/nvim/bin/clipboard-provider')
     let g:clipboard = {
       \   'name': 'ocs52',
@@ -287,8 +290,8 @@ if s:is_ssh
       \      '*': cprov . " copy",
       \    },
       \   'paste': {
-      \      '+': '+',
-      \      '*': '*',
+      \      '+': {-> 1 },
+      \      '*': {-> 1 },
       \   },
       \   'cache_enabled': 1,
       \ }
