@@ -146,8 +146,7 @@ then
 
     alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
     #alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
-
-    PATH="$PATH:/usr/local/miniconda3/bin"
+    export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 fi
 
 # local envs

@@ -108,4 +108,7 @@ let g:no_man_maps = 1
 let g:ft_man_folding_enable = 1
 nnoremap <silent> <buffer> N :Man<CR>
 vnoremap <silent> <buffer> N :Man<CR>
+
+" Fix Y key copiying is not copying whole line
+unmap Y
 " }}}
