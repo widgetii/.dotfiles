@@ -131,3 +131,6 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 "nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 "" Resume latest coc list
 "nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+command! -nargs=* -range CocAction :call CocActionAsync('codeActionRange', <line1>, <line2>, <f-args>)
+command! -nargs=* -range CocFix    :call CocActionAsync('codeActionRange', <line1>, <line2>, 'quickfix')
