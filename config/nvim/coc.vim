@@ -47,13 +47,17 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use N for show documentation in preview window
-nnoremap <silent> N :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
+function! ShowDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    if CocAction('hasProvider', 'hover')
+      call CocActionAsync('doHover')
+    else
+      call feedkeys('K', 'in')
+    endif
   endif
 endfunction
 
@@ -105,7 +109,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Show signature help while editing
 "autocmd CursorHoldI * silent! call CocAction('showSignatureHelp')
-autocmd CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
+"autocmd CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
 
 " don't use all types
 "autocmd FileType * setl formatexpr=CocAction('formatSelected')
