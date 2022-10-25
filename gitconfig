@@ -33,3 +33,13 @@
 	helper = cache --timeout=100000
 [pull]
 	rebase = false
+
+[sendemail]
+  confirm = auto
+  smtpServer = smtp.gmail.com
+  smtpServerPort = 587
+  smtpEncryption = tls
+  smtpUser = dima@doty.ru
+
+[credential]
+    helper = store
