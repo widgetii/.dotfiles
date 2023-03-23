@@ -16,35 +16,6 @@
             "args": [],
             "filetypes": ["eruby", "markdown"]
         },
-        "yaml": {
-            "command": "yaml-language-server",
-            "args": ["--stdio"],
-            "filetypes": ["yaml", "yaml.ansible"],
-            "trace.server": "verbose",
-            "settings": {
-                "yaml": {
-                    "trace": {
-                        "server": "verbose"
-                    },
-                    "schemas": {
-                        "kubernetes": "/**",
-                        "http://json.schemastore.org/ansible-stable-2.5": "infra_gil/*"
-                    },
-                    "format": {
-                        "enable": true
-                    },
-                    "validate": true,
-                    "completion": true,
-                    "hover": true
-                }
-            },
-        },
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"]
-        },
         "groovy": {
             "command": "java",
             "args": ["-jar", "/usr/local/bin/groovy-language-server-all.jar"],
