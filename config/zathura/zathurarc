@@ -38,4 +38,4 @@ set recolor-keephue "true"
 set continuous-hist-save "true"
 
 # Steady trackpad scrolling on macOS
-set scroll-step 1
+set scroll-step 10
