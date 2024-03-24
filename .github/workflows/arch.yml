@@ -1,0 +1,35 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Test on QEMU ${{ matrix.arch }} and ${{ matrix.distro }}
+
+    # The host should always be linux
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        include:
+          - arch: aarch64
+            distro: ubuntu22.04
+          - arch: aarch64
+            distro: bullseye
+          - arch: ppc64le
+            distro: alpine_latest
+          - arch: none
+            distro: none
+            base_image: riscv64/busybox
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: uraimo/run-on-arch-action@v2
+      with:
+        arch: ${{ matrix.arch }}
+        distro: ${{ matrix.distro }}
+
+        # Not required, but speeds up builds
+        githubToken: ${{ github.token }}
+
+        shell: ./install.sh
