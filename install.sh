@@ -216,7 +216,7 @@ function install_neovim {
         sudo add-apt-repository -y ppa:neovim-ppa/stable
         sudo apt-get -y update
         sudo apt-get -y install neovim
-        sudo apt-get -y install python-dev python3-dev python3-pip
+        sudo apt-get -y install python3-dev python3-pip
         ONLY_ALTUPD=1
         ;;
     Debian*)
