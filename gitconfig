@@ -43,3 +43,9 @@
 
 [credential]
     helper = store
+
+[includeIf "gitdir:~/git/work/"]
+	path = ~/git/work/.gitconfig
+
+[includeIf "gitdir:~/git/OpenIPC/"]
+	path = ~/git/OpenIPC/.gitconfig
