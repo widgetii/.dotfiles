@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Docker prerequisites (under root):
+#   apt -y update && apt -y upgrade && apt install -y curl
+
 # Run on new machine as:
 #   curl -L https://git.io/fjWOf | bash
 # OR
@@ -345,6 +348,8 @@ if is_docker_container
 then
   echo "\$@" > /usr/local/bin/sudo
   chmod +x /usr/local/bin/sudo
+  export DEBIAN_FRONTEND=noninteractive
+  export TZ=Etc/UTC
 fi
 
 [[ "$OS" == "Darwin" ]] || check_home_space
