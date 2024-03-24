@@ -1,4 +1,4 @@
-name: CI
+name: Arch
 
 on: [push]
 
@@ -8,18 +8,14 @@ jobs:
 
     # The host should always be linux
     runs-on: ubuntu-22.04
+
     strategy:
       matrix:
         include:
           - arch: aarch64
-            distro: ubuntu22.04
+            distro: ubuntu20.04
           - arch: aarch64
-            distro: bullseye
-          - arch: ppc64le
-            distro: alpine_latest
-          - arch: none
-            distro: none
-            base_image: riscv64/busybox
+            distro: ubuntu22.04
 
     steps:
     - uses: actions/checkout@v4
@@ -32,4 +28,4 @@ jobs:
         # Not required, but speeds up builds
         githubToken: ${{ github.token }}
 
-        shell: ./install.sh
+        run: ./install.sh
