@@ -48,6 +48,10 @@ function detect_OS {
     fi
 }
 
+function is_docker_container {
+    [ -e /.dockerenv ]
+}
+
 function check_connectivity {
     case "$(curl -s --max-time 2 -I http://google.com | sed 's/^[^ ]*  *\([0-9]\).*/\1/; 1q')" in
         # HTTP connectivity is up"
@@ -325,7 +329,7 @@ function install_ccat {
 function fix_term_for_root {
     ROOTDIR="/root"
     [[ "$OS" =~ Darwin ]] && ROOTDIR="/var/root"
-    sudo cp -rv $HOME/.terminfo $ROOTDIR
+    sudo cp -rv $HOME/.terminfo $ROOTDIR || true
 }
 
 if [[ "$USER" == "root" ]]; then
@@ -336,6 +340,12 @@ fi
 detect_OS
 [[ ! -z "$SUDO_USER" ]] && USER=$SUDO_USER
 echo "Detected OS: $OS, version: $VER, user: $USER"
+
+if is_docker_container
+then
+  echo "\$@" > /usr/local/bin/sudo
+  chmod +x /usr/local/bin/sudo
+fi
 
 [[ "$OS" == "Darwin" ]] || check_home_space
 
