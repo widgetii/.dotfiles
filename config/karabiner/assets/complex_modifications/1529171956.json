@@ -2,7 +2,7 @@
   "title": "select_input_source example",
   "rules": [
     {
-      "description": "Change input source to U.S. by left_command, RussianWin by right_command, Chinese by control.",
+      "description": "Change input source to U.S. by left_command, RussianWin by right_command, Chinese by control, Arabic by Fn.",
       "manipulators": [
         {
           "type": "basic",
@@ -64,6 +64,27 @@
           "to_if_alone": [
             {
              "shell_command": "/opt/homebrew/bin/macism com.apple.inputmethod.SCIM.ITABC"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "apple_vendor_top_case_key_code": "keyboard_fn",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "apple_vendor_top_case_key_code": "keyboard_fn"
+            }
+          ],
+          "to_if_alone": [
+            {
+             "shell_command": "/opt/homebrew/bin/macism com.apple.keylayout.Arabic"
             }
           ]
         }
