@@ -21,9 +21,7 @@
           ],
           "to_if_alone": [
             {
-              "select_input_source": {
-                "input_source_id": "^com\\.apple\\.keylayout\\.Colemak$"
-              }
+             "shell_command": "/opt/homebrew/bin/macism com.apple.keylayout.Colemak"
             }
           ]
         },
@@ -43,10 +41,8 @@
             }
           ],
           "to_if_alone": [
-            {
-              "select_input_source": {
-                "input_source_id": "^com\\.apple\\.keylayout\\.RussianWin$"
-              }
+           {
+             "shell_command": "/opt/homebrew/bin/macism com.apple.keylayout.Russian"
             }
           ]
         },
@@ -67,9 +63,7 @@
           ],
           "to_if_alone": [
             {
-              "select_input_source": {
-                "input_source_id": "^com\\.apple\\.inputmethod\\.SCIM\\.ITABC$"
-              }
+             "shell_command": "/opt/homebrew/bin/macism com.apple.inputmethod.SCIM.ITABC"
             }
           ]
         }
