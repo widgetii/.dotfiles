@@ -56,3 +56,9 @@ Using [vim-plug](https://github.com/junegunn/vim-plug) as plugin manager.
 ### Test Language Servers
 
 * `JavaScript` - Completion of built-in JavaScript and TypeScript methods like `Math.sin` and custom methods from the current project.
+
+## Notes
+
+### MacOS
+
+Consider [modifying dictionaries font](https://www.jessiemihalik.com/blog/changing-the-dictionary-font-in-macos-sequoia/)
