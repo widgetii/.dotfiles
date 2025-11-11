@@ -64,7 +64,6 @@ plugins=(
   aws
   colored-man-pages
   docker
-  docker-machine
   git
   jira
   jsontools
@@ -137,16 +136,22 @@ fi
 
 if [[ `uname` == 'Darwin' ]]
 then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-    source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+    #source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+    #source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
     alias xtime="gtime -f='%Uu %Ss %er %MkB %C'"
 
-    alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+    #alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
     #alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
     export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+
+    # fix Python crash on Ansible runs
+    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+    # fix GNU tar
+    export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 fi
 
 # local envs
