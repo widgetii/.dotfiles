@@ -16,6 +16,12 @@
             "args": [],
             "filetypes": ["eruby", "markdown"]
         },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        },
         "groovy": {
             "command": "java",
             "args": ["-jar", "/usr/local/bin/groovy-language-server-all.jar"],

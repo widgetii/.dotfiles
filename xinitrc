@@ -39,7 +39,7 @@ xset m 4/1 4
 export TERMINAL=/usr/bin/kitty
 #sxhkd &
 #exec bspwm
-compton -b -i 0.8
+#compton -b -i 0.8
 flameshot &
 clipit &
 /usr/lib/notify-osd/notify-osd &

@@ -325,3 +325,4 @@ export TAB_LIST_FILES_PREFIX
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"
+alias nvitop="uvx nvitop"
