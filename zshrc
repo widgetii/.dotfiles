@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -137,7 +137,7 @@ fi
 if [[ `uname` == 'Darwin' ]]
 then
     source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     #source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
     #source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
@@ -250,11 +250,11 @@ bindkey "^[." insert-last-word
 bindkey "^B" backward-char
 bindkey "^F" forward-char
 
-function zle-line-init zle-keymap-select {
-VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX $EPS1"
-    zle reset-prompt
-}
+#function zle-line-init zle-keymap-select {
+#VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+#RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $RPROMPT_PREFIX%f%b%k$(build_right_prompt)%{$reset_color%}$RPROMPT_SUFFIX $EPS1"
+#    zle reset-prompt
+#}
 
 # WHAT'S NEXT?
 # https://github.com/clvv/fasd
@@ -323,3 +323,5 @@ bindkey '^I' tab_list_files
 export TAB_LIST_FILES_PREFIX
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"

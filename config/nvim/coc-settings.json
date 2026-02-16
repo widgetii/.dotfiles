@@ -56,5 +56,6 @@
         "--follow-imports=silent",
         "--show-column-numbers",
         "--cache-dir /tmp/mypy/"
-    ]
+    ],
+    "snippets.ultisnips.pythonPrompt": false
 }

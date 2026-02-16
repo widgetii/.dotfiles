@@ -184,7 +184,7 @@ function install_zsh {
         sudo pacman -S zsh
         ;;
     Darwin*)
-        brew install zsh zsh-completions
+        brew install zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting powerlevel10k
         ;;
     CentOS*)
         sudo yum -y install zsh
