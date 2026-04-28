@@ -262,8 +262,10 @@ Plug 'jaxbot/semantic-highlight.vim'
 
 " Clipboard support
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
-nmap y <Plug>OSCYankOperator
-vmap y <Plug>OSCYankVisual
+if !empty($SSH_TTY)
+    nmap y <Plug>OSCYankOperator
+    vmap y <Plug>OSCYankVisual
+endif
 "
 " Git support
 Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit', 'Gwrite', 'Gdiff',
