@@ -335,6 +335,21 @@ function fix_term_for_root {
     sudo cp -rv $HOME/.terminfo $ROOTDIR || true
 }
 
+# Install karabiner-cjk-helper — fixes macOS' broken programmatic input-source
+# switching that Karabiner-Elements' shell_command rules rely on (see the
+# karabiner.json language-switch rule). Required for the daemon trigger paths
+# in config/karabiner/karabiner.json to work.
+function install_karabiner_cjk_helper {
+    local dir="$HOME/git/karabiner-cjk-helper"
+    if [[ ! -d "$dir" ]]; then
+        mkdir -p "$(dirname "$dir")"
+        git clone https://github.com/widgetii/karabiner-cjk-helper.git "$dir"
+    else
+        (cd "$dir" && git pull --ff-only)
+    fi
+    (cd "$dir" && make install)
+}
+
 if [[ "$USER" == "root" ]]; then
     echo "Don't run the script from root!"
     exit 2
@@ -421,6 +436,11 @@ command -v nvim -version >/dev/null || {
     echo "run:"
     echo "nvim +PlugInstall +qall"
 }
+
+# macOS: install karabiner-cjk-helper if Karabiner-Elements is present.
+if [[ "$OS" == "Darwin" ]] && [[ -d "/Applications/Karabiner-Elements.app" ]]; then
+    command -v karabiner-cjk-helper >/dev/null || install_karabiner_cjk_helper
+fi
 
 clean_up
 
