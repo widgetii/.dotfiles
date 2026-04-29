@@ -360,6 +360,18 @@ function fix_term_for_root {
     sudo cp -rv $HOME/.terminfo $ROOTDIR || true
 }
 
+function install_brew {
+    echo "Installing Homebrew"
+    NONINTERACTIVE=1 /bin/bash -c \
+        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Add brew to PATH for the rest of this script (arch-dependent prefix).
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+}
+
 # Install karabiner-cjk-helper — fixes macOS' broken programmatic input-source
 # switching that Karabiner-Elements' shell_command rules rely on (see the
 # karabiner.json language-switch rule). Required for the daemon trigger paths
@@ -396,6 +408,11 @@ check_connectivity || {
 }
 
 [ -z "$https_proxy" ] || setup_temp_proxies
+
+# Bootstrap Homebrew on macOS — most install_* functions assume `brew` exists.
+if [[ "$OS" == "Darwin" ]]; then
+    command -v brew >/dev/null || install_brew
+fi
 
 # Check zsh and install it
 command -v zsh >/dev/null || {
