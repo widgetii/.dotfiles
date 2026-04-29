@@ -124,7 +124,17 @@ function install_rcup {
         sudo apt-get install rcm
         ;;
     Arch*)
-        pikaur -S --noconfirm rcm
+        # rcm is in AUR. Use whichever AUR helper is installed; fall through
+        # to the source build when none is.
+        if command -v pikaur >/dev/null; then
+            pikaur -S --noconfirm rcm
+        elif command -v paru >/dev/null; then
+            paru -S --noconfirm rcm
+        elif command -v yay >/dev/null; then
+            yay -S --noconfirm rcm
+        else
+            install_rcup_from_source
+        fi
         ;;
     Darwin*)
         brew tap thoughtbot/formulae
@@ -139,17 +149,22 @@ function install_rcup {
         }
         ;;
     *)
-        TMPDIR=`mktemp -d -p "${XDG_RUNTIME_DIR}"`
-        cd "$TMPDIR"
-        curl -LO https://thoughtbot.github.io/rcm/dist/rcm-1.3.3.tar.gz &&
-            tar -xvf rcm-1.3.3.tar.gz &&
-            cd rcm-1.3.3 &&
-            ./configure &&
-            make &&
-            sudo make install
-        rm -rf "$TMPDIR"
+        install_rcup_from_source
         ;;
     esac
+}
+
+function install_rcup_from_source {
+    local TMPDIR
+    TMPDIR=$(mktemp -d -p "${XDG_RUNTIME_DIR:-/tmp}")
+    cd "$TMPDIR"
+    curl -LO https://thoughtbot.github.io/rcm/dist/rcm-1.3.3.tar.gz &&
+        tar -xvf rcm-1.3.3.tar.gz &&
+        cd rcm-1.3.3 &&
+        ./configure &&
+        make &&
+        sudo make install
+    rm -rf "$TMPDIR"
 }
 
 function install_git {
