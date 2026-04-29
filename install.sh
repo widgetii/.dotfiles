@@ -411,8 +411,10 @@ if [[ ! -d "$HOME/.dotfiles" ]]; then
     fix_term_for_root
 else
     cd $HOME/.dotfiles
-    echo "Updating .dotfiles"
-    git pull
+    if [[ -z "$DOTFILES_NO_PULL" ]]; then
+        echo "Updating .dotfiles"
+        git pull
+    fi
     rcup
 fi
 

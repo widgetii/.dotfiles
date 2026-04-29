@@ -1,0 +1,81 @@
+name: install
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+# Validate that install.sh runs cleanly on every OS the dotfiles target.
+# Each job stages the just-checked-out tree at $HOME/.dotfiles (the path
+# install.sh expects), then runs the script with DOTFILES_NO_PULL=1 so
+# CI tests the *current* commit instead of pulling whatever is at
+# origin/master.
+
+jobs:
+  ubuntu:
+    name: Ubuntu 24.04
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      DOTFILES_NO_PULL: '1'
+    steps:
+      - uses: actions/checkout@v5
+      - name: Stage repo at ~/.dotfiles
+        run: |
+          set -eux
+          cp -a "$GITHUB_WORKSPACE/." "$HOME/.dotfiles"
+      - name: Run install.sh
+        run: |
+          set -eux
+          cd "$HOME/.dotfiles"
+          bash install.sh
+
+  archlinux:
+    name: ArchLinux (latest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+      image: archlinux:latest
+      options: --user root
+    env:
+      DOTFILES_NO_PULL: '1'
+    steps:
+      - name: Bootstrap container
+        run: |
+          set -eux
+          pacman -Syu --noconfirm --needed
+          pacman -S --noconfirm --needed git curl base-devel sudo zsh
+          # install.sh refuses to run as root.
+          useradd -m -G wheel runner
+          echo 'runner ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+      - uses: actions/checkout@v5
+      - name: Stage repo at /home/runner/.dotfiles
+        run: |
+          set -eux
+          cp -a "$GITHUB_WORKSPACE/." /home/runner/.dotfiles
+          chown -R runner:runner /home/runner/.dotfiles
+      - name: Run install.sh as runner
+        run: |
+          set -eux
+          su - runner -c 'cd ~/.dotfiles && DOTFILES_NO_PULL=1 bash install.sh'
+
+  macos:
+    name: macOS (latest)
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env:
+      DOTFILES_NO_PULL: '1'
+    steps:
+      - uses: actions/checkout@v5
+      - name: Stage repo at ~/.dotfiles
+        run: |
+          set -eux
+          cp -a "$GITHUB_WORKSPACE/." "$HOME/.dotfiles"
+      - name: Run install.sh
+        run: |
+          set -eux
+          cd "$HOME/.dotfiles"
+          bash install.sh
