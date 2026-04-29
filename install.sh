@@ -473,8 +473,14 @@ command -v nvim -version >/dev/null || {
     echo "nvim +PlugInstall +qall"
 }
 
-# macOS: install karabiner-cjk-helper if Karabiner-Elements is present.
-if [[ "$OS" == "Darwin" ]] && [[ -d "/Applications/Karabiner-Elements.app" ]]; then
+# macOS: install Karabiner-Elements and the CJK input-source switching
+# helper that makes its shell_command rules in karabiner.json work
+# reliably (see github.com/widgetii/karabiner-cjk-helper for the why).
+if [[ "$OS" == "Darwin" ]]; then
+    if [[ ! -d "/Applications/Karabiner-Elements.app" ]]; then
+        echo "Installing Karabiner-Elements"
+        brew install --cask karabiner-elements
+    fi
     command -v karabiner-cjk-helper >/dev/null || install_karabiner_cjk_helper
 fi
 
