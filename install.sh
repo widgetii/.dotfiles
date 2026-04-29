@@ -192,7 +192,7 @@ function install_zsh {
         sudo apt install -y zsh #zsh-syntax-highlighting
         ;;
     Arch*)
-        sudo pacman -S zsh
+        sudo pacman -S --noconfirm --needed zsh
         ;;
     Darwin*)
         brew install zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting powerlevel10k
@@ -247,7 +247,7 @@ function install_neovim {
         sudo update-alternatives --set editor /usr/bin/nvim
         ;;
     Arch*)
-        sudo pacman -S neovim python-neovim
+        sudo pacman -S --noconfirm --needed neovim python-pynvim
         ;;
     Darwin*)
         brew install neovim
