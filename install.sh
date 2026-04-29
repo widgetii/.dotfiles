@@ -51,10 +51,6 @@ function detect_OS {
     fi
 }
 
-function is_docker_container {
-    [ -e /.dockerenv ]
-}
-
 function check_connectivity {
     case "$(curl -s --max-time 2 -I http://google.com | sed 's/^[^ ]*  *\([0-9]\).*/\1/; 1q')" in
         # HTTP connectivity is up"
@@ -322,8 +318,10 @@ function install_ccat {
     *)
         LBIN="$HOME/.local/bin"
         mkdir -p $LBIN
+        # The repo was renamed jingweno/ccat → owenthereal/ccat years ago;
+        # the old URL now serves a 404 page that tar cannot unpack.
         curl -L --output /tmp/ccat.tgz \
-            https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
+            https://github.com/owenthereal/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
         tar xvf /tmp/ccat.tgz -C $LBIN --strip-components 1 linux-amd64-1.1.0/ccat
         ;;
     esac
@@ -358,14 +356,6 @@ fi
 detect_OS
 [[ ! -z "$SUDO_USER" ]] && USER=$SUDO_USER
 echo "Detected OS: $OS, version: $VER, user: $USER"
-
-if is_docker_container
-then
-  echo "\$@" > /usr/local/bin/sudo
-  chmod +x /usr/local/bin/sudo
-  export DEBIAN_FRONTEND=noninteractive
-  export TZ=Etc/UTC
-fi
 
 [[ "$OS" == "Darwin" ]] || check_home_space
 
