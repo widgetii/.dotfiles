@@ -325,21 +325,33 @@ function install_ccat {
     echo "Installing Ccat"
     case $OS in
     Arch*)
-        pikaur -S ccat-git
+        if command -v pikaur >/dev/null; then
+            pikaur -S --noconfirm ccat-git
+        elif command -v paru >/dev/null; then
+            paru -S --noconfirm ccat-git
+        elif command -v yay >/dev/null; then
+            yay -S --noconfirm ccat-git
+        else
+            install_ccat_from_release
+        fi
         ;;
     Darwin*)
         brew install ccat
         ;;
     *)
-        LBIN="$HOME/.local/bin"
-        mkdir -p $LBIN
-        # The repo was renamed jingweno/ccat → owenthereal/ccat years ago;
-        # the old URL now serves a 404 page that tar cannot unpack.
-        curl -L --output /tmp/ccat.tgz \
-            https://github.com/owenthereal/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
-        tar xvf /tmp/ccat.tgz -C $LBIN --strip-components 1 linux-amd64-1.1.0/ccat
+        install_ccat_from_release
         ;;
     esac
+}
+
+function install_ccat_from_release {
+    local LBIN="$HOME/.local/bin"
+    mkdir -p "$LBIN"
+    # The repo was renamed jingweno/ccat → owenthereal/ccat years ago;
+    # the old URL now serves a 404 page that tar cannot unpack.
+    curl -L --output /tmp/ccat.tgz \
+        https://github.com/owenthereal/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz
+    tar xvf /tmp/ccat.tgz -C "$LBIN" --strip-components 1 linux-amd64-1.1.0/ccat
 }
 
 function fix_term_for_root {
